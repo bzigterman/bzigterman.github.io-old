@@ -24,6 +24,10 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 
 ![Nearby Counties - combined]({{ site.baseurl }}/images/nearbybothdoses.png)
 
+![Illinois]({{ site.baseurl }}/images/ILVaccinesWeb.png)
+
+![Illinois new]({{ site.baseurl }}/images/ILNewVaccinesWeb.png)
+
 ## Champaign County
 
 ![Key Metrics]({{ site.baseurl }}/images/vaccinefacets.png)
