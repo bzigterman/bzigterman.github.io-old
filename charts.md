@@ -123,9 +123,13 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 ![state positivity without UI](https://docs.google.com/spreadsheets/d/e/2PACX-1vTxuiLbahlulSIe_JOAof_BlK8SV5x92XJo03iUageUaQOTWrbmkZQ4rO1pBy_h0XneyMclAjO-sJq3/pubchart?oid=31769394&format=image)
 -->
 
-<!--
-
 ## Illinois
+
+![Illinois New Deaths]({{ site.baseurl }}/images/IL_new_deaths.png)
+
+![Illinois New Cases]({{ site.baseurl }}/images/IL_new_cases.png)
+
+<!--
 
 ![New Deaths](https://docs.google.com/spreadsheets/d/e/2PACX-1vTxuiLbahlulSIe_JOAof_BlK8SV5x92XJo03iUageUaQOTWrbmkZQ4rO1pBy_h0XneyMclAjO-sJq3/pubchart?oid=805067583&format=image)
 
