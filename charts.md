@@ -103,6 +103,8 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 ![region positivity]({{ site.baseurl }}/images/NoUIpositivityWeb.png)
 -->
 
+![Region 6 New Cases - map]({{ site.baseurl }}/images/case_rate_nearby.png)
+
 ![Region 6 New Cases]({{ site.baseurl }}/images/region6newcases.png)
 
 ![Region 6 Hospital Beds]({{ site.baseurl }}/images/region6hospitalbeds.png)
