@@ -89,6 +89,16 @@ The University of Chicago
 
 ## [Clips »]({{ site.baseurl }}/clips)
 
+## Awards
+
+- 2020 Illinois Press Association second-place Freedom of Information award
+- 2018 Illinois Press Association honorable mention for localized national story
+- 2018 Illinois Press Association second-place prize for agricultural story
+- 2017 Illinois Press Association honorable mention for best investigative/enterprise reporting
+- 2016 Illinois Press Association second-place prize for government beat reporting
+- 2016 Illinois Press Association first-place prize for business/economic reporting
+- 2015 Illinois Press Association first-place prize for government beat reporting
+
 ## Public Engagement
 
 - February 2020: Spoke about my experience covering the disappearance of visiting University of Illinois scholar Yingying Zhang to students [at Eastern Illinois University](https://www.eiu.edu/calendar/index.php?eID=22607).
