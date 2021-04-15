@@ -10,8 +10,9 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 
 ![Nearby Counties - map]({{ site.baseurl }}/images/combined_partial_full_vax.png)
 
+<!--
 ![Nearby Counties - facet]({{ site.baseurl }}/images/nearbygeofacet.png)
-
+-->
 ![Nearby Counties - combined]({{ site.baseurl }}/images/nearbybothdoses.png)
 
 ![Vaccines]({{ site.baseurl }}/images/VaccinesWeb.png)
