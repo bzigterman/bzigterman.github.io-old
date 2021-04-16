@@ -8,7 +8,7 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 
 ## Vaccines
 
-![Nearby Counties - map]({{ site.baseurl }}/images/combined_partial_full_vax.png)
+![Nearby Counties - map]({{ site.baseurl }}/images/combined_case_vax.png)
 
 <!--
 ![Nearby Counties - facet]({{ site.baseurl }}/images/nearbygeofacet.png)
@@ -102,9 +102,10 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 ![UI positives v county positives]({{ site.baseurl }}/images/ChampaignCoCasesSplitWeb.png)
 
 ![region positivity]({{ site.baseurl }}/images/NoUIpositivityWeb.png)
--->
+
 
 ![Region 6 New Cases - map]({{ site.baseurl }}/images/case_rate_nearby.png)
+-->
 
 ![Region 6 New Cases]({{ site.baseurl }}/images/region6newcases.png)
 
