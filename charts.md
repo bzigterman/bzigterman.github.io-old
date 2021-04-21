@@ -15,6 +15,8 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 -->
 ![Nearby Counties - combined]({{ site.baseurl }}/images/nearbybothdoses.png)
 
+![Nearby facet]({{ site.baseurl }}/images/nearbyfacet)
+
 ![Vaccines]({{ site.baseurl }}/images/VaccinesWeb.png)
 
 ![New Vaccines]({{ site.baseurl }}/images/NewVaccinesWeb.png)
