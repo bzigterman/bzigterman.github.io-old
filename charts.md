@@ -8,7 +8,7 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 
 ## Vaccines
 
-![Nearby Counties - map]({{ site.baseurl }}/images/combined_case_vax.png)
+![IL Counties - map]({{ site.baseurl }}/images/CDC_cases_vax_IL.png)
 
 <!--
 ![Nearby Counties - facet]({{ site.baseurl }}/images/nearbygeofacet.png)
