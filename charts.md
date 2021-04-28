@@ -35,6 +35,8 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 
 ![Illinois new]({{ site.baseurl }}/images/ILNewVaccinesWeb.png)
 
+![Illinois CDC map]({{ site.baseurl }}/images/CDC_vax_combined.png)
+
 ## Champaign County
 
 ![Key Metrics]({{ site.baseurl }}/images/vaccinefacets.png)
