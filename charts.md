@@ -137,13 +137,13 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 
 ## Illinois
 
-![Illinois map - deaths and vaccines]({{ site.baseurl }}/images/IL_deaths_vax_map.png)
-
 ![Illinois New Deaths]({{ site.baseurl }}/images/IL_new_deaths.png)
 
 ![Illinois New Cases]({{ site.baseurl }}/images/IL_new_cases.png)
 
 <!--
+
+![Illinois map - deaths and vaccines]({{ site.baseurl }}/images/IL_deaths_vax_map.png)
 
 {% include newstatedeaths.html %}
 
