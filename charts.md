@@ -141,6 +141,8 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 
 ![Illinois New Cases]({{ site.baseurl }}/images/IL_new_cases.png)
 
+![CDC community transmission levels]({{ site.baseurl }}/images/cdc_transmission.png)
+
 <!--
 
 ![Illinois map - deaths and vaccines]({{ site.baseurl }}/images/IL_deaths_vax_map.png)
