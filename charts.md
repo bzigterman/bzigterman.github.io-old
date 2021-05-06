@@ -147,8 +147,6 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 
 ![Illinois map - deaths and vaccines]({{ site.baseurl }}/images/IL_deaths_vax_map.png)
 
-{% include newstatedeaths.html %}
-
 ![New Deaths](https://docs.google.com/spreadsheets/d/e/2PACX-1vTxuiLbahlulSIe_JOAof_BlK8SV5x92XJo03iUageUaQOTWrbmkZQ4rO1pBy_h0XneyMclAjO-sJq3/pubchart?oid=805067583&format=image)
 
 ![New Tests](https://docs.google.com/spreadsheets/d/e/2PACX-1vTxuiLbahlulSIe_JOAof_BlK8SV5x92XJo03iUageUaQOTWrbmkZQ4rO1pBy_h0XneyMclAjO-sJq3/pubchart?oid=1127263786&format=image)
