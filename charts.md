@@ -46,6 +46,8 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 
 ![Key Metrics]({{ site.baseurl }}/images/vaccinefacets.png)
 
+<!--
+
 ![Active Cases]({{ site.baseurl }}/images/CUactiveWeb.png)
 
 ![New Cases]({{ site.baseurl }}/images/CUCasesWeb.png)
@@ -58,7 +60,7 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 
 ![New Tests]({{ site.baseurl }}/images/CUTestsWeb.png)
 
-<!--
+
 
 ![Cases](https://docs.google.com/spreadsheets/d/e/2PACX-1vTxuiLbahlulSIe_JOAof_BlK8SV5x92XJo03iUageUaQOTWrbmkZQ4rO1pBy_h0XneyMclAjO-sJq3/pubchart?oid=753736351&format=image)
 
@@ -82,15 +84,16 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 
 ## University of Illinois
 
-![UI Positive Cases]({{ site.baseurl }}/images/UICasesWeb.png)
 
 ![UI Semester Comparison]({{ site.baseurl }}/images/UISemCompare.png)
 
 ![UI Semester Totals Comparison]({{ site.baseurl }}/images/UISemCompareTotal.png)
 
-![Total UI Tests]({{ site.baseurl }}/images/UITestsWeb.png)
 
 <!--
+![UI Positive Cases]({{ site.baseurl }}/images/UICasesWeb.png)
+![Total UI Tests]({{ site.baseurl }}/images/UITestsWeb.png)
+
 ![UI Test Positivity]({{ site.baseurl }}/images/UIPositivityWeb.png)
 
 ![UI Positive Cases](https://docs.google.com/spreadsheets/d/e/2PACX-1vTxuiLbahlulSIe_JOAof_BlK8SV5x92XJo03iUageUaQOTWrbmkZQ4rO1pBy_h0XneyMclAjO-sJq3/pubchart?oid=2041206099&format=image)
