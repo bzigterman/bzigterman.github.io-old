@@ -17,6 +17,8 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 
 ![Nearby facet]({{ site.baseurl }}/images/nearbyfull_vax_facet.png)
 
+![Nearby new fact]({{ site.baseurl }}/images/nearby_new_doses_facet.png)
+
 ![Vaccines]({{ site.baseurl }}/images/VaccinesWeb.png)
 
 ![New Vaccines]({{ site.baseurl }}/images/NewVaccinesWeb.png)
