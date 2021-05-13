@@ -155,6 +155,8 @@ During the COVID-19 pandemic, I've been making charts with data for Champaign Co
 
 ![USA fully vaccinated map]({{ site.baseurl }}/images/usa_vax_total.png)
 
+![USA new cases map]({{ site.baseurl }}/images/usa_cases.png)
+
 <!--
 
 ![Illinois map - deaths and vaccines]({{ site.baseurl }}/images/IL_deaths_vax_map.png)
