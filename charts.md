@@ -84,13 +84,15 @@ During the COVID-19 pandemic, I've been making charts with data from the Champai
 
 ## University of Illinois
 
+![UI combined semester comparison]({{ site.baseurl }}/images/SemCompareCombined.png)
 
+<!--
 ![UI Semester Comparison]({{ site.baseurl }}/images/UISemCompare.png)
 
 ![UI Semester Totals Comparison]({{ site.baseurl }}/images/UISemCompareTotal.png)
 
 
-<!--
+
 ![UI Positive Cases]({{ site.baseurl }}/images/UICasesWeb.png)
 ![Total UI Tests]({{ site.baseurl }}/images/UITestsWeb.png)
 
