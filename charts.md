@@ -4,7 +4,7 @@ title: Charts
 permalink: /charts/
 ---
 
-During the COVID-19 pandemic, I've been making charts with data for Champaign County and the University of Illinois.
+During the COVID-19 pandemic, I've been making charts with data from the Champaign-Urbana Public Health District, the University of Illinois, the Illinois Department of Public Health and the CDC.
 
 ## Vaccines
 
