@@ -84,11 +84,13 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ## University of Illinois
 
+![UI cases and tests]({{ site.baseurl }}/images/UI_Cases_Tests.png)
+
+<!--
+
 ![UI Positive Cases]({{ site.baseurl }}/images/UICasesWeb.png)
 
 ![Total UI Tests]({{ site.baseurl }}/images/UITestsWeb.png)
-
-<!--
 
 ![UI combined semester comparison]({{ site.baseurl }}/images/SemCompareCombined.png)
 
