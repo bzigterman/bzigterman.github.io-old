@@ -148,10 +148,12 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 -->
 
 ## Illinois
-
+<!--
 ![Illinois New Deaths]({{ site.baseurl }}/images/IL_new_deaths.png)
 
 ![Illinois New Cases]({{ site.baseurl }}/images/IL_new_cases.png)
+-->
+![Illinois new cases and deaths]({{ site.baseurl }}/images/state_Cases_Tests.png)
 
 ![CDC community transmission levels]({{ site.baseurl }}/images/cdc_transmission.png)
 
