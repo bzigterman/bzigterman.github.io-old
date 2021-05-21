@@ -8,10 +8,6 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ## Vaccines
 
-![IL Counties - map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/CDC_cases_vax_IL.png)
-
-Community transmission levels are calculated by the CDC based on new cases per capita in the past week and test positivity.
-
 ![Nearby facet]({{ site.baseurl }}/images/nearbyfull_vax_facet.png)
 
 ![Nearby new fact]({{ site.baseurl }}/images/nearby_new_doses_facet.png)
@@ -33,6 +29,10 @@ Community transmission levels are calculated by the CDC based on new cases per c
 ![Region 6 Hospital Beds]({{ site.baseurl }}/images/region6hospitalbeds.png)
 
 ## Illinois
+
+![IL Counties - map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/CDC_cases_vax_IL.png)
+
+Community transmission levels are calculated by the CDC based on new cases per capita in the past week and test positivity.
 
 ![Illinois new cases and deaths]({{ site.baseurl }}/images/state_Cases_Tests.png)
 
