@@ -36,8 +36,6 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ![Illinois new cases and deaths]({{ site.baseurl }}/images/state_Cases_Tests.png)
 
-![CDC community transmission levels]({{ site.baseurl }}/images/cdc_transmission.png)
-
 ## United States
 
 ![USA fully vaccinated map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/usa_vax_total.png)
