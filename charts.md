@@ -8,7 +8,7 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ## Vaccines
 
-![IL Counties - map]({{ site.baseurl }}/images/CDC_cases_vax_IL.png)
+![IL Counties - map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/CDC_cases_vax_IL.png)
 
 ![Nearby facet]({{ site.baseurl }}/images/nearbyfull_vax_facet.png)
 
