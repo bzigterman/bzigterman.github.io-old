@@ -38,6 +38,6 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ## United States
 
-![USA fully vaccinated map]({{ site.baseurl }}/images/usa_vax_total.png)
+![USA fully vaccinated map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/usa_vax_total.png)
 
 ![USA transmission levels map]({{ site.baseurl }}/images/usa_transmission.png)
