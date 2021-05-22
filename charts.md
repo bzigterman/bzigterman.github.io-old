@@ -12,7 +12,7 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ![Nearby new fact]({{ site.baseurl }}/images/nearby_new_doses_facet.png)
 
-![Illinois CDC map]({{ site.baseurl }}/images/CDC_vax_combined.png)
+![Illinois CDC map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/CDC_vax_combined.png)
 
 ## Champaign County
 
