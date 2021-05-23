@@ -24,9 +24,7 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ## Region 6 (East Central Illinois)
 
-![Region 6 New Cases]({{ site.baseurl }}/images/region6newcases.png)
-
-![Region 6 Hospital Beds]({{ site.baseurl }}/images/region6hospitalbeds.png)
+![Region 6 cases and hospital beds](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/region_Cases_Hospital.png)
 
 ## Illinois
 
@@ -34,7 +32,7 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 Community transmission levels are calculated by the CDC based on new cases per capita in the past week and test positivity.
 
-![Illinois new cases and deaths](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/state_Cases_Tests.png)
+![Illinois new cases and deaths](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/state_Cases_Deaths.png)
 
 ## United States
 
