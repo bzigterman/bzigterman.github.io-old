@@ -16,7 +16,7 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ## Champaign County
 
-![Key Metrics]({{ site.baseurl }}/images/vaccinefacets.png)
+![Key Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/Champaign_facet.png)
 
 ## University of Illinois
 
