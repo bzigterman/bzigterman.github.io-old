@@ -18,7 +18,7 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ![Illinois CDC_vax_combined map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/CDC_vax_combined.png)
 
-![IL CDC_cases_vax_IL map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/CDC_cases_vax_IL.png)
+![IL CDC_cases_transmission_IL map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/CDC_cases_transmission_IL.png)
 
 Community transmission levels are calculated by the CDC based on new cases per capita in the past week and test positivity.
 
