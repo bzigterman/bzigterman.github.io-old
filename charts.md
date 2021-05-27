@@ -8,21 +8,17 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ## Champaign County
 
-![Key Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/Champaign_facet.png)
-
-## Region 6 (East Central Illinois)
-
-![Region 6 cases and hospital beds](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/region_Cases_Hospital.png)
+![Champaign County Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/Champaign_facet.png)
 
 ## Illinois
+
+![Illinois Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/IL_facet.png)
 
 ![Illinois CDC_vax_combined map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/CDC_vax_combined.png)
 
 ![IL CDC_cases_transmission_IL map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/CDC_cases_transmission_IL.png)
 
 Community transmission levels are calculated by the CDC based on new cases per capita in the past week and test positivity.
-
-![Illinois new cases and deaths](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/state_Cases_Deaths.png)
 
 ## United States
 
