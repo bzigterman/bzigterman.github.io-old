@@ -6,10 +6,11 @@ Hello! This is my website. There is not much here for now. Here’s what’s up 
 
 ### Present:
 
-- Reporter for [The Champaign News-Gazette](https://www.news-gazette.com/users/profile/ben%20zigterman/)
+- Reporter for [Law360](https://www.law360.com)
 
 ### Past:
 
+- Reporter for [The Champaign News-Gazette](https://www.news-gazette.com/users/profile/ben%20zigterman/)
 - Reporter for [The Galesburg Register-Mail](https://www.galesburg.com/)
 - Contributor to [BGR](https://bgr.com/author/ben-zigterman/)
 - Intern at [The Beaver County Times](https://www.timesonline.com/)
