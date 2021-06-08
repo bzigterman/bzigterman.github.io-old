@@ -6,7 +6,9 @@ permalink: /resume/
 
 ## Experience
 
-2016–present: Reporter, **The Champaign News-Gazette**, Champaign, IL
+2021–present: Reporter, **Law360**
+
+2016–2021: Reporter, **The Champaign News-Gazette**, Champaign, IL
 
 - Write 1–4 articles every day, ranging from business and agriculture to city council and courts
 - Write a Sunday business feature story each week
