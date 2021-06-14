@@ -10,19 +10,19 @@ permalink: /resume/
 
 2016–2021: Reporter, **The Champaign News-Gazette**, Champaign, IL
 
-- Write 1–4 articles every day, ranging from business and agriculture to city council and courts
-- Write a Sunday business feature story each week
-- Write breaking crime and business stories throughout the day
-- Edit and write for our *Central Illinois Business* magazine
-- Cover federal lawsuits, tracking them with PACER
-- Track SEC filings for local public companies
-- File FOIA requests
-- Analyze data using spreadsheets and pivot tables
-- Create charts using R
-- Appear on our [news radio station](https://www.news-gazette.com/wdws/) to discuss stories I'm covering
-- Modernized our company’s podcasts by getting them moved to Apple Podcasts
+- Wrote 1–4 articles every day, ranging from business and agriculture to city council and courts
+- Wrote a Sunday business feature story each week
+- Wrote breaking crime and business stories throughout the day
+- Edited and wrote for the company's *Central Illinois Business* magazine
+- Covered federal lawsuits, tracking them with PACER
+- Tracked SEC filings for local public companies
+- Filed FOIA requests
+- Analyzed data using spreadsheets and pivot tables
+- Created charts using the R programming language
+- Appeared on the company's [news radio station](https://www.news-gazette.com/wdws/) to discuss stories I'm covering
+- Modernized the company’s podcasts by getting them moved to Apple Podcasts
 - Shot and edited a weekly agriculture video called [Friday on the Farm](http://fridayonthefarm.com)
-- Launched internal newsroom service to track website changes
+- Launched an internal newsroom service to track website changes
 
 2014–16: Business and Education Reporter, **The Galesburg Register-Mail**, Galesburg, IL
 
