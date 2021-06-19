@@ -4,7 +4,7 @@ title: Clips
 permalink: /clips/
 ---
 
-Here’s some of my best work:
+Here's some of my best work:
 
 ## *The Champaign News-Gazette*
 

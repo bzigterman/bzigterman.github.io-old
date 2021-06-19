@@ -19,8 +19,8 @@ permalink: /resume/
 - Filed FOIA requests
 - Analyzed data using spreadsheets and pivot tables
 - Created charts using the R programming language
-- Appeared on the company’s [news radio station](https://www.news-gazette.com/wdws/) to discuss stories I'm covering
-- Modernized the company’s podcasts by getting them moved to Apple Podcasts
+- Appeared on the company's [news radio station](https://www.news-gazette.com/wdws/) to discuss stories I'm covering
+- Modernized the company's podcasts by getting them moved to Apple Podcasts
 - Shot and edited a weekly agriculture video called [Friday on the Farm](http://fridayonthefarm.com)
 - Launched an internal newsroom service to track website changes
 
