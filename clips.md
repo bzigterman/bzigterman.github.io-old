@@ -6,7 +6,7 @@ permalink: /clips/
 
 Here's some of my best work:
 
-## *The Champaign News-Gazette*
+## The Champaign News-Gazette
 
 ### 2020
 * February 24: [The power of 'The Power of I'](https://www.news-gazette.com/news/local/university-illinois/the-power-of-the-power-of-i-ui-getting-bang/article_66da8a11-c42b-5bc4-80a3-75a0a5371b5d.html)
@@ -53,7 +53,7 @@ Here's some of my best work:
 * February 12: [How did DUI driver walk free?](https://www.news-gazette.com/news/how-did-dui-driver-walk-free/article_75c27177-8901-5c46-bb98-0a38a3ad2509.html)
 * January 5: [Hobbico’s deferral of payout upsets, confounds ex-workers](https://www.news-gazette.com/news/hobbico-s-deferral-of-payout-upsets-confounds-ex-workers/article_12034638-1e79-5fdc-9ba7-57b5e4fbfd03.html)
 
-## *The Galesburg Register-Mail*
+## The Galesburg Register-Mail
 
 ### 2016
 
@@ -73,19 +73,19 @@ Here's some of my best work:
 * April 26: [Area Vietnam veterans recall their war 40 years after its end](https://www.galesburg.com/article/20150426/NEWS/150429788)
 * March 1: [Galesburg businesses applaud net neutrality; providers skeptical of need](https://www.galesburg.com/article/20150301/NEWS/150309993)
 
-## *The Beaver County Times*
+## The Beaver County Times
 
 * [Report: Pennsylvania receives ‘D’ for policies supporting working parents](https://www.timesonline.com/7d5e2ce1-ed6f-5314-af7c-c49e3a9890bd.html)
 * [Safety group: Falling furniture a common problem with deadly consequences](https://www.timesonline.com/article/20140717/lifestyle/307179926?template=ampart)
 * [Rusyn Food Festival celebrates 21st year](https://www.timesonline.com/article/20140808/Lifestyle/308089938)
 <!--- * [Habitat for Humanity home dedication scheduled for Tuesday in New Brighton](https://www.timesonline.com/16f1dab5-ca42-5c7a-8e02-412e0eb7047c.html) --->
 
-## *BGR*
+## BGR
 
 * [**Outgoing NSA director: ‘It’s not our mission’ to spy on everyone in the world**](https://bgr.com/2014/02/17/nsa-telephone-metadata-recommendations/)
 * [Apple accidentally revealed that transit directions are coming to iOS](https://bgr.com/2014/06/09/apple-ios-maps-transit-directions-ios-8-1-leaked-screenshot/)
 
-## *The Daily Sophist*
+## The Daily Sophist
 
 * [_Chicago Weekly_ to be Renamed the _South Side Weekly_]({{ site.baseurl }}/articles/chicago-weekly-renamed)
 * [Scav 2013 – The Hunt Begins]({{ site.baseurl }}/articles/scav-2013)
