@@ -6,7 +6,7 @@ Hello! This is my website. There is not much here for now. Here's what I'm up to
 
 ### Present:
 
-- Reporter for [Law360](https://www.law360.com)
+- Reporter for [Law360](https://www.law360.com/search/articles?q=reporter:%22Ben+Zigterman%22)
 
 ### Past:
 
