@@ -8,6 +8,8 @@ permalink: /resume/
 
 2021–present: Reporter, **Law360**
 
+- Write daily news articles on insurance litigation
+
 2016–2021: Reporter, **The Champaign News-Gazette**, Champaign, IL
 
 - Wrote 1–4 articles every day, ranging from business and agriculture to city council and courts
