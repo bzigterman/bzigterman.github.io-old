@@ -6,9 +6,17 @@ permalink: /clips/
 
 Here's some of my best work:
 
+## Law360
+
+### 2021
+
+* June 30: [Judge Shucks Fla. Oyster Bar's COVID-19 Coverage Suit
+](https://www.law360.com/insurance/articles/1399058/judge-shucks-fla-oyster-bar-s-covid-19-coverage-suit)
+
 ## The Champaign News-Gazette
 
 ### 2020
+
 * February 24: [The power of 'The Power of I'](https://www.news-gazette.com/news/local/university-illinois/the-power-of-the-power-of-i-ui-getting-bang/article_66da8a11-c42b-5bc4-80a3-75a0a5371b5d.html)
 
 ### 2019
