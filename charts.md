@@ -10,6 +10,8 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ![Champaign County Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/Champaign_facet.png)
 
+Charts for Champaign County are posted daily on Twitter [@ChampaignCovid](https://twitter.com/ChampaignCovid).
+
 ## Illinois
 
 ![Illinois Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/IL_facet.png)
