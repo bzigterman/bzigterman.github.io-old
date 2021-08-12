@@ -33,3 +33,8 @@ Community transmission levels are calculated by the CDC based on new cases per c
 ## World
 
 ![World Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/world_facet.png)
+
+## Case Acceleration
+
+![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
+
