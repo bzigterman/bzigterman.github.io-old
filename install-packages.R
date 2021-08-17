@@ -1,0 +1,5 @@
+install.packages("tidyverse")
+install.packages("rio")
+install.packages("lubridate")
+install.packages("httr")
+install.packages("zoo")
