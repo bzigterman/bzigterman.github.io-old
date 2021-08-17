@@ -46,8 +46,7 @@ tweet_text <- paste(
   ",
   "- Average new vaccine doses: ",avg_new_vaccine_doses," (vs. ",month_ago_new_doses,")",
   "
-  
-  ",
+",
   sep = ""
 )
 
