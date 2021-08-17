@@ -34,7 +34,19 @@ month_ago_new_doses <- tail(lag(idph_vax_champaign$AdministeredCountRollAvg,31),
 
 # make web text
 
-tweet_text <- paste(
+champaign_county_table <- paste(
+"
+|                          | Last month               | ",weekday,"               |
+| :---                     |      ---:                |        ---:               |
+| Avg. new cases           | ",month_ago_cases,"      | ",avg_new_cases,"         |
+| Deaths in the past month | ",month_ago_deaths,"     | ",dead_last_month,"       |
+| Pct. fully vaccinated    | ",month_ago_vaccinated," | ",pct_fully_vaccinated,"  |
+| Avg. new vaccine doses   | ",month_ago_new_doses,"  | ",avg_new_vaccine_doses," |
+",
+sep = ""
+)
+
+champaign_county_text <- paste(
   "As of ",weekday," in Champaign County (vs. a month ago):
   
   ",
@@ -62,7 +74,7 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ## Champaign County
 
-",tweet_text,
+",champaign_county_table,champaign_county_text,
 "
 ![Champaign County Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/Champaign_facet.png)
 
