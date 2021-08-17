@@ -64,9 +64,7 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 ## Champaign County
 
 ",tweet_text,
-"
-
-![Champaign County Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/Champaign_facet.png)
+"![Champaign County Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/Champaign_facet.png)
 
 Charts for Champaign County are posted weekdays on Twitter [@ChampaignCovid](https://twitter.com/ChampaignCovid).
 
