@@ -15,7 +15,8 @@ As of Monday in Champaign County (vs. a month ago):
   - Percent of Champaign County fully vaccinated: 50.7% (vs. 48.6%)
   - Average new vaccine doses: 359 (vs. 290)
   
-  ![Champaign County Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/Champaign_facet.png)
+  
+![Champaign County Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/Champaign_facet.png)
 
 Charts for Champaign County are posted weekdays on Twitter [@ChampaignCovid](https://twitter.com/ChampaignCovid).
 
