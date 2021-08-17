@@ -45,4 +45,6 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
+This chart measures how quickly the average number of new cases each day is increasing, or roughly, the slope of the new-cases charts above. If the case acceleration is positive, then the number of new cases is increasing. If it is negative, then the number of new cases is decreasing. 
+
 
