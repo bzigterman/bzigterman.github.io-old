@@ -89,7 +89,7 @@ il_text <- paste(
   ",
   "- Average new cases: ",il_avg_new_cases," (vs. ",il_month_ago_cases,")
   ",
-  "- Average new daths: ",il_avg_new_deaths," (vs. ",il_month_ago_avg_new_deaths,")
+  "- Average new deaths: ",il_avg_new_deaths," (vs. ",il_month_ago_avg_new_deaths,")
   ",
   "- Percent of Illinois fully vaccinated: ",il_pct_fully_vaccinated,"% (vs. ",il_month_ago_vaccinated,"%)
   ",
