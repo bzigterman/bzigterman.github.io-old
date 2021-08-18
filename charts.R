@@ -36,12 +36,14 @@ month_ago_new_doses <- tail(lag(idph_vax_champaign$AdministeredCountRollAvg,31),
 
 champaign_county_table <- paste(
 "
+|--------------------------+--------------------------+---------------------------|
 |                          | Last month               | ",weekday,"               |
 | :---                     |      ---:                |        ---:               |
 | Avg. new cases           | ",month_ago_cases,"      | ",avg_new_cases,"         |
 | Deaths in the past month | ",month_ago_deaths,"     | ",dead_last_month,"       |
 | Pct. fully vaccinated    | ",month_ago_vaccinated," | ",pct_fully_vaccinated,"  |
 | Avg. new vaccine doses   | ",month_ago_new_doses,"  | ",avg_new_vaccine_doses," |
+
 ",
 sep = ""
 )
