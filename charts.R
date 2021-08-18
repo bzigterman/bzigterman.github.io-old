@@ -1,9 +1,9 @@
 library(httr)
 library(rio)
-library(scales)
 library(tidyverse)
 library(lubridate)
 library(zoo)
+library(scales)
 
 # make variables ----
 ## Champaign County ----
