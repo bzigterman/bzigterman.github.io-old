@@ -52,8 +52,7 @@ sep = ""
 )
 
 
-## Illinois
-## Champaign County ----
+## Illinois ----
 ### get data ----
 idph_cases_il <- rio::import("https://idph.illinois.gov/DPHPublicInformation/api/COVID/GetCountyHistorical?countyName=Illinois",
                                     format = "json") 
@@ -99,6 +98,92 @@ il_text <- paste(
 sep = ""
 )
 
+## case acceleration ----
+### get data ----
+#### Champaign cases ----
+idph_cases_champaign <- rio::import("https://idph.illinois.gov/DPHPublicInformation/api/COVID/GetCountyHistorical?countyName=Champaign",
+                                    format = "json") 
+idph_cases_champaign <- idph_cases_champaign$values %>%
+  mutate(new_cases = confirmed_cases - lag(confirmed_cases)) %>%
+  mutate(new_deaths = deaths - lag(deaths)) %>%
+  mutate(avg_new_cases = rollmean(new_cases, k = 7, 
+                                  fill = NA, align = "right")) %>%
+  mutate(monthlydead = rollmean(new_deaths, k = 7, 
+                                fill = NA, align = "right"))  %>%
+  mutate(Date = ymd_hms(reportDate, truncated = 0)) %>%
+  mutate(pct_change_new_cases = 
+           ((avg_new_cases - lag(avg_new_cases,14))/lag(avg_new_cases,14))) %>%
+  mutate(location = "Champaign County")
+
+
+#### IL cases -----
+idph_cases_il <- rio::import("https://idph.illinois.gov/DPHPublicInformation/api/COVID/GetCountyHistorical?countyName=Illinois",
+                             format = "json") 
+idph_cases_il <- idph_cases_il$values %>%
+  mutate(new_cases = confirmed_cases - lag(confirmed_cases)) %>%
+  mutate(new_deaths = deaths - lag(deaths)) %>%
+  mutate(avg_new_cases = rollmean(new_cases, k = 7, 
+                                  fill = NA, align = "right")) %>%
+  mutate(monthlydead = rollmean(new_deaths, k = 7, 
+                                fill = NA, align = "right"))  %>%
+  mutate(Date = ymd_hms(reportDate, truncated = 0)) %>%
+  mutate(pct_change_new_cases = 
+           ((avg_new_cases - lag(avg_new_cases,14))/lag(avg_new_cases,14))) %>%
+  mutate(location = "Illinois")
+
+#### USA cases ----
+jhu_new_cases_url <- "https://github.com/owid/covid-19-data/raw/master/public/data/jhu/new_cases.csv"
+jhu_new_cases_usa <- rio::import(jhu_new_cases_url, format = "csv") %>%
+  select(date,"United States") %>%
+  rename(new_cases = "United States") %>%
+  mutate(avg_new_cases = rollmean(new_cases, k = 7, 
+                                  fill = NA, align = "right")) %>%
+  mutate(pct_change_new_cases = 
+           ((avg_new_cases - lag(avg_new_cases,14))/lag(avg_new_cases,14))) %>%
+  mutate(Date = ymd(date)) %>% 
+  mutate(location = "United States")
+
+#### World cases ----
+jhu_new_cases_url <- "https://github.com/owid/covid-19-data/raw/master/public/data/jhu/new_cases.csv"
+jhu_new_cases_world <- rio::import(jhu_new_cases_url, format = "csv") %>%
+  select(date,"World") %>%
+  rename(new_cases = "World") %>%
+  mutate(avg_new_cases = rollmean(new_cases, k = 7, 
+                                  fill = NA, align = "right")) %>%
+  mutate(pct_change_new_cases = 
+           ((avg_new_cases - lag(avg_new_cases,14))/lag(avg_new_cases,14))) %>%
+  mutate(Date = ymd(date)) %>%
+  mutate(location = "World")
+
+### merge data ----
+combined_cases <- full_join(idph_cases_champaign, idph_cases_il) %>%
+  full_join(jhu_new_cases_usa) %>%
+  full_join(jhu_new_cases_world) %>%
+  select(location, Date,pct_change_new_cases)
+
+### set variables ----
+acceleration_weekday <- wday(tail(jhu_new_cases_world$Date,1), label = TRUE, abbr = FALSE)
+acceleration_champaign <- round(100*tail(idph_cases_champaign$pct_change_new_cases,1), digits = 1)
+acceleration_il <- round(100*tail(idph_cases_il$pct_change_new_cases,1), digits = 1)
+acceleration_usa <- round(100*tail(jhu_new_cases_usa$pct_change_new_cases,1), digits = 1)
+acceleration_world <- round(100*tail(jhu_new_cases_world$pct_change_new_cases,1), digits = 1)
+
+### text ----
+acceleration_text <- paste(
+  "As of ",acceleration_weekday,":
+  
+  ",
+  "- Champaign County: ",acceleration_champaign,"%
+  ",
+  "- Illinois: ",acceleration_il,"%
+  ",
+  "- United States: ",acceleration_usa,"%
+  ",
+  "- World: ",acceleration_world,"%",
+  "
+",
+sep = ""
+)
 
 
 
@@ -148,6 +233,8 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## Case Acceleration
 
+",acceleration_text,
+"
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
 This chart measures how quickly the average number of new cases is increasing, or roughly, the slope of the new-cases charts above. If the case acceleration is positive, then the average number of new cases is increasing. If it is negative, then the average number of new cases is decreasing. 
