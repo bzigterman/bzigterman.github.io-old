@@ -26,7 +26,6 @@ avg_new_cases <- round(tail(idph_cases_champaign$avg_new_cases,1))
 pct_fully_vaccinated <- round(100*tail(idph_vax_champaign$PctVaccinatedPopulation,1), digits = 1)
 avg_new_vaccine_doses <- tail(idph_vax_champaign$AdministeredCountRollAvg,1)
 weekday <- wday(tail(idph_cases_champaign$Date,1), label = TRUE, abbr = FALSE)
-short_weekday <- wday(tail(idph_cases_champaign$Date,1), label = TRUE)
 month_ago_deaths <- tail(lag(idph_cases_champaign$monthlydead, 31),1)
 month_ago_cases <- round(tail(lag(idph_cases_champaign$avg_new_cases, 31),1))
 month_ago_vaccinated <- round(100*tail(lag(idph_vax_champaign$PctVaccinatedPopulation,31),1), digits = 1)
@@ -34,19 +33,6 @@ month_ago_new_doses <- tail(lag(idph_vax_champaign$AdministeredCountRollAvg,31),
 
 
 # make web text
-
-champaign_county_table <- paste(
-"|--------------------------+---------------------------+----------------------------|
-|                          | Last month                | ",short_weekday,".         |
-| :---                     |      ---:                 |        ---:                |
-| Avg. new cases           | ",month_ago_cases,"       | ",avg_new_cases,"          |
-| Deaths in the past month | ",month_ago_deaths,"      | ",dead_last_month,"        |
-| Pct. fully vaccinated    | ",month_ago_vaccinated,"% | ",pct_fully_vaccinated,"%  |
-| Avg. new vaccine doses   | ",month_ago_new_doses,"   | ",avg_new_vaccine_doses,"  |
-
-",
-sep = ""
-)
 
 champaign_county_text <- paste(
   "As of ",weekday," in Champaign County (vs. a month ago):
@@ -76,7 +62,7 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ## Champaign County
 
-",champaign_county_table,champaign_county_text,
+",champaign_county_text,
 "
 ![Champaign County Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/Champaign_facet.png)
 
