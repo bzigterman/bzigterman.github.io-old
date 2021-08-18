@@ -50,6 +50,13 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## Case Acceleration
 
+As of Monday:
+  
+  - Champaign County: 53.5%
+  - Illinois: 61.6%
+  - United States: 57.3%
+  - World: 8.2%
+
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
 This chart measures how quickly the average number of new cases is increasing, or roughly, the slope of the new-cases charts above. If the case acceleration is positive, then the average number of new cases is increasing. If it is negative, then the average number of new cases is decreasing. 
