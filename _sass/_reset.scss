@@ -52,9 +52,11 @@ table {
 th {
 	background-color: #fafafa;
 	padding: 8px;
+	vertical-align: middle;
 }
 td {
 	padding: 8px;
+	vertical-align: middle;
 }
 // Apply a natural box layout model to all elements
 // from: http://www.paulirish.com/2012/box-sizing-border-box-ftw/
