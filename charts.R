@@ -22,7 +22,7 @@ idph_vax_champaign <- rio::import("https://idph.illinois.gov/DPHPublicInformatio
                                   format = "csv") %>%
   mutate(Date = mdy_hms(Report_Date)) 
 
-### variables ----
+### set variables ----
 champaign_dead_last_month <- format(tail(idph_cases_champaign$monthlydead,1),big.mark=",")
 champaign_avg_new_cases <- format(round(tail(idph_cases_champaign$avg_new_cases,1)),big.mark=",")
 champaign_pct_fully_vaccinated <- round(100*tail(idph_vax_champaign$PctVaccinatedPopulation,1), digits = 1)
@@ -69,7 +69,7 @@ idph_vax_il <- rio::import("https://idph.illinois.gov/DPHPublicInformation/api/C
                                   format = "csv") %>%
   mutate(Date = mdy_hms(Report_Date)) 
 
-### variables ----
+### set variables ----
 il_avg_new_deaths <- format(round(tail(idph_cases_il$avg_new_deaths,1)),big.mark=",")
 il_avg_new_cases <- format(round(tail(idph_cases_il$avg_new_cases,1)),big.mark=",")
 il_pct_fully_vaccinated <- round(100*tail(idph_vax_il$PctVaccinatedPopulation,1), digits = 1)
@@ -97,6 +97,115 @@ il_text <- paste(
 ",
 sep = ""
 )
+
+## USA ----
+
+### get data ----
+#### cases ----
+usa_jhu_new_cases_url <- "https://github.com/owid/covid-19-data/raw/master/public/data/jhu/new_cases.csv"
+usa_jhu_new_cases <- rio::import(usa_jhu_new_cases_url, format = "csv") %>%
+  select(date,"United States") %>%
+  rename(new_cases = "United States") %>%
+  mutate(avg_new_cases = rollmean(new_cases, k = 7, 
+                                  fill = NA, align = "right"))
+
+#### deaths ----
+usa_jhu_new_deaths_url <- "https://github.com/owid/covid-19-data/raw/master/public/data/jhu/new_deaths.csv"
+usa_jhu_new_deaths <- rio::import(usa_jhu_new_deaths_url, format = "csv") %>%
+  select(date,"United States") %>%
+  rename(new_deaths = "United States") %>%
+  mutate(avg_new_deaths = rollmean(new_deaths, k = 7, 
+                                   fill = NA, align = "right"))
+
+#### vaccines ----
+usa_owid_vaccines_url <- "https://github.com/owid/covid-19-data/raw/master/public/data/vaccinations/vaccinations.csv"
+usa_owid_vaccines <- rio::import(usa_owid_vaccines_url, format = "csv") %>%
+  filter(iso_code == "USA") %>%
+  select(date, people_fully_vaccinated,daily_vaccinations, people_fully_vaccinated_per_hundred)
+
+### set variables ----
+usa_avg_new_deaths <- format(round(tail(usa_jhu_new_deaths$avg_new_deaths,1)),big.mark=",")
+usa_avg_new_cases <- format(round(tail(usa_jhu_new_cases$avg_new_cases,1)),big.mark=",")
+usa_pct_fully_vaccinated <- round(tail(usa_owid_vaccines$people_fully_vaccinated_per_hundred,1), digits = 1)
+usa_avg_new_vaccine_doses <- format(tail(usa_owid_vaccines$daily_vaccinations,1),big.mark=",")
+usa_weekday <- wday(tail(usa_jhu_new_cases$date,1), label = TRUE, abbr = FALSE)
+usa_month_ago_avg_new_deaths <- format(round(tail(lag(usa_jhu_new_deaths$avg_new_deaths, 31),1)),big.mark=",")
+usa_month_ago_cases <- format(round(tail(lag(usa_jhu_new_cases$avg_new_cases, 31),1)),big.mark=",")
+usa_month_ago_vaccinated <- round(tail(lag(usa_owid_vaccines$people_fully_vaccinated_per_hundred,31),1), digits = 1)
+usa_month_ago_new_doses <- format(tail(lag(usa_owid_vaccines$daily_vaccinations,31),1),big.mark=",")
+
+### text ----
+
+usa_text <- paste(
+  "As of ",usa_weekday," in the United States (vs. a month ago):
+  
+  ",
+  "- Average new cases: ",usa_avg_new_cases," (vs. ",usa_month_ago_cases,")
+  ",
+  "- Average new deaths: ",usa_avg_new_deaths," (vs. ",usa_month_ago_avg_new_deaths,")
+  ",
+  "- Percent of the United States fully vaccinated: ",usa_pct_fully_vaccinated,"% (vs. ",usa_month_ago_vaccinated,"%)
+  ",
+  "- Average new vaccine doses: ",usa_avg_new_vaccine_doses," (vs. ",usa_month_ago_new_doses,")",
+  "
+",
+sep = ""
+)
+
+
+## World ----
+### get data ----
+#### cases ----
+
+world_jhu_new_cases_url <- "https://github.com/owid/covid-19-data/raw/master/public/data/jhu/new_cases.csv"
+world_jhu_new_cases <- rio::import(world_jhu_new_cases_url, format = "csv") %>%
+  select(date,"World") %>%
+  rename(new_cases = "World") %>%
+  mutate(avg_new_cases = rollmean(new_cases, k = 7, 
+                                  fill = NA, align = "right"))
+
+#### deaths ----
+world_jhu_new_deaths_url <- "https://github.com/owid/covid-19-data/raw/master/public/data/jhu/new_deaths.csv"
+world_jhu_new_deaths <- rio::import(world_jhu_new_deaths_url, format = "csv") %>%
+  select(date,"World") %>%
+  rename(new_deaths = "World") %>%
+  mutate(avg_new_deaths = rollmean(new_deaths, k = 7, 
+                                   fill = NA, align = "right"))
+
+#### vaccines ----
+world_owid_vaccines_url <- "https://github.com/owid/covid-19-data/raw/master/public/data/vaccinations/vaccinations.csv"
+world_owid_vaccines <- rio::import(world_owid_vaccines_url, format = "csv") %>%
+  filter(iso_code == "OWID_WRL") %>%
+  select(date, people_fully_vaccinated,daily_vaccinations, people_fully_vaccinated_per_hundred)
+
+### set variables ----
+world_avg_new_deaths <- format(round(tail(world_jhu_new_deaths$avg_new_deaths,1)),big.mark=",")
+world_avg_new_cases <- format(round(tail(world_jhu_new_cases$avg_new_cases,1)),big.mark=",")
+world_pct_fully_vaccinated <- round(tail(world_owid_vaccines$people_fully_vaccinated_per_hundred,1), digits = 1)
+world_avg_new_vaccine_doses <- format(tail(world_owid_vaccines$daily_vaccinations,1),big.mark=",")
+world_weekday <- wday(tail(world_jhu_new_cases$date,1), label = TRUE, abbr = FALSE)
+world_month_ago_avg_new_deaths <- format(round(tail(lag(world_jhu_new_deaths$avg_new_deaths, 31),1)),big.mark=",")
+world_month_ago_cases <- format(round(tail(lag(world_jhu_new_cases$avg_new_cases, 31),1)),big.mark=",")
+world_month_ago_vaccinated <- round(tail(lag(world_owid_vaccines$people_fully_vaccinated_per_hundred,31),1), digits = 1)
+world_month_ago_new_doses <- format(tail(lag(world_owid_vaccines$daily_vaccinations,31),1),big.mark=",")
+
+world_text <- paste(
+  "As of ",world_weekday," (vs. a month ago):
+  
+  ",
+  "- Average new cases: ",world_avg_new_cases," (vs. ",world_month_ago_cases,")
+  ",
+  "- Average new deaths: ",world_avg_new_deaths," (vs. ",world_month_ago_avg_new_deaths,")
+  ",
+  "- Percent of the world fully vaccinated: ",world_pct_fully_vaccinated,"% (vs. ",world_month_ago_vaccinated,"%)
+  ",
+  "- Average new vaccine doses: ",world_avg_new_vaccine_doses," (vs. ",world_month_ago_new_doses,")",
+  "
+",
+sep = ""
+)
+
+
 
 ## case acceleration ----
 ### get data ----
@@ -221,6 +330,8 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## United States
 
+",usa_text,
+"
 ![USA Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/US_facet.png)
 
 ![USA fully vaccinated map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/usa_vax_total.png)
@@ -229,6 +340,8 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## World
 
+",world_text,
+"
 ![World Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/world_facet.png)
 
 ## Case Acceleration

@@ -38,6 +38,13 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## United States
 
+As of Tuesday in the United States (vs. a month ago):
+  
+  - Average new cases: 137,550 (vs. 31,447)
+  - Average new deaths: 736 (vs. 246)
+  - Percent of the United States fully vaccinated: 50.5% (vs. 48.1%)
+  - Average new vaccine doses: 763,436 (vs. 524,863)
+
 ![USA Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/US_facet.png)
 
 ![USA fully vaccinated map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/usa_vax_total.png)
@@ -45,6 +52,13 @@ Community transmission levels are calculated by the CDC based on new cases per c
 ![USA transmission levels map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/usa_transmission.png)
 
 ## World
+
+As of Tuesday (vs. a month ago):
+  
+  - Average new cases: 653,358 (vs. 501,169)
+  - Average new deaths: 9,686 (vs. 8,128)
+  - Percent of the world fully vaccinated: 23.9% (vs. 13%)
+  - Average new vaccine doses: 34,540,096 (vs. 31,638,873)
 
 ![World Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/world_facet.png)
 
@@ -55,7 +69,7 @@ As of Tuesday, the 14-day percent increase in average new cases was:
   - 54% in Champaign County
   - 62% in Illinois
   - 52% in the United States
-  - 7% worldwide
+  - 8% worldwide
 
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
