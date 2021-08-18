@@ -1,4 +1,3 @@
-install.packages("scales")
 install.packages("tidyverse")
 install.packages("rio")
 install.packages("lubridate")

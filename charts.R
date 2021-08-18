@@ -3,7 +3,6 @@ library(rio)
 library(tidyverse)
 library(lubridate)
 library(zoo)
-library(scales)
 
 # make variables ----
 ## Champaign County ----
@@ -24,15 +23,15 @@ idph_vax_champaign <- rio::import("https://idph.illinois.gov/DPHPublicInformatio
   mutate(Date = mdy_hms(Report_Date)) 
 
 ### variables ----
-champaign_dead_last_month <- scales::comma(tail(idph_cases_champaign$monthlydead,1))
-champaign_avg_new_cases <- scales::comma(round(tail(idph_cases_champaign$avg_new_cases,1)))
+champaign_dead_last_month <- format(tail(idph_cases_champaign$monthlydead,1),big.mark=",")
+champaign_avg_new_cases <- format(round(tail(idph_cases_champaign$avg_new_cases,1)),big.mark=",")
 champaign_pct_fully_vaccinated <- round(100*tail(idph_vax_champaign$PctVaccinatedPopulation,1), digits = 1)
-champaign_avg_new_vaccine_doses <- scales::comma(tail(idph_vax_champaign$AdministeredCountRollAvg,1))
+champaign_avg_new_vaccine_doses <- format(tail(idph_vax_champaign$AdministeredCountRollAvg,1),big.mark=",")
 champaign_weekday <- wday(tail(idph_cases_champaign$Date,1), label = TRUE, abbr = FALSE)
-champaign_month_ago_deaths <- scales::comma(tail(lag(idph_cases_champaign$monthlydead, 31),1))
-champaign_month_ago_cases <- scales::comma(round(tail(lag(idph_cases_champaign$avg_new_cases, 31),1)))
+champaign_month_ago_deaths <- format(tail(lag(idph_cases_champaign$monthlydead, 31),1),big.mark=",")
+champaign_month_ago_cases <- format(round(tail(lag(idph_cases_champaign$avg_new_cases, 31),1)),big.mark=",")
 champaign_month_ago_vaccinated <- round(100*tail(lag(idph_vax_champaign$PctVaccinatedPopulation,31),1), digits = 1)
-champaign_month_ago_new_doses <- scales::comma(tail(lag(idph_vax_champaign$AdministeredCountRollAvg,31),1))
+champaign_month_ago_new_doses <- format(tail(lag(idph_vax_champaign$AdministeredCountRollAvg,31),1),big.mark=",")
 
 ### text ----
 
@@ -72,15 +71,15 @@ idph_vax_il <- rio::import("https://idph.illinois.gov/DPHPublicInformation/api/C
   mutate(Date = mdy_hms(Report_Date)) 
 
 ### variables ----
-il_avg_new_deaths <- scales::comma(round(tail(idph_cases_il$avg_new_deaths,1)))
-il_avg_new_cases <- scales::comma(round(tail(idph_cases_il$avg_new_cases,1)))
+il_avg_new_deaths <- format(round(tail(idph_cases_il$avg_new_deaths,1)),big.mark=",")
+il_avg_new_cases <- format(round(tail(idph_cases_il$avg_new_cases,1)),big.mark=",")
 il_pct_fully_vaccinated <- round(100*tail(idph_vax_il$PctVaccinatedPopulation,1), digits = 1)
-il_avg_new_vaccine_doses <- scales::comma(tail(idph_vax_il$AdministeredCountRollAvg,1))
+il_avg_new_vaccine_doses <- format(tail(idph_vax_il$AdministeredCountRollAvg,1),big.mark=",")
 il_weekday <- wday(tail(idph_cases_il$Date,1), label = TRUE, abbr = FALSE)
-il_month_ago_avg_new_deaths <- scales::comma(round(tail(lag(idph_cases_il$avg_new_deaths, 31),1)))
-il_month_ago_cases <- scales:comma(round(tail(lag(idph_cases_il$avg_new_cases, 31),1)))
+il_month_ago_avg_new_deaths <- format(round(tail(lag(idph_cases_il$avg_new_deaths, 31),1)),big.mark=",")
+il_month_ago_cases <- format(round(tail(lag(idph_cases_il$avg_new_cases, 31),1)),big.mark=",")
 il_month_ago_vaccinated <- round(100*tail(lag(idph_vax_il$PctVaccinatedPopulation,31),1), digits = 1)
-il_month_ago_new_doses <- scales::comma(tail(lag(idph_vax_il$AdministeredCountRollAvg,31),1))
+il_month_ago_new_doses <- format(tail(lag(idph_vax_il$AdministeredCountRollAvg,31),1),big.mark=",")
 
 ### text ----
 
