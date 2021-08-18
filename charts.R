@@ -36,8 +36,7 @@ month_ago_new_doses <- tail(lag(idph_vax_champaign$AdministeredCountRollAvg,31),
 # make web text
 
 champaign_county_table <- paste(
-"
-|--------------------------+---------------------------+----------------------------|
+"|--------------------------+---------------------------+----------------------------|
 |                          | Last month                | ",short_weekday,".         |
 | :---                     |      ---:                 |        ---:                |
 | Avg. new cases           | ",month_ago_cases,"       | ",avg_new_cases,"          |
