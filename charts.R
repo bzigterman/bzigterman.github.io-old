@@ -3,8 +3,11 @@ library(rio)
 library(tidyverse)
 library(lubridate)
 library(zoo)
+library(scales)
 
-# get data ----
+# make variables ----
+## Champaign County ----
+### get data ----
 idph_cases_champaign <- rio::import("https://idph.illinois.gov/DPHPublicInformation/api/COVID/GetCountyHistorical?countyName=Champaign",
                                     format = "json") 
 idph_cases_champaign <- idph_cases_champaign$values %>%
@@ -20,36 +23,88 @@ idph_vax_champaign <- rio::import("https://idph.illinois.gov/DPHPublicInformatio
                                   format = "csv") %>%
   mutate(Date = mdy_hms(Report_Date)) 
 
-# text ----
-dead_last_month <- tail(idph_cases_champaign$monthlydead,1)
-avg_new_cases <- round(tail(idph_cases_champaign$avg_new_cases,1))
-pct_fully_vaccinated <- round(100*tail(idph_vax_champaign$PctVaccinatedPopulation,1), digits = 1)
-avg_new_vaccine_doses <- tail(idph_vax_champaign$AdministeredCountRollAvg,1)
-weekday <- wday(tail(idph_cases_champaign$Date,1), label = TRUE, abbr = FALSE)
-month_ago_deaths <- tail(lag(idph_cases_champaign$monthlydead, 31),1)
-month_ago_cases <- round(tail(lag(idph_cases_champaign$avg_new_cases, 31),1))
-month_ago_vaccinated <- round(100*tail(lag(idph_vax_champaign$PctVaccinatedPopulation,31),1), digits = 1)
-month_ago_new_doses <- tail(lag(idph_vax_champaign$AdministeredCountRollAvg,31),1)
+### variables ----
+champaign_dead_last_month <- scales::comma(tail(idph_cases_champaign$monthlydead,1))
+champaign_avg_new_cases <- scales::comma(round(tail(idph_cases_champaign$avg_new_cases,1)))
+champaign_pct_fully_vaccinated <- round(100*tail(idph_vax_champaign$PctVaccinatedPopulation,1), digits = 1)
+champaign_avg_new_vaccine_doses <- scales::comma(tail(idph_vax_champaign$AdministeredCountRollAvg,1))
+champaign_weekday <- wday(tail(idph_cases_champaign$Date,1), label = TRUE, abbr = FALSE)
+champaign_month_ago_deaths <- scales::comma(tail(lag(idph_cases_champaign$monthlydead, 31),1))
+champaign_month_ago_cases <- scales::comma(round(tail(lag(idph_cases_champaign$avg_new_cases, 31),1)))
+champaign_month_ago_vaccinated <- round(100*tail(lag(idph_vax_champaign$PctVaccinatedPopulation,31),1), digits = 1)
+champaign_month_ago_new_doses <- scales::comma(tail(lag(idph_vax_champaign$AdministeredCountRollAvg,31),1))
 
-
-# make web text
+### text ----
 
 champaign_county_text <- paste(
-  "As of ",weekday," in Champaign County (vs. a month ago):
+  "As of ",champaign_weekday," in Champaign County (vs. a month ago):
   
   ",
-  "- Average new cases: ",avg_new_cases," (vs. ",month_ago_cases,")
+  "- Average new cases: ",champaign_avg_new_cases," (vs. ",champaign_month_ago_cases,")
   ",
-  "- Deaths in the past month: ",dead_last_month," (vs. ",month_ago_deaths,")
+  "- Deaths in the past month: ",champaign_dead_last_month," (vs. ",champaign_month_ago_deaths,")
   ",
-  "- Percent of Champaign County fully vaccinated: ",pct_fully_vaccinated,"% (vs. ",month_ago_vaccinated,"%)
+  "- Percent of Champaign County fully vaccinated: ",champaign_pct_fully_vaccinated,"% (vs. ",champaign_month_ago_vaccinated,"%)
   ",
-  "- Average new vaccine doses: ",avg_new_vaccine_doses," (vs. ",month_ago_new_doses,")",
+  "- Average new vaccine doses: ",champaign_avg_new_vaccine_doses," (vs. ",champaign_month_ago_new_doses,")",
   "
 ",
-  sep = ""
+sep = ""
 )
 
+
+## Illinois
+## Champaign County ----
+### get data ----
+idph_cases_il <- rio::import("https://idph.illinois.gov/DPHPublicInformation/api/COVID/GetCountyHistorical?countyName=Illinois",
+                                    format = "json") 
+idph_cases_il <- idph_cases_il$values %>%
+  mutate(new_cases = confirmed_cases - lag(confirmed_cases)) %>%
+  mutate(new_deaths = deaths - lag(deaths)) %>%
+  mutate(avg_new_cases = rollmean(new_cases, k = 7, 
+                                  fill = NA, align = "right")) %>%
+  mutate(avg_new_deaths = rollmean(new_deaths, k = 7, 
+                                fill = NA, align = "right"))  %>%
+  mutate(Date = ymd_hms(reportDate)) 
+
+idph_vax_il <- rio::import("https://idph.illinois.gov/DPHPublicInformation/api/COVIDExport/GetVaccineAdministration?format=csv&countyName=Illinois",
+                                  format = "csv") %>%
+  mutate(Date = mdy_hms(Report_Date)) 
+
+### variables ----
+il_avg_new_deaths <- scales::comma(round(tail(idph_cases_il$avg_new_deaths,1)))
+il_avg_new_cases <- scales::comma(round(tail(idph_cases_il$avg_new_cases,1)))
+il_pct_fully_vaccinated <- round(100*tail(idph_vax_il$PctVaccinatedPopulation,1), digits = 1)
+il_avg_new_vaccine_doses <- scales::comma(tail(idph_vax_il$AdministeredCountRollAvg,1))
+il_weekday <- wday(tail(idph_cases_il$Date,1), label = TRUE, abbr = FALSE)
+il_month_ago_avg_new_deaths <- scales::comma(round(tail(lag(idph_cases_il$avg_new_deaths, 31),1)))
+il_month_ago_cases <- scales:comma(round(tail(lag(idph_cases_il$avg_new_cases, 31),1)))
+il_month_ago_vaccinated <- round(100*tail(lag(idph_vax_il$PctVaccinatedPopulation,31),1), digits = 1)
+il_month_ago_new_doses <- scales::comma(tail(lag(idph_vax_il$AdministeredCountRollAvg,31),1))
+
+### text ----
+
+il_text <- paste(
+  "As of ",il_weekday," in Illinois (vs. a month ago):
+  
+  ",
+  "- Average new cases: ",il_avg_new_cases," (vs. ",il_month_ago_cases,")
+  ",
+  "- Average new daths: ",il_avg_new_deaths," (vs. ",il_month_ago_avg_new_deaths,")
+  ",
+  "- Percent of Illinois fully vaccinated: ",il_pct_fully_vaccinated,"% (vs. ",il_month_ago_vaccinated,"%)
+  ",
+  "- Average new vaccine doses: ",il_avg_new_vaccine_doses," (vs. ",il_month_ago_new_doses,")",
+  "
+",
+sep = ""
+)
+
+
+
+
+
+# make web text ----
 
 web_text <- paste(
   "---
@@ -70,6 +125,8 @@ Charts for Champaign County are posted weekdays on Twitter [@ChampaignCovid](htt
 
 ## Illinois
 
+",il_text,
+"
 ![Illinois Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/IL_facet.png)
 
 ![Illinois CDC_vax_combined map](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/IL_vax_combined.png)
