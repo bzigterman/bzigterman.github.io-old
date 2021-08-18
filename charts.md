@@ -50,12 +50,12 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## Case Acceleration
 
-As of Monday:
+As of Monday the 14-day percent increase in average new cases was:
   
-  - Champaign County: 53.5%
-  - Illinois: 61.6%
-  - United States: 57.3%
-  - World: 8.2%
+  - 53.5% in Champaign County
+  - 61.6% in Illinois
+  - 57.3% in the United States
+  - 8.2% worldwide
 
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
