@@ -10,7 +10,7 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 
 |--------------------------+--------------------------+---------------------------|
-|                          | Last month               | Tuesday               |
+|                          | Last month               | Tue         |
 | :---                     |      ---:                |        ---:               |
 | Avg. new cases           | 10      | 71         |
 | Deaths in the past month | 3     | 7       |
