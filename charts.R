@@ -157,16 +157,16 @@ sep = ""
 )
 
 
-if (avg_new_cases >= 0 && 
-    dead_last_month >= 0 && 
-    pct_fully_vaccinated >= 0 &&
-    pct_fully_vaccinated <= 100 &&
-    avg_new_vaccine_doses >= 0 &&
-    month_ago_cases >= 0 && 
-    month_ago_deaths >= 0 && 
-    month_ago_vaccinated >= 0 &&
-    month_ago_vaccinated <= 100 &&
-    month_ago_new_doses >= 0
+if (champaign_avg_new_cases >= 0 && 
+    champaign_dead_last_month >= 0 && 
+    champaign_pct_fully_vaccinated >= 0 &&
+    champaign_pct_fully_vaccinated <= 100 &&
+    champaign_avg_new_vaccine_doses >= 0 &&
+    champaign_month_ago_cases >= 0 && 
+    champaign_month_ago_deaths >= 0 && 
+    champaign_month_ago_vaccinated >= 0 &&
+    champaign_month_ago_vaccinated <= 100 &&
+    champaign_month_ago_new_doses >= 0
 ) {
 write_lines(web_text,"charts.md")
 }
