@@ -170,16 +170,16 @@ acceleration_world <- round(100*tail(jhu_new_cases_world$pct_change_new_cases,1)
 
 ### text ----
 acceleration_text <- paste(
-  "As of ",acceleration_weekday,":
+  "As of ",acceleration_weekday," the 14-day percent increase in average new cases was:
   
   ",
-  "- Champaign County: ",acceleration_champaign,"%
+  "- ",acceleration_champaign,"% in Champaign County
   ",
-  "- Illinois: ",acceleration_il,"%
+  "- ",acceleration_il,"% in Illinois
   ",
-  "- United States: ",acceleration_usa,"%
+  "- ",acceleration_usa,"% in the United States
   ",
-  "- World: ",acceleration_world,"%",
+  "- ",acceleration_world,"% worldwide",
   "
 ",
 sep = ""
