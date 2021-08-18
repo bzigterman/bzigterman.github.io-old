@@ -8,14 +8,13 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ## Champaign County
 
-
-|--------------------------+--------------------------+---------------------------|
-|                          | Last month               | Tue         |
-| :---                     |      ---:                |        ---:               |
-| Avg. new cases           | 10      | 71         |
-| Deaths in the past month | 3     | 7       |
-| Pct. fully vaccinated    | 48.7 | 50.8  |
-| Avg. new vaccine doses   | 285  | 363 |
+|--------------------------+---------------------------+----------------------------|
+|                          | Last month                | Tue.         |
+| :---                     |      ---:                 |        ---:                |
+| Avg. new cases           | 10       | 71          |
+| Deaths in the past month | 3      | 7        |
+| Pct. fully vaccinated    | 48.7% | 50.8%  |
+| Avg. new vaccine doses   | 285   | 363  |
 
 As of Tuesday in Champaign County (vs. a month ago):
   
