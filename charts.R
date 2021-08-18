@@ -163,10 +163,10 @@ combined_cases <- full_join(idph_cases_champaign, idph_cases_il) %>%
 
 ### set variables ----
 acceleration_weekday <- wday(tail(jhu_new_cases_world$Date,1), label = TRUE, abbr = FALSE)
-acceleration_champaign <- round(100*tail(idph_cases_champaign$pct_change_new_cases,1), digits = 1)
-acceleration_il <- round(100*tail(idph_cases_il$pct_change_new_cases,1), digits = 1)
-acceleration_usa <- round(100*tail(jhu_new_cases_usa$pct_change_new_cases,1), digits = 1)
-acceleration_world <- round(100*tail(jhu_new_cases_world$pct_change_new_cases,1), digits = 1)
+acceleration_champaign <- round(100*tail(idph_cases_champaign$pct_change_new_cases,1), digits = 0)
+acceleration_il <- round(100*tail(idph_cases_il$pct_change_new_cases,1), digits = 0)
+acceleration_usa <- round(100*tail(jhu_new_cases_usa$pct_change_new_cases,1), digits = 0)
+acceleration_world <- round(100*tail(jhu_new_cases_world$pct_change_new_cases,1), digits = 0)
 
 ### text ----
 acceleration_text <- paste(
