@@ -26,6 +26,7 @@ avg_new_cases <- round(tail(idph_cases_champaign$avg_new_cases,1))
 pct_fully_vaccinated <- round(100*tail(idph_vax_champaign$PctVaccinatedPopulation,1), digits = 1)
 avg_new_vaccine_doses <- tail(idph_vax_champaign$AdministeredCountRollAvg,1)
 weekday <- wday(tail(idph_cases_champaign$Date,1), label = TRUE, abbr = FALSE)
+short_weekday <- wday(tail(idph_cases_champaign$Date,1), label = TRUE)
 month_ago_deaths <- tail(lag(idph_cases_champaign$monthlydead, 31),1)
 month_ago_cases <- round(tail(lag(idph_cases_champaign$avg_new_cases, 31),1))
 month_ago_vaccinated <- round(100*tail(lag(idph_vax_champaign$PctVaccinatedPopulation,31),1), digits = 1)
@@ -37,7 +38,7 @@ month_ago_new_doses <- tail(lag(idph_vax_champaign$AdministeredCountRollAvg,31),
 champaign_county_table <- paste(
 "
 |--------------------------+--------------------------+---------------------------|
-|                          | Last month               | ",weekday,"               |
+|                          | Last month               | ",short_weekday,"         |
 | :---                     |      ---:                |        ---:               |
 | Avg. new cases           | ",month_ago_cases,"      | ",avg_new_cases,"         |
 | Deaths in the past month | ",month_ago_deaths,"     | ",dead_last_month,"       |
