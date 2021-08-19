@@ -23,15 +23,17 @@ idph_vax_champaign <- rio::import("https://idph.illinois.gov/DPHPublicInformatio
   mutate(Date = mdy_hms(Report_Date)) 
 
 ### set variables ----
-champaign_dead_last_month <- format(tail(idph_cases_champaign$monthlydead,1),big.mark=",")
-champaign_avg_new_cases <- format(round(tail(idph_cases_champaign$avg_new_cases,1)),big.mark=",")
+champaign_dead_last_month <- format(round(signif(tail(idph_cases_champaign$monthlydead,1),3)),big.mark=",")
+champaign_avg_new_cases <- format(round(signif(tail(idph_cases_champaign$avg_new_cases,1),3)),big.mark=",")
 champaign_pct_fully_vaccinated <- round(100*tail(idph_vax_champaign$PctVaccinatedPopulation,1), digits = 1)
-champaign_avg_new_vaccine_doses <- format(tail(idph_vax_champaign$AdministeredCountRollAvg,1),big.mark=",")
+champaign_avg_new_vaccine_doses <- 
+  format(round(signif(tail(idph_vax_champaign$AdministeredCountRollAvg,1),3)),big.mark=",")
 champaign_weekday <- wday(tail(idph_cases_champaign$Date,1), label = TRUE, abbr = FALSE)
-champaign_month_ago_deaths <- format(tail(lag(idph_cases_champaign$monthlydead, 31),1),big.mark=",")
-champaign_month_ago_cases <- format(round(tail(lag(idph_cases_champaign$avg_new_cases, 31),1)),big.mark=",")
+champaign_month_ago_deaths <- format(round(signif(tail(lag(idph_cases_champaign$monthlydead, 31),1),3)),big.mark=",")
+champaign_month_ago_cases <- format(round(signif(tail(lag(idph_cases_champaign$avg_new_cases, 31),1),3)),big.mark=",")
 champaign_month_ago_vaccinated <- round(100*tail(lag(idph_vax_champaign$PctVaccinatedPopulation,31),1), digits = 1)
-champaign_month_ago_new_doses <- format(tail(lag(idph_vax_champaign$AdministeredCountRollAvg,31),1),big.mark=",")
+champaign_month_ago_new_doses <- 
+  format(round(signif(tail(lag(idph_vax_champaign$AdministeredCountRollAvg,31),1),3)),big.mark=",")
 
 ### text ----
 
@@ -70,15 +72,15 @@ idph_vax_il <- rio::import("https://idph.illinois.gov/DPHPublicInformation/api/C
   mutate(Date = mdy_hms(Report_Date)) 
 
 ### set variables ----
-il_avg_new_deaths <- format(round(tail(idph_cases_il$avg_new_deaths,1)),big.mark=",")
-il_avg_new_cases <- format(round(tail(idph_cases_il$avg_new_cases,1)),big.mark=",")
+il_avg_new_deaths <- format(round(signif(tail(idph_cases_il$avg_new_deaths,1),3)),big.mark=",")
+il_avg_new_cases <- format(round(signif(tail(idph_cases_il$avg_new_cases,1),3)),big.mark=",")
 il_pct_fully_vaccinated <- round(100*tail(idph_vax_il$PctVaccinatedPopulation,1), digits = 1)
-il_avg_new_vaccine_doses <- format(tail(idph_vax_il$AdministeredCountRollAvg,1),big.mark=",")
+il_avg_new_vaccine_doses <- format(round(signif(tail(idph_vax_il$AdministeredCountRollAvg,1),3)),big.mark=",")
 il_weekday <- wday(tail(idph_cases_il$Date,1), label = TRUE, abbr = FALSE)
-il_month_ago_avg_new_deaths <- format(round(tail(lag(idph_cases_il$avg_new_deaths, 31),1)),big.mark=",")
-il_month_ago_cases <- format(round(tail(lag(idph_cases_il$avg_new_cases, 31),1)),big.mark=",")
+il_month_ago_avg_new_deaths <- format(round(signif(tail(lag(idph_cases_il$avg_new_deaths, 31),1),3)),big.mark=",")
+il_month_ago_cases <- format(round(signif(tail(lag(idph_cases_il$avg_new_cases, 31),1),3)),big.mark=",")
 il_month_ago_vaccinated <- round(100*tail(lag(idph_vax_il$PctVaccinatedPopulation,31),1), digits = 1)
-il_month_ago_new_doses <- format(tail(lag(idph_vax_il$AdministeredCountRollAvg,31),1),big.mark=",")
+il_month_ago_new_doses <- format(round(signif(tail(lag(idph_vax_il$AdministeredCountRollAvg,31),1),3)),big.mark=",")
 
 ### text ----
 
@@ -124,13 +126,13 @@ usa_owid_vaccines <- rio::import(usa_owid_vaccines_url, format = "csv") %>%
   select(date, people_fully_vaccinated,daily_vaccinations, people_fully_vaccinated_per_hundred)
 
 ### set variables ----
-usa_avg_new_deaths <- format(signif(tail(usa_jhu_new_deaths$avg_new_deaths,1),3),big.mark=",")
-usa_avg_new_cases <- format(signif(tail(usa_jhu_new_cases$avg_new_cases,1),3),big.mark=",")
+usa_avg_new_deaths <- format(round(signif(tail(usa_jhu_new_deaths$avg_new_deaths,1),3)),big.mark=",")
+usa_avg_new_cases <- format(round(signif(tail(usa_jhu_new_cases$avg_new_cases,1),3)),big.mark=",")
 usa_pct_fully_vaccinated <- round(tail(usa_owid_vaccines$people_fully_vaccinated_per_hundred,1), digits = 1)
 usa_avg_new_vaccine_doses <- format(signif(tail(usa_owid_vaccines$daily_vaccinations,1),3),big.mark=",")
 usa_weekday <- wday(tail(usa_jhu_new_cases$date,1), label = TRUE, abbr = FALSE)
-usa_month_ago_avg_new_deaths <- format(signif(tail(lag(usa_jhu_new_deaths$avg_new_deaths, 31),1),3),big.mark=",")
-usa_month_ago_cases <- format(signif(tail(lag(usa_jhu_new_cases$avg_new_cases, 31),1),3),big.mark=",")
+usa_month_ago_avg_new_deaths <- format(round(signif(tail(lag(usa_jhu_new_deaths$avg_new_deaths, 31),1),3)),big.mark=",")
+usa_month_ago_cases <- format(round(signif(tail(lag(usa_jhu_new_cases$avg_new_cases, 31),1),3)),big.mark=",")
 usa_month_ago_vaccinated <- round(tail(lag(usa_owid_vaccines$people_fully_vaccinated_per_hundred,31),1), digits = 1)
 usa_month_ago_new_doses <- format(signif(tail(lag(usa_owid_vaccines$daily_vaccinations,31),1),3),big.mark=",")
 
@@ -179,13 +181,14 @@ world_owid_vaccines <- rio::import(world_owid_vaccines_url, format = "csv") %>%
   select(date, people_fully_vaccinated,daily_vaccinations, people_fully_vaccinated_per_hundred)
 
 ### set variables ----
-world_avg_new_deaths <- format(signif(tail(world_jhu_new_deaths$avg_new_deaths,1),3),big.mark=",")
-world_avg_new_cases <- format(signif(tail(world_jhu_new_cases$avg_new_cases,1),3),big.mark=",")
+world_avg_new_deaths <- format(round(signif(tail(world_jhu_new_deaths$avg_new_deaths,1),3)),big.mark=",")
+world_avg_new_cases <- format(round(signif(tail(world_jhu_new_cases$avg_new_cases,1),3)),big.mark=",")
 world_pct_fully_vaccinated <- round(tail(world_owid_vaccines$people_fully_vaccinated_per_hundred,1), digits = 1)
 world_avg_new_vaccine_doses <- format(signif(tail(world_owid_vaccines$daily_vaccinations,1),3),big.mark=",")
 world_weekday <- wday(tail(world_jhu_new_cases$date,1), label = TRUE, abbr = FALSE)
-world_month_ago_avg_new_deaths <- format(signif(tail(lag(world_jhu_new_deaths$avg_new_deaths, 31),1),3),big.mark=",")
-world_month_ago_cases <- format(signif(tail(lag(world_jhu_new_cases$avg_new_cases, 31),1),3),big.mark=",")
+world_month_ago_avg_new_deaths <- 
+  format(round(signif(tail(lag(world_jhu_new_deaths$avg_new_deaths, 31),1),3)),big.mark=",")
+world_month_ago_cases <- format(round(signif(tail(lag(world_jhu_new_cases$avg_new_cases, 31),1),3)),big.mark=",")
 world_month_ago_vaccinated <- round(tail(lag(world_owid_vaccines$people_fully_vaccinated_per_hundred,31),1), digits = 1)
 world_month_ago_new_doses <- format(signif(tail(lag(world_owid_vaccines$daily_vaccinations,31),1),3),big.mark=",")
 
