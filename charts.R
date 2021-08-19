@@ -34,16 +34,32 @@ champaign_month_ago_cases <- format(round(signif(tail(lag(idph_cases_champaign$a
 champaign_month_ago_vaccinated <- round(100*tail(lag(idph_vax_champaign$PctVaccinatedPopulation,31),1), digits = 1)
 champaign_month_ago_new_doses <- 
   format(round(signif(tail(lag(idph_vax_champaign$AdministeredCountRollAvg,31),1),3)),big.mark=",")
+champaign_case_pct_change <- round(100*(tail(idph_cases_champaign$avg_new_cases,1)-tail(lag(idph_cases_champaign$avg_new_cases, 31),1))/tail(lag(idph_cases_champaign$avg_new_cases, 31),1), digits = 0)
+champaign_death_pct_change <- round(100*(tail(idph_cases_champaign$monthlydead,1)-tail(lag(idph_cases_champaign$monthlydead, 31),1))/tail(lag(idph_cases_champaign$monthlydead, 31),1), digits = 0)
+champaign_case_pct_change_text <- 
+  if(champaign_case_pct_change>0) { 
+    paste("+",champaign_case_pct_change,"%↑", sep = "")
+  } else { 
+    paste("",champaign_case_pct_change,"%↓", sep = "")
+  }
+champaign_death_pct_change_text <- 
+  if(champaign_death_pct_change>0) { 
+    paste("+",champaign_death_pct_change,"%↑", sep = "")
+  } else { 
+    paste("",champaign_death_pct_change,"%↓", sep = "")
+  }
 
+  
+  
 ### text ----
 
 champaign_county_text <- paste(
   "As of ",champaign_weekday," in Champaign County (vs. a month ago):
   
   ",
-  "- Average new cases: ",champaign_avg_new_cases," (vs. ",champaign_month_ago_cases,")
+  "- Average new cases: ",champaign_avg_new_cases," (vs. ",champaign_month_ago_cases,") ",champaign_case_pct_change_text,"
   ",
-  "- Deaths in the past month: ",champaign_dead_last_month," (vs. ",champaign_month_ago_deaths,")
+  "- Deaths in the past month: ",champaign_dead_last_month," (vs. ",champaign_month_ago_deaths,") ",champaign_death_pct_change_text,"
   ",
   "- Percent of Champaign County fully vaccinated: ",champaign_pct_fully_vaccinated,"% (vs. ",champaign_month_ago_vaccinated,"%)
   ",
