@@ -59,7 +59,7 @@ champaign_county_text <- paste(
   ",
   "- Average new cases: ",champaign_avg_new_cases," (vs. ",champaign_month_ago_cases,") ",champaign_case_pct_change_text,"
   ",
-  "- Deaths in the past month: ",champaign_dead_last_month," (vs. ",champaign_month_ago_deaths,") ",champaign_death_pct_change_text,"
+  "- Deaths in the past month: ",champaign_dead_last_month," (vs. ",champaign_month_ago_deaths,")
   ",
   "- Percent of Champaign County fully vaccinated: ",champaign_pct_fully_vaccinated,"% (vs. ",champaign_month_ago_vaccinated,"%)
   ",
@@ -98,15 +98,31 @@ il_month_ago_cases <- format(round(signif(tail(lag(idph_cases_il$avg_new_cases, 
 il_month_ago_vaccinated <- round(100*tail(lag(idph_vax_il$PctVaccinatedPopulation,31),1), digits = 1)
 il_month_ago_new_doses <- format(round(signif(tail(lag(idph_vax_il$AdministeredCountRollAvg,31),1),3)),big.mark=",")
 
+il_case_pct_change <- round(100*(tail(idph_cases_il$avg_new_cases,1)-tail(lag(idph_cases_il$avg_new_cases, 31),1))/tail(lag(idph_cases_il$avg_new_cases, 31),1), digits = 0)
+il_death_pct_change <- round(100*(tail(idph_cases_il$avg_new_deaths,1)-tail(lag(idph_cases_il$avg_new_deaths, 31),1))/tail(lag(idph_cases_il$avg_new_deaths, 31),1), digits = 0)
+il_case_pct_change_text <- 
+  if(il_case_pct_change>0) { 
+    paste("+",il_case_pct_change,"%↑", sep = "")
+  } else { 
+    paste("",il_case_pct_change,"%↓", sep = "")
+  }
+il_death_pct_change_text <- 
+  if(il_death_pct_change>0) { 
+    paste("+",il_death_pct_change,"%↑", sep = "")
+  } else { 
+    paste("",il_death_pct_change,"%↓", sep = "")
+  }
+
+
 ### text ----
 
 il_text <- paste(
   "As of ",il_weekday," in Illinois (vs. a month ago):
   
   ",
-  "- Average new cases: ",il_avg_new_cases," (vs. ",il_month_ago_cases,")
+  "- Average new cases: ",il_avg_new_cases," (vs. ",il_month_ago_cases,") ",il_case_pct_change_text,"
   ",
-  "- Average new deaths: ",il_avg_new_deaths," (vs. ",il_month_ago_avg_new_deaths,")
+  "- Average new deaths: ",il_avg_new_deaths," (vs. ",il_month_ago_avg_new_deaths,") ",il_death_pct_change_text,"
   ",
   "- Percent of Illinois fully vaccinated: ",il_pct_fully_vaccinated,"% (vs. ",il_month_ago_vaccinated,"%)
   ",
@@ -152,15 +168,32 @@ usa_month_ago_cases <- format(round(signif(tail(lag(usa_jhu_new_cases$avg_new_ca
 usa_month_ago_vaccinated <- round(tail(lag(usa_owid_vaccines$people_fully_vaccinated_per_hundred,31),1), digits = 1)
 usa_month_ago_new_doses <- format(signif(tail(lag(usa_owid_vaccines$daily_vaccinations,31),1),3),big.mark=",")
 
+usa_case_pct_change <- round(100*(tail(usa_jhu_new_cases$avg_new_cases,1)-tail(lag(usa_jhu_new_cases$avg_new_cases, 31),1))/tail(lag(usa_jhu_new_cases$avg_new_cases, 31),1), digits = 0)
+usa_death_pct_change <- round(100*(tail(usa_jhu_new_deaths$avg_new_deaths,1)-tail(lag(usa_jhu_new_deaths$avg_new_deaths, 31),1))/tail(lag(usa_jhu_new_deaths$avg_new_deaths, 31),1), digits = 0)
+usa_case_pct_change_text <- 
+  if(usa_case_pct_change>0) { 
+    paste("+",usa_case_pct_change,"%↑", sep = "")
+  } else { 
+    paste("",usa_case_pct_change,"%↓", sep = "")
+  }
+usa_death_pct_change_text <- 
+  if(usa_death_pct_change>0) { 
+    paste("+",usa_death_pct_change,"%↑", sep = "")
+  } else { 
+    paste("",usa_death_pct_change,"%↓", sep = "")
+  }
+
+
+
 ### text ----
 
 usa_text <- paste(
   "As of ",usa_weekday," in the United States (vs. a month ago):
   
   ",
-  "- Average new cases: ",usa_avg_new_cases," (vs. ",usa_month_ago_cases,")
+  "- Average new cases: ",usa_avg_new_cases," (vs. ",usa_month_ago_cases,") ",usa_case_pct_change_text,"
   ",
-  "- Average new deaths: ",usa_avg_new_deaths," (vs. ",usa_month_ago_avg_new_deaths,")
+  "- Average new deaths: ",usa_avg_new_deaths," (vs. ",usa_month_ago_avg_new_deaths,") ",usa_death_pct_change_text,"
   ",
   "- Percent of the United States fully vaccinated: ",usa_pct_fully_vaccinated,"% (vs. ",usa_month_ago_vaccinated,"%)
   ",
@@ -208,13 +241,30 @@ world_month_ago_cases <- format(round(signif(tail(lag(world_jhu_new_cases$avg_ne
 world_month_ago_vaccinated <- round(tail(lag(world_owid_vaccines$people_fully_vaccinated_per_hundred,31),1), digits = 1)
 world_month_ago_new_doses <- format(signif(tail(lag(world_owid_vaccines$daily_vaccinations,31),1),3),big.mark=",")
 
+world_case_pct_change <- round(100*(tail(world_jhu_new_cases$avg_new_cases,1)-tail(lag(world_jhu_new_cases$avg_new_cases, 31),1))/tail(lag(world_jhu_new_cases$avg_new_cases, 31),1), digits = 0)
+world_death_pct_change <- round(100*(tail(world_jhu_new_deaths$avg_new_deaths,1)-tail(lag(world_jhu_new_deaths$avg_new_deaths, 31),1))/tail(lag(world_jhu_new_deaths$avg_new_deaths, 31),1), digits = 0)
+world_case_pct_change_text <- 
+  if(world_case_pct_change>0) { 
+    paste("+",world_case_pct_change,"%↑", sep = "")
+  } else { 
+    paste("",world_case_pct_change,"%↓", sep = "")
+  }
+world_death_pct_change_text <- 
+  if(world_death_pct_change>0) { 
+    paste("+",world_death_pct_change,"%↑", sep = "")
+  } else { 
+    paste("",world_death_pct_change,"%↓", sep = "")
+  }
+
+### text ----
+
 world_text <- paste(
   "As of ",world_weekday," (vs. a month ago):
   
   ",
-  "- Average new cases: ",world_avg_new_cases," (vs. ",world_month_ago_cases,")
+  "- Average new cases: ",world_avg_new_cases," (vs. ",world_month_ago_cases,") ",world_case_pct_change_text,"
   ",
-  "- Average new deaths: ",world_avg_new_deaths," (vs. ",world_month_ago_avg_new_deaths,")
+  "- Average new deaths: ",world_avg_new_deaths," (vs. ",world_month_ago_avg_new_deaths,") ",world_death_pct_change_text,"
   ",
   "- Percent of the world fully vaccinated: ",world_pct_fully_vaccinated,"% (vs. ",world_month_ago_vaccinated,"%)
   ",
