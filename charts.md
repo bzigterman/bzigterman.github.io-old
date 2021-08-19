@@ -8,12 +8,12 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ## Champaign County
 
-As of Wednesday in Champaign County (vs. a month ago):
+As of Wednesday in Champaign County (vs. two weeks ago):
   
-  - Average new cases: 81 (vs. 13) +506%↑
-  - Deaths in the past month: 6 (vs. 4)
-  - Percent of Champaign County fully vaccinated: 50.9% (vs. 48.7%)
-  - Average new vaccine doses: 385 (vs. 291)
+  - Average new cases: 81 (vs. 49) +64%↑
+  - Deaths in the past month: 6 (vs. 3)
+  - Percent of Champaign County fully vaccinated: 50.9% (vs. 49.9%)
+  - Average new vaccine doses: 385 (vs. 333)
 
 ![Champaign County Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/Champaign_facet.png)
 
@@ -21,12 +21,12 @@ Charts for Champaign County are posted weekdays on Twitter [@ChampaignCovid](htt
 
 ## Illinois
 
-As of Wednesday in Illinois (vs. a month ago):
+As of Wednesday in Illinois (vs. two weeks ago):
   
-  - Average new cases: 3,310 (vs. 781) +324%↑
-  - Average new deaths: 19 (vs. 7) +158%↑
-  - Percent of Illinois fully vaccinated: 52.1% (vs. 49.2%)
-  - Average new vaccine doses: 40,300 (vs. 20,400)
+  - Average new cases: 3,310 (vs. 2,100) +58%↑
+  - Average new deaths: 19 (vs. 8) +139%↑
+  - Percent of Illinois fully vaccinated: 52.1% (vs. 50.5%)
+  - Average new vaccine doses: 40,300 (vs. 27,900)
 
 ![Illinois Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/IL_facet.png)
 
@@ -38,12 +38,12 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## United States
 
-As of Tuesday in the United States (vs. a month ago):
+As of Tuesday in the United States (vs. two weeks ago):
   
-  - Average new cases: 138,000 (vs. 31,400) +337%↑
-  - Average new deaths: 736 (vs. 246) +199%↑
-  - Percent of the United States fully vaccinated: 50.5% (vs. 48.1%)
-  - Average new vaccine doses: 763,000 (vs. 525,000)
+  - Average new cases: 138,000 (vs. 90,600) +52%↑
+  - Average new deaths: 736 (vs. 408) +80%↑
+  - Percent of the United States fully vaccinated: 50.5% (vs. 49.4%)
+  - Average new vaccine doses: 763,000 (vs. 681,000)
 
 ![USA Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/US_facet.png)
 
@@ -53,12 +53,12 @@ As of Tuesday in the United States (vs. a month ago):
 
 ## World
 
-As of Tuesday (vs. a month ago):
+As of Tuesday (vs. two weeks ago):
   
-  - Average new cases: 653,000 (vs. 501,000) +30%↑
-  - Average new deaths: 9,690 (vs. 8,130) +19%↑
-  - Percent of the world fully vaccinated: 23.9% (vs. 13%)
-  - Average new vaccine doses: 34,500,000 (vs. 31,600,000)
+  - Average new cases: 653,000 (vs. 605,000) +8%↑
+  - Average new deaths: 9,690 (vs. 9,290) +4%↑
+  - Percent of the world fully vaccinated: 23.9% (vs. 15%)
+  - Average new vaccine doses: 34,500,000 (vs. 42,800,000)
 
 ![World Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/world_facet.png)
 
