@@ -233,13 +233,13 @@ world_owid_vaccines <- rio::import(world_owid_vaccines_url, format = "csv") %>%
 world_avg_new_deaths <- format(round(signif(tail(world_jhu_new_deaths$avg_new_deaths,1),3)),big.mark=",")
 world_avg_new_cases <- format(round(signif(tail(world_jhu_new_cases$avg_new_cases,1),3)),big.mark=",")
 world_pct_fully_vaccinated <- round(tail(world_owid_vaccines$people_fully_vaccinated_per_hundred,1), digits = 1)
-world_avg_new_vaccine_doses <- format(signif(tail(world_owid_vaccines$daily_vaccinations,1),3),big.mark=",")
+world_avg_new_vaccine_doses <- format(signif(tail(world_owid_vaccines$daily_vaccinations,1),3),big.mark=",", scientific = FALSE)
 world_weekday <- wday(tail(world_jhu_new_cases$date,1), label = TRUE, abbr = FALSE)
 world_month_ago_avg_new_deaths <- 
   format(round(signif(tail(lag(world_jhu_new_deaths$avg_new_deaths, 14),1),3)),big.mark=",")
 world_month_ago_cases <- format(round(signif(tail(lag(world_jhu_new_cases$avg_new_cases, 14),1),3)),big.mark=",")
 world_month_ago_vaccinated <- round(tail(lag(world_owid_vaccines$people_fully_vaccinated_per_hundred, 14),1), digits = 1)
-world_month_ago_new_doses <- format(signif(tail(lag(world_owid_vaccines$daily_vaccinations, 14),1),3),big.mark=",")
+world_month_ago_new_doses <- format(signif(tail(lag(world_owid_vaccines$daily_vaccinations, 14),1),3),big.mark=",", scientific = FALSE)
 
 world_case_pct_change <- round(100*(tail(world_jhu_new_cases$avg_new_cases,1)-tail(lag(world_jhu_new_cases$avg_new_cases, 14),1))/tail(lag(world_jhu_new_cases$avg_new_cases, 14),1), digits = 0)
 world_death_pct_change <- round(100*(tail(world_jhu_new_deaths$avg_new_deaths,1)-tail(lag(world_jhu_new_deaths$avg_new_deaths, 14),1))/tail(lag(world_jhu_new_deaths$avg_new_deaths, 14),1), digits = 0)
