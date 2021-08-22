@@ -363,7 +363,22 @@ acceleration_text <- paste(
 sep = ""
 )
 
+# death_acceleration_text ----
 
+### text ----
+death_acceleration_text <- paste(
+  "As of ",acceleration_weekday,", the 14-day percent increase in average new deaths was:
+  
+  ",
+  "- ",il_death_pct_change,"% in Illinois
+  ",
+  "- ",usa_death_pct_change,"% in the United States
+  ",
+  "- ",world_death_pct_change,"% worldwide",
+  "
+",
+sep = ""
+)
 
 
 # make web text ----
@@ -421,7 +436,17 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 This chart measures how quickly the average number of new cases is changing, or roughly, the slope of the new-cases charts above. If the case acceleration is positive, then the average number of new cases is increasing. If it is negative, then the average number of new cases is decreasing. 
 
-",
+","
+## Death Acceleration
+
+",death_acceleration_text,
+"
+![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
+
+This chart measures how quickly the average number of new deaths is changing, or roughly, the slope of the new-deaths charts above. If the death acceleration is positive, then the average number of new deaths is increasing. If it is negative, then the average number of new deaths is decreasing. 
+
+"
+"
 sep = ""
 )
 
