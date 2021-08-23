@@ -41,7 +41,7 @@ Community transmission levels are calculated by the CDC based on new cases per c
 As of Sunday in the United States (vs. two weeks ago):
   
   - Average new cases: 147,000 (vs. 109,000) +36%↑
-  - Average new deaths: 1,010 (vs. 507) +100%↑
+  - Average new deaths: 1,000 (vs. 509) +97%↑
   - Percent of the United States fully vaccinated: 51.1% (vs. 49.8%)
   - Average new vaccine doses: 889,000 (vs. 706,000)
 
@@ -56,7 +56,7 @@ As of Sunday in the United States (vs. two weeks ago):
 As of Sunday (vs. two weeks ago):
   
   - Average new cases: 654,000 (vs. 627,000) +4%↑
-  - Average new deaths: 9,930 (vs. 9,520) +4%↑
+  - Average new deaths: 9,920 (vs. 9,520) +4%↑
   - Percent of the world fully vaccinated: 24.5% (vs. 15.5%)
   - Average new vaccine doses: 34,900,000 (vs. 40,000,000)
 
@@ -80,7 +80,7 @@ This chart measures how quickly the average number of new cases is changing, or 
 As of Sunday, the 14-day percent increase in average new deaths was:
   
   - 95% in Illinois
-  - 100% in the United States
+  - 97% in the United States
   - 4% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
