@@ -55,8 +55,8 @@ As of Sunday in the United States (vs. two weeks ago):
 
 As of Sunday (vs. two weeks ago):
   
-  - Average new cases: 650,000 (vs. 627,000) +4%↑
-  - Average new deaths: 9,870 (vs. 9,520) +4%↑
+  - Average new cases: 654,000 (vs. 627,000) +4%↑
+  - Average new deaths: 9,930 (vs. 9,520) +4%↑
   - Percent of the world fully vaccinated: 24.5% (vs. 15.5%)
   - Average new vaccine doses: 34,900,000 (vs. 40,000,000)
 
