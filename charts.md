@@ -56,7 +56,7 @@ As of Monday in the United States (vs. two weeks ago):
 As of Monday (vs. two weeks ago):
   
   - Average new cases: 658,000 (vs. 638,000) +3%↑
-  - Average new deaths: 9,970 (vs. 9,580) +4%↑
+  - Average new deaths: 9,980 (vs. 9,590) +4%↑
   - Percent of the world fully vaccinated: 24.6% (vs. 15.7%)
   - Average new vaccine doses: 33,600,000 (vs. 38,800,000)
 
