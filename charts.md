@@ -55,8 +55,8 @@ As of Tuesday in the United States (vs. two weeks ago):
 
 As of Tuesday (vs. two weeks ago):
   
-  - Average new cases: 653,000 (vs. 637,000) +3%↑
-  - Average new deaths: 9,930 (vs. 9,760) +2%↑
+  - Average new cases: 659,000 (vs. 637,000) +3%↑
+  - Average new deaths: 10,000 (vs. 9,760) +3%↑
   - Percent of the world fully vaccinated: 24.6% (vs. 15.7%)
   - Average new vaccine doses: 33,600,000 (vs. 38,800,000)
 
@@ -81,7 +81,7 @@ As of Tuesday, the 14-day percent increase in average new deaths was:
   
   - 63% in Illinois
   - 100% in the United States
-  - 2% worldwide
+  - 3% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
 
