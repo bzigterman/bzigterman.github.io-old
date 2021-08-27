@@ -38,10 +38,10 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## United States
 
-As of Wednesday in the United States (vs. two weeks ago):
+As of Thursday in the United States (vs. two weeks ago):
   
-  - Average new cases: 152,000 (vs. 123,000) +24%↑
-  - Average new deaths: 1,140 (vs. 525) +117%↑
+  - Average new cases: 156,000 (vs. 124,000) +26%↑
+  - Average new deaths: 1,190 (vs. 536) +123%↑
   - Percent of the United States fully vaccinated: 51.4% (vs. 50%)
   - Average new vaccine doses: 892,000 (vs. 729,000)
 
@@ -53,10 +53,10 @@ As of Wednesday in the United States (vs. two weeks ago):
 
 ## World
 
-As of Wednesday (vs. two weeks ago):
+As of Thursday (vs. two weeks ago):
   
-  - Average new cases: 658,000 (vs. 642,000) +3%↑
-  - Average new deaths: 10,100 (vs. 9,670) +4%↑
+  - Average new cases: 654,000 (vs. 641,000) +2%↑
+  - Average new deaths: 10,000 (vs. 9,570) +5%↑
   - Percent of the world fully vaccinated: 25% (vs. 16%)
   - Average new vaccine doses: 33,800,000 (vs. 37,400,000)
 
@@ -64,12 +64,12 @@ As of Wednesday (vs. two weeks ago):
 
 ## Case Acceleration
 
-As of Wednesday, the 14-day percent increase in average new cases was:
+As of Thursday, the 14-day percent increase in average new cases was:
   
   - 18% in Champaign County
   - 23% in Illinois
-  - 24% in the United States
-  - 3% worldwide
+  - 26% in the United States
+  - 2% worldwide
 
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
@@ -77,11 +77,11 @@ This chart measures how quickly the average number of new cases is changing, or 
 
 ## Death Acceleration
 
-As of Wednesday, the 14-day percent increase in average new deaths was:
+As of Thursday, the 14-day percent increase in average new deaths was:
   
   - 110% in Illinois
-  - 117% in the United States
-  - 4% worldwide
+  - 123% in the United States
+  - 5% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
 
