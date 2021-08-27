@@ -55,8 +55,8 @@ As of Thursday in the United States (vs. two weeks ago):
 
 As of Thursday (vs. two weeks ago):
   
-  - Average new cases: 654,000 (vs. 641,000) +2%↑
-  - Average new deaths: 10,000 (vs. 9,570) +5%↑
+  - Average new cases: 661,000 (vs. 641,000) +3%↑
+  - Average new deaths: 10,100 (vs. 9,570) +6%↑
   - Percent of the world fully vaccinated: 25% (vs. 16%)
   - Average new vaccine doses: 33,800,000 (vs. 37,400,000)
 
@@ -69,7 +69,7 @@ As of Thursday, the 14-day percent increase in average new cases was:
   - 18% in Champaign County
   - 23% in Illinois
   - 26% in the United States
-  - 2% worldwide
+  - 3% worldwide
 
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
@@ -81,7 +81,7 @@ As of Thursday, the 14-day percent increase in average new deaths was:
   
   - 110% in Illinois
   - 123% in the United States
-  - 5% worldwide
+  - 6% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
 
