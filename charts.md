@@ -38,10 +38,10 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## United States
 
-As of Thursday in the United States (vs. two weeks ago):
+As of Friday in the United States (vs. two weeks ago):
   
-  - Average new cases: 156,000 (vs. 124,000) +26%↑
-  - Average new deaths: 1,190 (vs. 536) +123%↑
+  - Average new cases: 156,000 (vs. 129,000) +21%↑
+  - Average new deaths: 1,270 (vs. 642) +98%↑
   - Percent of the United States fully vaccinated: 51.2% (vs. 49.8%)
   - Average new vaccine doses: 878,000 (vs. 699,000)
 
@@ -53,10 +53,10 @@ As of Thursday in the United States (vs. two weeks ago):
 
 ## World
 
-As of Thursday (vs. two weeks ago):
+As of Friday (vs. two weeks ago):
   
-  - Average new cases: 661,000 (vs. 641,000) +3%↑
-  - Average new deaths: 10,100 (vs. 9,570) +6%↑
+  - Average new cases: 648,000 (vs. 648,000) 0%↓
+  - Average new deaths: 10,000 (vs. 9,670) +3%↑
   - Percent of the world fully vaccinated: 24.9% (vs. 23%)
   - Average new vaccine doses: 36,200,000 (vs. 36,500,000)
 
@@ -64,12 +64,12 @@ As of Thursday (vs. two weeks ago):
 
 ## Case Acceleration
 
-As of Thursday, the 14-day percent increase in average new cases was:
+As of Friday, the 14-day percent increase in average new cases was:
   
   - 12% in Champaign County
   - 20% in Illinois
-  - 26% in the United States
-  - 3% worldwide
+  - 21% in the United States
+  - 0% worldwide
 
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
@@ -77,11 +77,11 @@ This chart measures how quickly the average number of new cases is changing, or 
 
 ## Death Acceleration
 
-As of Thursday, the 14-day percent increase in average new deaths was:
+As of Friday, the 14-day percent increase in average new deaths was:
   
   - 89% in Illinois
-  - 123% in the United States
-  - 6% worldwide
+  - 98% in the United States
+  - 3% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
 
