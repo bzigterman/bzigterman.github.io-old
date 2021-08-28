@@ -56,13 +56,13 @@ champaign_death_pct_change_text <-
 champaign_county_text <- paste(
   "As of ",champaign_weekday," in Champaign County (vs. two weeks ago):
   
-  ",
+",
   "- Average new cases: ",champaign_avg_new_cases," (vs. ",champaign_month_ago_cases,") ",champaign_case_pct_change_text,"
-  ",
+",
   "- Deaths in the past month: ",champaign_dead_last_month," (vs. ",champaign_month_ago_deaths,")
-  ",
+",
   "- Percent of Champaign County fully vaccinated: ",champaign_pct_fully_vaccinated,"% (vs. ",champaign_month_ago_vaccinated,"%)
-  ",
+",
   "- Average new vaccine doses: ",champaign_avg_new_vaccine_doses," (vs. ",champaign_month_ago_new_doses,")",
   "
 ",
@@ -119,13 +119,13 @@ il_death_pct_change_text <-
 il_text <- paste(
   "As of ",il_weekday," in Illinois (vs. two weeks ago):
   
-  ",
+",
   "- Average new cases: ",il_avg_new_cases," (vs. ",il_month_ago_cases,") ",il_case_pct_change_text,"
-  ",
+",
   "- Average new deaths: ",il_avg_new_deaths," (vs. ",il_month_ago_avg_new_deaths,") ",il_death_pct_change_text,"
-  ",
+",
   "- Percent of Illinois fully vaccinated: ",il_pct_fully_vaccinated,"% (vs. ",il_month_ago_vaccinated,"%)
-  ",
+",
   "- Average new vaccine doses: ",il_avg_new_vaccine_doses," (vs. ",il_month_ago_new_doses,")",
   "
 ",
@@ -190,13 +190,13 @@ usa_death_pct_change_text <-
 usa_text <- paste(
   "As of ",usa_weekday," in the United States (vs. two weeks ago):
   
-  ",
+",
   "- Average new cases: ",usa_avg_new_cases," (vs. ",usa_month_ago_cases,") ",usa_case_pct_change_text,"
-  ",
+",
   "- Average new deaths: ",usa_avg_new_deaths," (vs. ",usa_month_ago_avg_new_deaths,") ",usa_death_pct_change_text,"
-  ",
+",
   "- Percent of the United States fully vaccinated: ",usa_pct_fully_vaccinated,"% (vs. ",usa_month_ago_vaccinated,"%)
-  ",
+",
   "- Average new vaccine doses: ",usa_avg_new_vaccine_doses," (vs. ",usa_month_ago_new_doses,")",
   "
 ",
@@ -261,13 +261,13 @@ world_death_pct_change_text <-
 world_text <- paste(
   "As of ",world_weekday," (vs. two weeks ago):
   
-  ",
+",
   "- Average new cases: ",world_avg_new_cases," (vs. ",world_month_ago_cases,") ",world_case_pct_change_text,"
-  ",
+",
   "- Average new deaths: ",world_avg_new_deaths," (vs. ",world_month_ago_avg_new_deaths,") ",world_death_pct_change_text,"
-  ",
+",
   "- Percent of the world fully vaccinated: ",world_pct_fully_vaccinated,"% (vs. ",world_month_ago_vaccinated,"%)
-  ",
+",
   "- Average new vaccine doses: ",world_avg_new_vaccine_doses," (vs. ",world_month_ago_new_doses,")",
   "
 ",
@@ -350,13 +350,13 @@ acceleration_world <- round(100*tail(jhu_new_cases_world$pct_change_new_cases,1)
 acceleration_text <- paste(
   "As of ",acceleration_weekday,", the 14-day percent change in average new cases was:
   
-  ",
+",
   "- ",acceleration_champaign,"% in Champaign County
-  ",
+",
   "- ",acceleration_il,"% in Illinois
-  ",
+",
   "- ",acceleration_usa,"% in the United States
-  ",
+",
   "- ",acceleration_world,"% worldwide",
   "
 ",
@@ -369,11 +369,11 @@ sep = ""
 death_acceleration_text <- paste(
   "As of ",acceleration_weekday,", the 14-day percent change in average new deaths was:
   
-  ",
+",
   "- ",il_death_pct_change,"% in Illinois
-  ",
+",
   "- ",usa_death_pct_change,"% in the United States
-  ",
+",
   "- ",world_death_pct_change,"% worldwide",
   "
 ",
