@@ -3,6 +3,7 @@ _site
 .Rhistory
 .RData
 .Ruserdata
+Rplots.pdf
 .DS_Store
 .jekyll
 .jekyll-metadata
