@@ -1,6 +1,6 @@
 ---
 layout: page
-title: COVID-19
+title: Charts
 permalink: /charts/
 ---
 
