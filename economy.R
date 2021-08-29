@@ -15,7 +15,7 @@ recent_data <- data %>%
                             mday(date))) 
 
 ggplot(recent_data, aes(x = date,
-                                      y = value/100)) +
+                        y = value/100)) +
   geom_line() +
   labs(title = "U.S. Unemployment Rate",
        caption = paste("Source: FRED. Data updated",
@@ -47,7 +47,7 @@ recent_data <- data %>%
   mutate(scaled_value = value/1000) 
 
 ggplot(recent_data, aes(x = as.Date(date),
-                                     y = scaled_value)) +
+                        y = scaled_value)) +
   geom_line() +
   labs(title = "Real GDP",
        caption = paste("Source: FRED. Data updated",
@@ -106,7 +106,7 @@ recent_consumer_sentiment <- consumer_sentiment %>%
                             mday(date))) 
 
 ggplot(recent_consumer_sentiment, aes(x = date,
-                 y = value)) +
+                                      y = value)) +
   geom_line() +
   labs(title = "University of Michigan Consumer Survey, Index of Consumer Sentiment",
        caption = paste("Source: FRED. Data updated",
