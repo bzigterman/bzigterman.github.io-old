@@ -18,5 +18,7 @@ permalink: /charts/economy/
 
 ![Real GDP Growth](https://raw.githubusercontent.com/bzigterman/bzigterman.github.io/master/plots/real_gdp_growth.png)
 
+![Gini Index](https://raw.githubusercontent.com/bzigterman/bzigterman.github.io/master/plots/gini_index.png)
+
 ![Consumer Sentiment](https://raw.githubusercontent.com/bzigterman/bzigterman.github.io/master/plots/consumer_sentiment.png)
 
