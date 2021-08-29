@@ -47,4 +47,5 @@ University of Michigan Consumer Survey, Index of Consumer Sentiment
 ",
 sep = ""
 )
+write_lines(web_text,"economy.md")
 
