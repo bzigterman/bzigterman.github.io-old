@@ -3,4 +3,5 @@ install.packages("rio")
 install.packages("lubridate")
 install.packages("httr")
 install.packages("zoo")
-install.packages("Quandl")
+install.packages("fredr")
+
