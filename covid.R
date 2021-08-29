@@ -108,7 +108,7 @@ il_case_pct_change_text <-
   if (il_case_pct_change > 0) { 
     paste("+",il_case_pct_change,"%↑", sep = "")
   } else if (il_case_pct_change == 0) { 
-    paste("±",il_case_pct_change,"%→", sep = "")
+    paste("",il_case_pct_change,"%→", sep = "")
   } else {
     paste("",il_case_pct_change,"%↓", sep = "")
   }
@@ -116,7 +116,7 @@ il_death_pct_change_text <-
   if (il_death_pct_change > 0) { 
     paste("+",il_death_pct_change,"%↑", sep = "")
   } else if (il_death_pct_change == 0) {
-    paste("±",il_death_pct_change,"%→", sep = "")
+    paste("",il_death_pct_change,"%→", sep = "")
   } else { 
     paste("",il_death_pct_change,"%↓", sep = "")
   }
