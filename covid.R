@@ -36,21 +36,24 @@ champaign_month_ago_new_doses <-
   format(round(signif(tail(lag(idph_vax_champaign$AdministeredCountRollAvg, 14),1),3)),big.mark=",")
 champaign_case_pct_change <- round(100*(tail(idph_cases_champaign$avg_new_cases,1)-tail(lag(idph_cases_champaign$avg_new_cases, 14),1))/tail(lag(idph_cases_champaign$avg_new_cases, 14),1), digits = 0)
 champaign_death_pct_change <- round(100*(tail(idph_cases_champaign$monthlydead,1)-tail(lag(idph_cases_champaign$monthlydead, 14),1))/tail(lag(idph_cases_champaign$monthlydead, 14),1), digits = 0)
+
 champaign_case_pct_change_text <- 
-  if(champaign_case_pct_change>0) { 
+  if (champaign_case_pct_change > 0) { 
     paste("+",champaign_case_pct_change,"%↑", sep = "")
+  } else if (champaign_case_pct_change == 0) {
+    paste("",champaign_case_pct_change,"%→", sep = "")
   } else { 
     paste("",champaign_case_pct_change,"%↓", sep = "")
   }
 champaign_death_pct_change_text <- 
-  if(champaign_death_pct_change>0) { 
+  if (champaign_death_pct_change > 0) { 
     paste("+",champaign_death_pct_change,"%↑", sep = "")
+  } else if (champaign_death_pct_change == 0) {
+    paste("",champaign_death_pct_change,"%→", sep = "")
   } else { 
     paste("",champaign_death_pct_change,"%↓", sep = "")
   }
 
-  
-  
 ### text ----
 
 champaign_county_text <- paste(
@@ -100,19 +103,23 @@ il_month_ago_new_doses <- format(round(signif(tail(lag(idph_vax_il$AdministeredC
 
 il_case_pct_change <- round(100*(tail(idph_cases_il$avg_new_cases,1)-tail(lag(idph_cases_il$avg_new_cases, 14),1))/tail(lag(idph_cases_il$avg_new_cases, 14),1), digits = 0)
 il_death_pct_change <- round(100*(tail(idph_cases_il$avg_new_deaths,1)-tail(lag(idph_cases_il$avg_new_deaths, 14),1))/tail(lag(idph_cases_il$avg_new_deaths, 14),1), digits = 0)
+
 il_case_pct_change_text <- 
-  if(il_case_pct_change>0) { 
+  if (il_case_pct_change > 0) { 
     paste("+",il_case_pct_change,"%↑", sep = "")
-  } else { 
+  } else if (il_case_pct_change == 0) { 
+    paste("±",il_case_pct_change,"%→", sep = "")
+  } else {
     paste("",il_case_pct_change,"%↓", sep = "")
   }
 il_death_pct_change_text <- 
-  if(il_death_pct_change>0) { 
+  if (il_death_pct_change > 0) { 
     paste("+",il_death_pct_change,"%↑", sep = "")
+  } else if (il_death_pct_change == 0) {
+    paste("±",il_death_pct_change,"%→", sep = "")
   } else { 
     paste("",il_death_pct_change,"%↓", sep = "")
   }
-
 
 ### text ----
 
@@ -170,20 +177,23 @@ usa_month_ago_new_doses <- format(signif(tail(lag(usa_owid_vaccines$daily_vaccin
 
 usa_case_pct_change <- round(100*(tail(usa_jhu_new_cases$avg_new_cases,1)-tail(lag(usa_jhu_new_cases$avg_new_cases, 14),1))/tail(lag(usa_jhu_new_cases$avg_new_cases, 14),1), digits = 0)
 usa_death_pct_change <- round(100*(tail(usa_jhu_new_deaths$avg_new_deaths,1)-tail(lag(usa_jhu_new_deaths$avg_new_deaths, 14),1))/tail(lag(usa_jhu_new_deaths$avg_new_deaths, 14),1), digits = 0)
+
 usa_case_pct_change_text <- 
-  if(usa_case_pct_change>0) { 
+  if (usa_case_pct_change > 0) { 
     paste("+",usa_case_pct_change,"%↑", sep = "")
+  } else if (usa_case_pct_change == 0) {
+    paste("",usa_case_pct_change,"%→", sep = "")
   } else { 
     paste("",usa_case_pct_change,"%↓", sep = "")
   }
 usa_death_pct_change_text <- 
-  if(usa_death_pct_change>0) { 
+  if (usa_death_pct_change > 0) { 
     paste("+",usa_death_pct_change,"%↑", sep = "")
+  } else if (usa_death_pct_change == 0) {
+    paste("",usa_death_pct_change,"%→", sep = "")
   } else { 
     paste("",usa_death_pct_change,"%↓", sep = "")
   }
-
-
 
 ### text ----
 
@@ -243,15 +253,20 @@ world_month_ago_new_doses <- format(signif(tail(lag(world_owid_vaccines$daily_va
 
 world_case_pct_change <- round(100*(tail(world_jhu_new_cases$avg_new_cases,1)-tail(lag(world_jhu_new_cases$avg_new_cases, 14),1))/tail(lag(world_jhu_new_cases$avg_new_cases, 14),1), digits = 0)
 world_death_pct_change <- round(100*(tail(world_jhu_new_deaths$avg_new_deaths,1)-tail(lag(world_jhu_new_deaths$avg_new_deaths, 14),1))/tail(lag(world_jhu_new_deaths$avg_new_deaths, 14),1), digits = 0)
+
 world_case_pct_change_text <- 
-  if(world_case_pct_change>0) { 
+  if (world_case_pct_change > 0) { 
     paste("+",world_case_pct_change,"%↑", sep = "")
+  } else if (world_case_pct_change == 0) {
+    paste("",world_case_pct_change,"%→", sep = "")
   } else { 
     paste("",world_case_pct_change,"%↓", sep = "")
   }
 world_death_pct_change_text <- 
-  if(world_death_pct_change>0) { 
+  if (world_death_pct_change > 0) { 
     paste("+",world_death_pct_change,"%↑", sep = "")
+  } else if (world_death_pct_change == 0) {
+    paste("",world_death_pct_change,"%→", sep = "")
   } else { 
     paste("",world_death_pct_change,"%↓", sep = "")
   }
