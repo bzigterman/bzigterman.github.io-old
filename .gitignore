@@ -2,6 +2,7 @@ _site
 .Rproj.user
 .Rhistory
 .RData
+.Renviron
 .Ruserdata
 Rplots.pdf
 .DS_Store
