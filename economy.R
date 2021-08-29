@@ -3,8 +3,7 @@ library(lubridate)
 library(scales)
 library(fredr)
 
-FRED_API_KEY <- Sys.getenv("FRED_API_KEY")
-fredr_set_key(FRED_API_KEY)
+fredr_set_key(Sys.getenv("FRED_API_KEY"))
 
 twenty_years_ago <- ymd((today() - years(20)))
 
