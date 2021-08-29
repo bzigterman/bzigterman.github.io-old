@@ -4,7 +4,13 @@ title: Economic Indicators
 permalink: /charts/economy/
 ---
 
+## United States
+
 ![Unemployment Rate](https://raw.githubusercontent.com/bzigterman/bzigterman.github.io/master/plots/unemployment_rate.png)
+
+![Total Nonfarm Payroll](https://raw.githubusercontent.com/bzigterman/bzigterman.github.io/master/plots/employment.png)
+
+![Total Nonfarm Payroll Change](https://raw.githubusercontent.com/bzigterman/bzigterman.github.io/master/plots/employment_change.png)
 
 ![Real GDP](https://raw.githubusercontent.com/bzigterman/bzigterman.github.io/master/plots/real_gdp.png)
 
