@@ -190,8 +190,8 @@ recent_consumer_sentiment <- consumer_sentiment %>%
 ggplot(recent_consumer_sentiment, aes(x = date,
                                       y = value)) +
   geom_line() +
-  labs(title = "University of Michigan Consumer Survey, Index of Consumer Sentiment",
-       caption = paste("Source: FRED. Data updated",
+  labs(title = "Consumer Sentiment Index",
+       caption = paste("Source: University of Michigan Consumer Survey and FRED. Data updated",
                        tail(recent_consumer_sentiment$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
