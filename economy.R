@@ -70,7 +70,7 @@ ggsave("plots/employment.png", width = 8, height = 8*(628/1200), dpi = 320)
 
 ## employment change ----
 ggplot(recent_data, aes(x = date,
-                        y = change*1000)) +
+                        y = change/1000)) +
   geom_col() +
   labs(title = "Change in Total Nonfarm Payroll",
        caption = paste("Source: FRED. Data updated",
@@ -79,7 +79,7 @@ ggplot(recent_data, aes(x = date,
   ylab(NULL) +
   scale_x_date(expand = expansion(mult = c(0, .01))) +
   scale_y_continuous(position = "right",
-                     labels = label_comma()) +
+                     labels = label_comma(suffix = "M")) +
   theme(axis.text.y = element_text(size = 10),
         axis.text.x = element_text(size = 8),
         panel.grid.minor = element_blank(),
