@@ -36,7 +36,7 @@ web_text <- paste(
   "---
 layout: page
 title: Economic Indicators
-permalink: /economy/
+permalink: /charts/economy/
 ---
 
 Here are some economic indicators I like to keep track of:
@@ -47,5 +47,5 @@ University of Michigan Consumer Survey, Index of Consumer Sentiment
 ",
 sep = ""
 )
-write_lines(web_text,"economy.md")
+write_lines(web_text,"charts/economy.md")
 

@@ -27,7 +27,7 @@ jobs:
         run: R -e 'source("install-packages.R", echo = TRUE)'
         
       - name: Download Parse and Update Chart Data
-        run: Rscript charts.R
+        run: Rscript covid.R
         
       # Add new files in folder, commit along with other modified files, push
       - name: Commit and push if it changed

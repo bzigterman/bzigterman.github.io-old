@@ -386,8 +386,8 @@ sep = ""
 web_text <- paste(
   "---
 layout: page
-title: Charts
-permalink: /charts/
+title: COVID-19
+permalink: /charts/covid
 ---
 
 During the COVID-19 pandemic, I've been making charts with data from the [Champaign-Urbana Public Health District](https://www.c-uphd.org/champaign-urbana-illinois-coronavirus-information.html), the [University of Illinois](https://go.illinois.edu/COVIDTestingData), the [Illinois Department of Public Health](http://www.dph.illinois.gov/covid19), the [CDC](https://covid.cdc.gov/covid-data-tracker/), [Our World in Data](https://github.com/owid/covid-19-data/tree/master/public/data) and the [COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19).
@@ -460,5 +460,5 @@ if (champaign_avg_new_cases >= 0 &&
     champaign_month_ago_vaccinated <= 100 &&
     champaign_month_ago_new_doses >= 0
 ) {
-write_lines(web_text,"charts.md")
+write_lines(web_text,"charts/covid.md")
 }
