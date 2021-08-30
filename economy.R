@@ -5,7 +5,7 @@ library(fredr)
 
 fredr_set_key(Sys.getenv("FRED_API_KEY"))
 
-twenty_years_ago <- ymd((today() - years(20)))
+twenty_years_ago <- ymd((today() - years(25)))
 
 # unemployment rate ----
 data <- fredr(series_id = "UNRATE")
