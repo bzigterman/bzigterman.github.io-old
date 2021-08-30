@@ -51,7 +51,9 @@ recent_data <- data %>%
 employment <- ggplot(recent_data, aes(x = date,
                                       y = value/1000)) +
   geom_line() +
-  labs(title = "Total Nonfarm Payroll") +
+  labs(title = "Total Nonfarm Payroll",
+       caption = paste("Data updated",
+                       tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
   scale_x_date(expand = expansion(mult = c(0, .01))) +
@@ -129,7 +131,9 @@ recent_data <- data %>%
 gdp <- ggplot(recent_data, aes(x = date,
                                y = value/1000)) +
   geom_line() +
-  labs(title = "Real GDP") +
+  labs(title = "Real GDP",
+       caption = paste("Data updated",
+                       tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
   scale_x_date(expand = expansion(mult = c(0, .01))) +
