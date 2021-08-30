@@ -137,7 +137,7 @@ recent_data <- data %>%
                             mday(date))) 
 
 gdp <- ggplot(recent_data, aes(x = date,
-                        y = value/1000)) +
+                               y = value/1000)) +
   geom_line() +
   labs(title = "Real GDP") +
   xlab(NULL) +
@@ -162,8 +162,8 @@ recent_data <- data %>%
                             mday(date))) 
 
 gdp_change <- ggplot(recent_data, aes(x = date,
-                        y = value/100,
-                        fill = value > 0)) +
+                                      y = value/100,
+                                      fill = value > 0)) +
   geom_col() +
   labs(title = "Real GDP Growth",
        caption = paste("Source: U.S. Bureau of Economic Analysis, retrieved from FRED. Data updated",
@@ -184,11 +184,11 @@ gdp_change <- ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-## combined gdp chart ----
-gdp_grid <- plot_grid(gdp, gdp_change,
-                                ncol = 1,
-                                align = "v",
-                                rel_heights = c(2,1))
+### combined gdp chart ----
+us_gdp_grid <- plot_grid(gdp, gdp_change,
+                         ncol = 1,
+                         align = "v",
+                         rel_heights = c(2,1))
 
 ggsave("plots/us_gdp_grid.png", plot = us_gdp_grid,
        width = 8, height = 6, dpi = 320)
