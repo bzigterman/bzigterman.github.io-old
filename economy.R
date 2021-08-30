@@ -128,7 +128,7 @@ recent_data <- data %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) 
 
-ggplot(recent_data, aes(x = as.Date(date),
+ggplot(recent_data, aes(x = date,
                         y = value/1000)) +
   geom_line() +
   labs(title = "Real GDP",
@@ -138,8 +138,7 @@ ggplot(recent_data, aes(x = as.Date(date),
   ylab(NULL) +
   scale_x_date(expand = expansion(mult = c(0, .01))) +
   scale_y_continuous(position = "right",
-                     labels = label_dollar(suffix = "T"),
-                     limits = c(0,max(recent_data$value/1000)*1.05)) +
+                     labels = label_dollar(suffix = "T")) +
   theme(axis.text.y = element_text(size = 10),
         axis.text.x = element_text(size = 8),
         panel.grid.minor = element_blank(),
@@ -158,7 +157,7 @@ recent_data <- data %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) 
 
-ggplot(recent_data, aes(x = as.Date(date),
+ggplot(recent_data, aes(x = date,
                         y = value/100)) +
   geom_col() +
   labs(title = "Real GDP Growth",
