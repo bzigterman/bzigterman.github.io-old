@@ -90,7 +90,7 @@ employment_change <- ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-## combined employment chart
+## combined employment chart ----
 us_employment_grid <- plot_grid(employment, employment_change,
                                 ncol = 1,
                                 align = "v",
@@ -136,12 +136,10 @@ recent_data <- data %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) 
 
-ggplot(recent_data, aes(x = date,
+gdp <- ggplot(recent_data, aes(x = date,
                         y = value/1000)) +
   geom_line() +
-  labs(title = "Real GDP",
-       caption = paste("Source: U.S. Bureau of Economic Analysis, retrieved from FRED. Data updated",
-                       tail(recent_data$short_date,1))) +
+  labs(title = "Real GDP") +
   xlab(NULL) +
   ylab(NULL) +
   scale_x_date(expand = expansion(mult = c(0, .01))) +
@@ -156,8 +154,6 @@ ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-ggsave("plots/real_gdp.png", width = 8, height = 8*(628/1200), dpi = 320)
-
 ### real gdp growth ----
 data <- fredr(series_id = "A191RL1Q225SBEA")
 recent_data <- data %>%
@@ -165,7 +161,7 @@ recent_data <- data %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) 
 
-ggplot(recent_data, aes(x = date,
+gdp_change <- ggplot(recent_data, aes(x = date,
                         y = value/100,
                         fill = value > 0)) +
   geom_col() +
@@ -188,7 +184,14 @@ ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-ggsave("plots/real_gdp_growth.png", width = 8, height = 8*(628/1200), dpi = 320)
+## combined gdp chart ----
+gdp_grid <- plot_grid(gdp, gdp_change,
+                                ncol = 1,
+                                align = "v",
+                                rel_heights = c(2,1))
+
+ggsave("plots/us_gdp_grid.png", plot = us_gdp_grid,
+       width = 8, height = 6, dpi = 320)
 
 ## retail sales and durable goods ----
 retail_sales <- fredr(series_id = "RSXFS")
@@ -298,9 +301,7 @@ permalink: /charts/economy/
 
 ![Real Median Income]({{ site.baseurl }}/plots/real_median_income.png)
 
-![Real GDP]({{ site.baseurl }}/plots/real_gdp.png)
-
-![Real GDP Growth]({{ site.baseurl }}/plots/real_gdp_growth.png)
+![Real GDP Grid]({{ site.baseurl }}/plots/us_gdp_grid.png)
 
 ![Retail Sales and Durable Goods Orders]({{ site.baseurl }}/plots/retail_sales_durable_goods.png)
 

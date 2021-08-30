@@ -12,9 +12,7 @@ permalink: /charts/economy/
 
 ![Real Median Income]({{ site.baseurl }}/plots/real_median_income.png)
 
-![Real GDP]({{ site.baseurl }}/plots/real_gdp.png)
-
-![Real GDP Growth]({{ site.baseurl }}/plots/real_gdp_growth.png)
+![Real GDP Grid]({{ site.baseurl }}/plots/us_gdp_grid.png)
 
 ![Retail Sales and Durable Goods Orders]({{ site.baseurl }}/plots/retail_sales_durable_goods.png)
 
