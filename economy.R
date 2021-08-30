@@ -2,6 +2,7 @@ library(tidyverse)
 library(lubridate)
 library(scales)
 library(fredr)
+library(cowplot)
 
 fredr_set_key(Sys.getenv("FRED_API_KEY"))
 
@@ -48,17 +49,14 @@ recent_data <- data %>%
   mutate(change = value - lag(value))
 
 employment <- ggplot(recent_data, aes(x = date,
-                        y = value/1000)) +
+                                      y = value/1000)) +
   geom_line() +
-  labs(title = "Total Nonfarm Payroll",
-       caption = paste("Source: U.S. Bureau of Labor Statistics, retrieved from FRED. Data updated",
-                       tail(recent_data$short_date,1))) +
+  labs(title = "Total Nonfarm Payroll") +
   xlab(NULL) +
   ylab(NULL) +
   scale_x_date(expand = expansion(mult = c(0, .01))) +
   scale_y_continuous(position = "right",
-                     labels = label_comma(suffix = "M"),
-                     limits = c(0,max(recent_data$value/1000)*1.05)) +
+                     labels = label_comma(suffix = "M")) +
   theme(axis.text.y = element_text(size = 10),
         axis.text.x = element_text(size = 8),
         panel.grid.minor = element_blank(),
@@ -68,13 +66,10 @@ employment <- ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-ggsave("plots/employment.png", plot = employment,
-       width = 8, height = 8*(628/1200), dpi = 320)
-
 ### employment change ----
 employment_change <- ggplot(recent_data, aes(x = date,
-                        y = change/1000,
-                        fill = change > 0)) +
+                                             y = change/1000,
+                                             fill = change > 0)) +
   geom_col() +
   labs(title = "Change in Total Nonfarm Payroll",
        caption = paste("Source: U.S. Bureau of Labor Statistics, retrieved from FRED. Data updated",
@@ -95,8 +90,14 @@ employment_change <- ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-ggsave("plots/employment_change.png", plot = employment_change,
-       width = 8, height = 8*(628/1200), dpi = 320)
+## combined employment chart
+us_employment_grid <- plot_grid(employment, employment_change,
+                                ncol = 1,
+                                align = "v",
+                                rel_heights = c(2,1))
+
+ggsave("plots/us_employment_grid.png", plot = us_employment_grid,
+       width = 8, height = 6, dpi = 320)
 
 ## median household income ----
 data <-fredr(series_id = "MEHOINUSA672N")
@@ -293,9 +294,7 @@ permalink: /charts/economy/
 
 ![Unemployment Rate]({{ site.baseurl }}/plots/unemployment_rate.png)
 
-![Total Nonfarm Payroll]({{ site.baseurl }}/plots/employment.png)
-
-![Total Nonfarm Payroll Change]({{ site.baseurl }}/plots/employment_change.png)
+![Employment Grid]({{ site.baseurl }}/plots/us_employment_grid.png)
 
 ![Real Median Income]({{ site.baseurl }}/plots/real_median_income.png)
 
