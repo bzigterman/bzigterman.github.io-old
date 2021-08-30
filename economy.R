@@ -71,9 +71,7 @@ employment_change <- ggplot(recent_data, aes(x = date,
                                              y = change/1000,
                                              fill = change > 0)) +
   geom_col() +
-  labs(title = "Change in Total Nonfarm Payroll",
-       caption = paste("Source: U.S. Bureau of Labor Statistics, retrieved from FRED. Data updated",
-                       tail(recent_data$short_date,1))) +
+  labs(title = "Change in Total Nonfarm Payroll") +
   xlab(NULL) +
   ylab(NULL) +
   scale_x_date(expand = expansion(mult = c(0, .01))) +
@@ -90,15 +88,6 @@ employment_change <- ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-## combined employment chart ----
-us_employment_grid <- plot_grid(employment, employment_change,
-                                ncol = 1,
-                                align = "v",
-                                rel_heights = c(2,1))
-
-ggsave("plots/us_employment_grid.png", plot = us_employment_grid,
-       width = 8, height = 6, dpi = 320)
-
 ## median household income ----
 data <-fredr(series_id = "MEHOINUSA672N")
 recent_data <- data %>%
@@ -106,7 +95,7 @@ recent_data <- data %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) 
 
-ggplot(recent_data, aes(x = as.Date(date),
+median_household_income <- ggplot(recent_data, aes(x = as.Date(date),
                         y = value)) +
   geom_line() +
   labs(title = "Real Median Household Income",
@@ -127,7 +116,8 @@ ggplot(recent_data, aes(x = as.Date(date),
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-ggsave("plots/real_median_income.png", width = 8, height = 8*(628/1200), dpi = 320)
+ggsave("plots/real_median_income.png", plot = median_household_income,
+       width = 8, height = 8*(628/1200), dpi = 320)
 
 ## real GDP ----
 data <-fredr(series_id = "GDPC1")
@@ -166,8 +156,7 @@ gdp_change <- ggplot(recent_data, aes(x = date,
                                       fill = value > 0)) +
   geom_col() +
   labs(title = "Real GDP Growth",
-       caption = paste("Source: U.S. Bureau of Economic Analysis, retrieved from FRED. Data updated",
-                       tail(recent_data$short_date,1))) +
+       caption = "Source: U.S. Bureau of Labor Statistics and U.S. Bureau of Economic Analysis, retrieved from FRED.") +
   xlab(NULL) +
   ylab(NULL) +
   scale_x_date(expand = expansion(mult = c(0, .01))) +
@@ -184,13 +173,12 @@ gdp_change <- ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-### combined gdp chart ----
-us_gdp_grid <- plot_grid(gdp, gdp_change,
-                         ncol = 1,
-                         align = "v",
-                         rel_heights = c(2,1))
+## combined employment and gdp ----
+us_employment_gdp_grid <- plot_grid(employment, gdp, employment_change, gdp_change,
+          align = "hv",
+          rel_heights = c(1,1))
 
-ggsave("plots/us_gdp_grid.png", plot = us_gdp_grid,
+ggsave("plots/us_employment_gdp_grid.png", plot = us_employment_gdp_grid,
        width = 8, height = 6, dpi = 320)
 
 ## retail sales and durable goods ----
@@ -235,7 +223,7 @@ recent_data <- data %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) 
 
-ggplot(recent_data, aes(x = date,
+gini <- ggplot(recent_data, aes(x = date,
                         y = value)) +
   geom_line() +
   labs(title = "Gini Index of Inequality",
@@ -256,7 +244,8 @@ ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-ggsave("plots/gini_index.png", width = 8, height = 8*(628/1200), dpi = 320)
+ggsave("plots/gini_index.png", plot = gini,
+       width = 8, height = 8*(628/1200), dpi = 320)
 
 ## consumer sentiment ----
 data <- fredr(series_id = "UMCSENT")
@@ -265,7 +254,7 @@ recent_data <- data %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) 
 
-ggplot(recent_data, aes(x = date,
+sentiment <- ggplot(recent_data, aes(x = date,
                         y = value)) +
   geom_line() +
   labs(title = "Consumer Sentiment Index",
@@ -284,7 +273,12 @@ ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-ggsave("plots/consumer_sentiment.png", width = 8, height = 8*(628/1200), dpi = 320)
+ggsave("plots/consumer_sentiment.png", plot = sentiment,
+       width = 8, height = 8*(628/1200), dpi = 320)
+
+# combined ----
+plot_grid(sentiment, gini, median_household_income, unemployment_rate,
+         align = "hv")
 
 web_text <- paste(
   "---
@@ -297,11 +291,9 @@ permalink: /charts/economy/
 
 ![Unemployment Rate]({{ site.baseurl }}/plots/unemployment_rate.png)
 
-![Employment Grid]({{ site.baseurl }}/plots/us_employment_grid.png)
+![Employment GDP Grid]({{ site.baseurl }}/plots/us_employment_gdp_grid.png)
 
 ![Real Median Income]({{ site.baseurl }}/plots/real_median_income.png)
-
-![Real GDP Grid]({{ site.baseurl }}/plots/us_gdp_grid.png)
 
 ![Retail Sales and Durable Goods Orders]({{ site.baseurl }}/plots/retail_sales_durable_goods.png)
 
