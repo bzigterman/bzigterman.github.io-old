@@ -40,7 +40,7 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 As of Sunday in the United States (vs. two weeks ago):
   
-- Average new cases: 155,000 (vs. 131,000) +19%↑
+- Average new cases: 156,000 (vs. 131,000) +19%↑
 - Average new deaths: 1,290 (vs. 652) +98%↑
 - Percent of the United States fully vaccinated: 51.6% (vs. 50.1%)
 - Average new vaccine doses: 887,000 (vs. 719,000)
@@ -55,7 +55,7 @@ As of Sunday in the United States (vs. two weeks ago):
 
 As of Sunday (vs. two weeks ago):
   
-- Average new cases: 655,000 (vs. 648,000) +1%↑
+- Average new cases: 656,000 (vs. 648,000) +1%↑
 - Average new deaths: 9,950 (vs. 9,650) +3%↑
 - Percent of the world fully vaccinated: 26.7% (vs. 23.4%)
 - Average new vaccine doses: 39,600,000 (vs. 36,100,000)
