@@ -5,12 +5,12 @@ library(fredr)
 
 fredr_set_key(Sys.getenv("FRED_API_KEY"))
 
-twenty_years_ago <- ymd((today() - years(25)))
+recent_years <- ymd((today() - years(25)))
 
 # unemployment rate ----
 data <- fredr(series_id = "UNRATE")
 recent_data <- data %>%
-  filter(date > twenty_years_ago) %>%
+  filter(date > recent_years) %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) 
 
@@ -40,7 +40,7 @@ ggsave("plots/unemployment_rate.png", width = 8, height = 8*(628/1200), dpi = 32
 # employment -----
 data <- fredr(series_id = "PAYEMS")
 recent_data <- data %>%
-  filter(date > twenty_years_ago) %>%
+  filter(date > recent_years) %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) %>%
   mutate(change = value - lag(value))
@@ -94,7 +94,7 @@ ggsave("plots/employment_change.png", width = 8, height = 8*(628/1200), dpi = 32
 # median household income ----
 data <-fredr(series_id = "MEHOINUSA672N")
 recent_data <- data %>%
-  filter(date > twenty_years_ago) %>%
+  filter(date > recent_years) %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) 
 
@@ -124,7 +124,7 @@ ggsave("plots/real_median_income.png", width = 8, height = 8*(628/1200), dpi = 3
 # real GDP ----
 data <-fredr(series_id = "GDPC1")
 recent_data <- data %>%
-  filter(date > twenty_years_ago) %>%
+  filter(date > recent_years) %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) 
 
@@ -154,7 +154,7 @@ ggsave("plots/real_gdp.png", width = 8, height = 8*(628/1200), dpi = 320)
 ## real gdp growth ----
 data <- fredr(series_id = "A191RL1Q225SBEA")
 recent_data <- data %>%
-  filter(date > twenty_years_ago) %>%
+  filter(date > recent_years) %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) 
 
@@ -185,7 +185,7 @@ retail_sales <- fredr(series_id = "RSXFS")
 durable_goods <- fredr(series_id = "DGORDER")
 data <- full_join(retail_sales, durable_goods)
 recent_data <- data %>%
-  filter(date > twenty_years_ago) %>%
+  filter(date > recent_years) %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) %>%
   mutate(names = recode(series_id,
@@ -218,7 +218,7 @@ ggsave("plots/retail_sales_durable_goods.png", width = 8, height = 6, dpi = 320)
 
 data <- fredr(series_id = "SIPOVGINIUSA")
 recent_data <- data %>%
-  filter(date > twenty_years_ago) %>%
+  filter(date > recent_years) %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) 
 
@@ -248,7 +248,7 @@ ggsave("plots/gini_index.png", width = 8, height = 8*(628/1200), dpi = 320)
 # consumer sentiment ----
 data <- fredr(series_id = "UMCSENT")
 recent_data <- data %>%
-  filter(date > twenty_years_ago) %>%
+  filter(date > recent_years) %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) 
 
