@@ -180,6 +180,40 @@ ggplot(recent_data, aes(x = as.Date(date),
 
 ggsave("plots/real_gdp_growth.png", width = 8, height = 8*(628/1200), dpi = 320)
 
+# retail sales and durable goods ----
+retail_sales <- fredr(series_id = "RSXFS")
+durable_goods <- fredr(series_id = "DGORDER")
+data <- full_join(retail_sales, durable_goods)
+recent_data <- data %>%
+  filter(date > twenty_years_ago) %>%
+  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
+                            mday(date))) %>%
+  mutate(names = recode(series_id,
+                        "DGORDER" = "Durable Goods Orders",
+                        "RSXFS" = "Retail Sales"))
+
+ggplot(recent_data, aes(x = date,
+                        y = value/1000)) +
+  geom_line() +
+  facet_wrap(~ names, ncol = 1,  scales = "free_y") +
+  labs(caption = paste("Source: FRED. Data updated",
+                       tail(recent_data$short_date,1))) +
+  xlab(NULL) +
+  ylab(NULL) +
+  scale_x_date(expand = expansion(mult = c(0, .01))) +
+  scale_y_continuous(position = "right",
+                     labels = label_dollar(suffix = "B")) +
+  theme(axis.text.y = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        panel.grid.major.y = element_line(colour = "grey93"),
+        strip.text = element_text(size = 11),
+        strip.background = element_blank(),
+        plot.caption = element_text(colour = "grey40"))
+
+ggsave("plots/retail_sales_durable_goods.png", width = 8, height = 6, dpi = 320)
+
 # gini index ----
 
 data <- fredr(series_id = "SIPOVGINIUSA")
@@ -260,6 +294,8 @@ permalink: /charts/economy/
 ![Real GDP](https://raw.githubusercontent.com/bzigterman/bzigterman.github.io/master/plots/real_gdp.png)
 
 ![Real GDP Growth](https://raw.githubusercontent.com/bzigterman/bzigterman.github.io/master/plots/real_gdp_growth.png)
+
+![Retail Sales and Durable Goods Orders](https://raw.githubusercontent.com/bzigterman/bzigterman.github.io/master/plots/retail_sales_durable_goods.png)
 
 ![Gini Index](https://raw.githubusercontent.com/bzigterman/bzigterman.github.io/master/plots/gini_index.png)
 
