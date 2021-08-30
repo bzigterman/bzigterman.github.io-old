@@ -7,7 +7,8 @@ fredr_set_key(Sys.getenv("FRED_API_KEY"))
 
 recent_years <- ymd((today() - years(25)))
 
-# unemployment rate ----
+# usa ----
+## unemployment rate ----
 data <- fredr(series_id = "UNRATE")
 recent_data <- data %>%
   filter(date > recent_years) %>%
@@ -37,7 +38,7 @@ ggplot(recent_data, aes(x = date,
 
 ggsave("plots/unemployment_rate.png", width = 8, height = 8*(628/1200), dpi = 320)
 
-# employment -----
+## employment -----
 data <- fredr(series_id = "PAYEMS")
 recent_data <- data %>%
   filter(date > recent_years) %>%
@@ -68,7 +69,7 @@ ggplot(recent_data, aes(x = date,
 
 ggsave("plots/employment.png", width = 8, height = 8*(628/1200), dpi = 320)
 
-## employment change ----
+### employment change ----
 ggplot(recent_data, aes(x = date,
                         y = change/1000)) +
   geom_col() +
@@ -91,7 +92,7 @@ ggplot(recent_data, aes(x = date,
 
 ggsave("plots/employment_change.png", width = 8, height = 8*(628/1200), dpi = 320)
 
-# median household income ----
+## median household income ----
 data <-fredr(series_id = "MEHOINUSA672N")
 recent_data <- data %>%
   filter(date > recent_years) %>%
@@ -121,7 +122,7 @@ ggplot(recent_data, aes(x = as.Date(date),
 
 ggsave("plots/real_median_income.png", width = 8, height = 8*(628/1200), dpi = 320)
 
-# real GDP ----
+## real GDP ----
 data <-fredr(series_id = "GDPC1")
 recent_data <- data %>%
   filter(date > recent_years) %>%
@@ -150,7 +151,7 @@ ggplot(recent_data, aes(x = date,
 
 ggsave("plots/real_gdp.png", width = 8, height = 8*(628/1200), dpi = 320)
 
-## real gdp growth ----
+### real gdp growth ----
 data <- fredr(series_id = "A191RL1Q225SBEA")
 recent_data <- data %>%
   filter(date > recent_years) %>%
@@ -182,7 +183,7 @@ ggplot(recent_data, aes(x = date,
 
 ggsave("plots/real_gdp_growth.png", width = 8, height = 8*(628/1200), dpi = 320)
 
-# retail sales and durable goods ----
+## retail sales and durable goods ----
 retail_sales <- fredr(series_id = "RSXFS")
 durable_goods <- fredr(series_id = "DGORDER")
 data <- full_join(retail_sales, durable_goods)
@@ -216,7 +217,7 @@ ggplot(recent_data, aes(x = date,
 
 ggsave("plots/retail_sales_durable_goods.png", width = 8, height = 6, dpi = 320)
 
-# gini index ----
+## gini index ----
 
 data <- fredr(series_id = "SIPOVGINIUSA")
 recent_data <- data %>%
@@ -247,7 +248,7 @@ ggplot(recent_data, aes(x = date,
 
 ggsave("plots/gini_index.png", width = 8, height = 8*(628/1200), dpi = 320)
 
-# consumer sentiment ----
+## consumer sentiment ----
 data <- fredr(series_id = "UMCSENT")
 recent_data <- data %>%
   filter(date > recent_years) %>%
