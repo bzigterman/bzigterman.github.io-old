@@ -15,8 +15,8 @@ recent_data <- data %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
                             mday(date))) 
 
-ggplot(recent_data, aes(x = date,
-                        y = value/100)) +
+unemployment_rate <- ggplot(recent_data, aes(x = date,
+                                             y = value/100)) +
   geom_line() +
   labs(title = "Unemployment Rate",
        caption = paste("Source: U.S. Bureau of Labor Statistics, retrieved from FRED. Data updated",
@@ -36,7 +36,8 @@ ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-ggsave("plots/unemployment_rate.png", width = 8, height = 8*(628/1200), dpi = 320)
+ggsave("plots/unemployment_rate.png", plot = unemployment_rate,
+       width = 8, height = 8*(628/1200), dpi = 320)
 
 ## employment -----
 data <- fredr(series_id = "PAYEMS")
@@ -46,7 +47,7 @@ recent_data <- data %>%
                             mday(date))) %>%
   mutate(change = value - lag(value))
 
-ggplot(recent_data, aes(x = date,
+employment <- ggplot(recent_data, aes(x = date,
                         y = value/1000)) +
   geom_line() +
   labs(title = "Total Nonfarm Payroll",
@@ -67,10 +68,11 @@ ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-ggsave("plots/employment.png", width = 8, height = 8*(628/1200), dpi = 320)
+ggsave("plots/employment.png", plot = employment,
+       width = 8, height = 8*(628/1200), dpi = 320)
 
 ### employment change ----
-ggplot(recent_data, aes(x = date,
+employment_change <- ggplot(recent_data, aes(x = date,
                         y = change/1000,
                         fill = change > 0)) +
   geom_col() +
@@ -93,7 +95,8 @@ ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-ggsave("plots/employment_change.png", width = 8, height = 8*(628/1200), dpi = 320)
+ggsave("plots/employment_change.png", plot = employment_change,
+       width = 8, height = 8*(628/1200), dpi = 320)
 
 ## median household income ----
 data <-fredr(series_id = "MEHOINUSA672N")
