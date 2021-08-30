@@ -158,7 +158,8 @@ recent_data <- data %>%
                             mday(date))) 
 
 ggplot(recent_data, aes(x = date,
-                        y = value/100)) +
+                        y = value/100,
+                        fill = value > 0)) +
   geom_col() +
   labs(title = "Real GDP Growth",
        caption = paste("Source: FRED. Data updated",
@@ -166,6 +167,8 @@ ggplot(recent_data, aes(x = date,
   xlab(NULL) +
   ylab(NULL) +
   scale_x_date(expand = expansion(mult = c(0, .01))) +
+  scale_fill_manual(guide = "none",
+                    values = c("#b32704","#199fa8")) +
   scale_y_continuous(position = "right",
                      labels = label_percent()) +
   theme(axis.text.y = element_text(size = 10),
