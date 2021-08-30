@@ -19,7 +19,7 @@ ggplot(recent_data, aes(x = date,
                         y = value/100)) +
   geom_line() +
   labs(title = "Unemployment Rate",
-       caption = paste("Source: FRED. Data updated",
+       caption = paste("Source: U.S. Bureau of Labor Statistics, retrieved from FRED. Data updated",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -50,7 +50,7 @@ ggplot(recent_data, aes(x = date,
                         y = value/1000)) +
   geom_line() +
   labs(title = "Total Nonfarm Payroll",
-       caption = paste("Source: FRED. Data updated",
+       caption = paste("Source: U.S. Bureau of Labor Statistics, retrieved from FRED. Data updated",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -74,7 +74,7 @@ ggplot(recent_data, aes(x = date,
                         y = change/1000)) +
   geom_col() +
   labs(title = "Change in Total Nonfarm Payroll",
-       caption = paste("Source: FRED. Data updated",
+       caption = paste("Source: U.S. Bureau of Labor Statistics, retrieved from FRED. Data updated",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -103,7 +103,7 @@ ggplot(recent_data, aes(x = as.Date(date),
                         y = value)) +
   geom_line() +
   labs(title = "Real Median Household Income",
-       caption = paste("Source: FRED. Data updated",
+       caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Data updated",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -133,7 +133,7 @@ ggplot(recent_data, aes(x = date,
                         y = value/1000)) +
   geom_line() +
   labs(title = "Real GDP",
-       caption = paste("Source: FRED. Data updated",
+       caption = paste("Source: U.S. Bureau of Economic Analysis, retrieved from FRED. Data updated",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -163,7 +163,7 @@ ggplot(recent_data, aes(x = date,
                         fill = value > 0)) +
   geom_col() +
   labs(title = "Real GDP Growth",
-       caption = paste("Source: FRED. Data updated",
+       caption = paste("Source: U.S. Bureau of Economic Analysis, retrieved from FRED. Data updated",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -199,7 +199,7 @@ ggplot(recent_data, aes(x = date,
                         y = value/1000)) +
   geom_line() +
   facet_wrap(~ names, ncol = 1,  scales = "free_y") +
-  labs(caption = paste("Source: FRED. Data updated",
+  labs(caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Data updated",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -230,7 +230,7 @@ ggplot(recent_data, aes(x = date,
   geom_line() +
   labs(title = "Gini Index of Inequality",
        subtitle = "0 represents perfect equality; 100 represents perfect inequality",
-       caption = paste("Source: University of Michigan Consumer Survey and FRED. Data updated",
+       caption = paste("Source: World Bank, retrieved from FRED. Data updated",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -259,7 +259,7 @@ ggplot(recent_data, aes(x = date,
                         y = value)) +
   geom_line() +
   labs(title = "Consumer Sentiment Index",
-       caption = paste("Source: University of Michigan Consumer Survey and FRED. Data updated",
+       caption = paste("Source: University of Michigan Consumer Survey, retrieved from FRED. Data updated",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
