@@ -13,14 +13,13 @@ recent_years <- ymd((today() - years(15)))
 data <- fredr(series_id = "UNRATE")
 recent_data <- data %>%
   filter(date > recent_years) %>%
-  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
-                            mday(date))) 
+  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE))) 
 
 unemployment_rate <- ggplot(recent_data, aes(x = date,
                                              y = value/100)) +
   geom_line() +
   labs(title = "Unemployment Rate",
-       caption = paste("Source: U.S. Bureau of Labor Statistics, retrieved from FRED. Data updated",
+       caption = paste("Source: U.S. Bureau of Labor Statistics, retrieved from FRED. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -44,15 +43,14 @@ ggsave("plots/unemployment_rate.png", plot = unemployment_rate,
 data <- fredr(series_id = "PAYEMS")
 recent_data <- data %>%
   filter(date > recent_years) %>%
-  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
-                            mday(date))) %>%
+  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE))) %>%
   mutate(change = value - lag(value))
 
 employment <- ggplot(recent_data, aes(x = date,
                                       y = value/1000)) +
   geom_line() +
   labs(title = "Total Nonfarm Payroll",
-       caption = paste("Data updated",
+       caption = paste("Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -94,21 +92,20 @@ employment_change <- ggplot(recent_data, aes(x = date,
 data <-fredr(series_id = "MEHOINUSA672N")
 recent_data <- data %>%
   filter(date > recent_years) %>%
-  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
-                            mday(date))) 
+  mutate(short_date = paste(year(date))) 
 
-median_household_income <- ggplot(recent_data, aes(x = as.Date(date),
+median_household_income <- ggplot(data, aes(x = date,
                         y = value)) +
   geom_line() +
   labs(title = "Real Median Household Income",
-       caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Data updated",
+       caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
   scale_x_date(expand = expansion(mult = c(0, .01))) +
   scale_y_continuous(position = "right",
                      labels = label_dollar(),
-                     limits = c(0,max(recent_data$value)*1.05)) +
+                     limits = c(0,max(data$value)*1.05)) +
   theme(axis.text.y = element_text(size = 10),
         axis.text.x = element_text(size = 8),
         panel.grid.minor = element_blank(),
@@ -125,14 +122,13 @@ ggsave("plots/real_median_income.png", plot = median_household_income,
 data <-fredr(series_id = "GDPC1")
 recent_data <- data %>%
   filter(date > recent_years) %>%
-  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
-                            mday(date))) 
+  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE))) 
 
 gdp <- ggplot(recent_data, aes(x = date,
                                y = value/1000)) +
   geom_line() +
   labs(title = "Real GDP",
-       caption = paste("Data updated",
+       caption = paste("Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -191,8 +187,7 @@ durable_goods <- fredr(series_id = "DGORDER")
 data <- full_join(retail_sales, durable_goods)
 recent_data <- data %>%
   filter(date > recent_years) %>%
-  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
-                            mday(date))) %>%
+  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE))) %>%
   mutate(names = recode(series_id,
                         "DGORDER" = "Durable Goods Orders",
                         "RSXFS" = "Retail Sales"))
@@ -201,7 +196,7 @@ ggplot(recent_data, aes(x = date,
                         y = value/1000)) +
   geom_line() +
   facet_wrap(~ names, ncol = 1,  scales = "free_y") +
-  labs(caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Data updated",
+  labs(caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -224,15 +219,14 @@ ggsave("plots/retail_sales_durable_goods.png", width = 8, height = 6, dpi = 320)
 data <- fredr(series_id = "SIPOVGINIUSA")
 recent_data <- data %>%
   filter(date > recent_years) %>%
-  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
-                            mday(date))) 
+  mutate(short_date = paste(year(date)))
 
 gini <- ggplot(recent_data, aes(x = date,
                         y = value)) +
   geom_line() +
   labs(title = "Gini Index of Inequality",
        subtitle = "0 represents perfect equality; 100 represents perfect inequality",
-       caption = paste("Source: World Bank, retrieved from FRED. Data updated",
+       caption = paste("Source: World Bank, retrieved from FRED. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -255,14 +249,13 @@ ggsave("plots/gini_index.png", plot = gini,
 data <- fredr(series_id = "UMCSENT")
 recent_data <- data %>%
   filter(date > recent_years) %>%
-  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
-                            mday(date))) 
+  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE))) 
 
 sentiment <- ggplot(recent_data, aes(x = date,
                         y = value)) +
   geom_line() +
   labs(title = "Consumer Sentiment Index",
-       caption = paste("Source: University of Michigan Consumer Survey, retrieved from FRED. Data updated",
+       caption = paste("Source: University of Michigan Consumer Survey, retrieved from FRED. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
