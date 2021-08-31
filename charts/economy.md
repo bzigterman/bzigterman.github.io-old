@@ -12,7 +12,9 @@ permalink: /charts/economy/
 
 ![Real Median Income]({{ site.baseurl }}/plots/real_median_income.png)
 
-![Retail Sales and Durable Goods Orders]({{ site.baseurl }}/plots/retail_sales_durable_goods.png)
+![Retail Sales]({{ site.baseurl }}/plots/retail_sales.png)
+
+![Durable Goods]({{ site.baseurl }}/plots/durable_goods.png)
 
 ![Consumer Sentiment]({{ site.baseurl }}/plots/consumer_sentiment.png)
 

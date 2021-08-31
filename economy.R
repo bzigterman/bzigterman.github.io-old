@@ -236,22 +236,19 @@ us_employment_gdp_grid <- plot_grid(employment, gdp, employment_change, gdp_chan
 ggsave("plots/us_employment_gdp_grid.png", plot = us_employment_gdp_grid,
        width = 8, height = 6, dpi = 320)
 
-## retail sales and durable goods ----
-retail_sales <- fredr(series_id = "RSXFS")
-durable_goods <- fredr(series_id = "DGORDER")
-data <- full_join(retail_sales, durable_goods)
+## retail sales ---- 
+data <- fredr(series_id = "RSXFS") %>%
+  drop_na()
 recent_data <- data %>%
   filter(date > recent_years) %>%
-  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE))) %>%
-  mutate(names = recode(series_id,
-                        "DGORDER" = "Durable Goods Orders",
-                        "RSXFS" = "Retail Sales"))
+  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE)))
 
-ggplot(recent_data, aes(x = date,
-                        y = value/1000)) +
+
+ggplot(data, aes(x = date,
+                 y = value/1000)) +
   geom_line() +
-  facet_wrap(~ names, ncol = 1,  scales = "free_y") +
-  labs(caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
+  labs(title = "Retail Sales",
+       caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -267,7 +264,88 @@ ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-ggsave("plots/retail_sales_durable_goods.png", width = 8, height = 6, dpi = 320)
+ggplot(data = data,
+       aes(x = date,
+           y = value/1000)) +
+  geom_line() +
+  labs(title = "Retail Sales",
+       caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
+                       tail(recent_data$short_date,1))) +
+  xlab(NULL) +
+  ylab(NULL) +
+  scale_y_continuous(position = "right",
+                     labels = label_dollar(suffix = "B"),
+                     expand = expansion(mult = c(0, 0))) +
+  scale_x_date(expand = expansion(mult = c(0, 0))) +
+  facet_zoom(x = date > recent_years,
+             zoom.size = 4) +
+  theme_bw() +
+  theme(axis.text.y = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        # panel.grid.minor = element_blank(),
+        # panel.background = element_blank(),
+        # panel.grid.major.x = element_line(colour = "grey93"),
+        panel.grid.major.y = element_line(colour = "grey93"),
+        # #strip.text = element_text(size = 11),
+        #strip.background = element_blank(),
+        plot.caption = element_text(colour = "grey40"))
+
+ggsave("plots/retail_sales.png", width = 8, height = 8*(628/1200), dpi = 320)
+
+## durable goods ----
+data <- fredr(series_id = "DGORDER") %>%
+  drop_na()
+recent_data <- data %>%
+  filter(date > recent_years) %>%
+  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE)))
+
+ggplot(data, aes(x = date,
+                        y = value/1000)) +
+  geom_line() +
+  labs(title = "Durable Goods Orders",
+       caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
+                       tail(recent_data$short_date,1))) +
+  xlab(NULL) +
+  ylab(NULL) +
+  scale_x_date(expand = expansion(mult = c(0, .01))) +
+  scale_y_continuous(position = "right",
+                     labels = label_dollar(suffix = "B")) +
+  theme(axis.text.y = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        panel.grid.major.y = element_line(colour = "grey93"),
+        strip.text = element_text(size = 11),
+        strip.background = element_blank(),
+        plot.caption = element_text(colour = "grey40"))
+
+ggplot(data = data,
+       aes(x = date,
+           y = value/1000)) +
+  geom_line() +
+  labs(title = "Durable Goods Orders",
+       caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
+                       tail(recent_data$short_date,1))) +
+  xlab(NULL) +
+  ylab(NULL) +
+  scale_y_continuous(position = "right",
+                     labels = label_dollar(suffix = "B"),
+                     expand = expansion(mult = c(0, 0))) +
+  scale_x_date(expand = expansion(mult = c(0, 0))) +
+  facet_zoom(x = date > recent_years,
+             zoom.size = 4) +
+  theme_bw() +
+  theme(axis.text.y = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        # panel.grid.minor = element_blank(),
+        # panel.background = element_blank(),
+        # panel.grid.major.x = element_line(colour = "grey93"),
+        panel.grid.major.y = element_line(colour = "grey93"),
+        # #strip.text = element_text(size = 11),
+        #strip.background = element_blank(),
+        plot.caption = element_text(colour = "grey40"))
+
+ggsave("plots/durable_goods.png", width = 8, height = 8*(628/1200), dpi = 320)
 
 ## gini index ----
 
@@ -373,7 +451,9 @@ permalink: /charts/economy/
 
 ![Real Median Income]({{ site.baseurl }}/plots/real_median_income.png)
 
-![Retail Sales and Durable Goods Orders]({{ site.baseurl }}/plots/retail_sales_durable_goods.png)
+![Retail Sales]({{ site.baseurl }}/plots/retail_sales.png)
+
+![Durable Goods]({{ site.baseurl }}/plots/durable_goods.png)
 
 ![Consumer Sentiment]({{ site.baseurl }}/plots/consumer_sentiment.png)
 ",
