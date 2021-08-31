@@ -6,7 +6,7 @@ library(cowplot)
 
 fredr_set_key(Sys.getenv("FRED_API_KEY"))
 
-recent_years <- ymd((today() - years(25)))
+recent_years <- ymd((today() - years(15)))
 
 # usa ----
 ## unemployment rate ----
@@ -300,8 +300,6 @@ permalink: /charts/economy/
 ![Real Median Income]({{ site.baseurl }}/plots/real_median_income.png)
 
 ![Retail Sales and Durable Goods Orders]({{ site.baseurl }}/plots/retail_sales_durable_goods.png)
-
-![Gini Index]({{ site.baseurl }}/plots/gini_index.png)
 
 ![Consumer Sentiment]({{ site.baseurl }}/plots/consumer_sentiment.png)
 ",
