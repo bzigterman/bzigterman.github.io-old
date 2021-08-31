@@ -38,12 +38,12 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## United States
 
-As of Sunday in the United States (vs. two weeks ago):
+As of Monday in the United States (vs. two weeks ago):
   
-- Average new cases: 156,000 (vs. 131,000) +19%↑
-- Average new deaths: 1,290 (vs. 652) +98%↑
-- Percent of the United States fully vaccinated: 51.6% (vs. 50.1%)
-- Average new vaccine doses: 887,000 (vs. 719,000)
+- Average new cases: 160,000 (vs. 134,000) +19%↑
+- Average new deaths: 1,330 (vs. 678) +96%↑
+- Percent of the United States fully vaccinated: 51.7% (vs. 50.2%)
+- Average new vaccine doses: 898,000 (vs. 766,000)
 
 ![USA Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/US_facet.png)
 
@@ -53,18 +53,18 @@ As of Sunday in the United States (vs. two weeks ago):
 
 ## World
 
-As of Sunday (vs. two weeks ago):
+As of Monday (vs. two weeks ago):
   
-- Average new cases: 656,000 (vs. 648,000) +1%↑
-- Average new deaths: 9,950 (vs. 9,650) +3%↑
-- Percent of the world fully vaccinated: 26.7% (vs. 23.4%)
-- Average new vaccine doses: 39,600,000 (vs. 36,100,000)
+- Average new cases: 654,000 (vs. 650,000) +1%↑
+- Average new deaths: 9,820 (vs. 9,770) +1%↑
+- Percent of the world fully vaccinated: 26.9% (vs. 23.5%)
+- Average new vaccine doses: 41,100,000 (vs. 36,300,000)
 
 ![World Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/world_facet.png)
 
 ## Case Acceleration
 
-As of Sunday, the 14-day percent change in average new cases was:
+As of Monday, the 14-day percent change in average new cases was:
   
 - 20% in Champaign County
 - 17% in Illinois
@@ -77,11 +77,11 @@ This chart measures how quickly the average number of new cases is changing, or 
 
 ## Death Acceleration
 
-As of Sunday, the 14-day percent change in average new deaths was:
+As of Monday, the 14-day percent change in average new deaths was:
   
 - 82% in Illinois
-- 98% in the United States
-- 3% worldwide
+- 96% in the United States
+- 1% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
 
