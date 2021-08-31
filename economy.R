@@ -7,7 +7,7 @@ library(ggforce)
 
 fredr_set_key(Sys.getenv("FRED_API_KEY"))
 
-recent_years <- ymd((today() - years(15)))
+recent_years <- ymd((today() - years(10)))
 
 # usa ----
 ## unemployment rate ----
