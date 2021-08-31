@@ -122,8 +122,8 @@ recent_data <- data %>%
   filter(date > recent_years) %>%
   mutate(short_date = paste(year(date))) 
 
-median_household_income <- ggplot(data, aes(x = date,
-                        y = value)) +
+ggplot(data, aes(x = date,
+                 y = value)) +
   geom_line() +
   labs(title = "Real Median Household Income",
        caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
@@ -141,6 +141,33 @@ median_household_income <- ggplot(data, aes(x = date,
         panel.grid.major.y = element_line(colour = "grey93"),
         strip.text = element_text(size = 11),
         strip.background = element_blank(),
+        plot.caption = element_text(colour = "grey40"))
+
+median_household_income <- ggplot(data = data,
+                                  aes(x = date,
+                                      y = value)) +
+  geom_line() +
+  labs(title = "Real Median Household Income",
+       caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
+                       tail(recent_data$short_date,1))) +
+  xlab(NULL) +
+  ylab(NULL) +
+  #expand_limits(y=0) +
+  scale_y_continuous(position = "right",
+                     labels = label_dollar(),
+                     expand = expansion(mult = c(0, 0))) +
+  scale_x_date(expand = expansion(mult = c(0, 0))) +
+  facet_zoom(x = date > recent_years,
+             zoom.size = 4) +
+  theme_bw() +
+  theme(axis.text.y = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        # panel.grid.minor = element_blank(),
+        # panel.background = element_blank(),
+        # panel.grid.major.x = element_line(colour = "grey93"),
+        panel.grid.major.y = element_line(colour = "grey93"),
+        # #strip.text = element_text(size = 11),
+        #strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
 ggsave("plots/real_median_income.png", plot = median_household_income,
