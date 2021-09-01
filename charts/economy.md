@@ -8,7 +8,9 @@ permalink: /charts/economy/
 
 ![Unemployment Rate]({{ site.baseurl }}/plots/unemployment_rate.png)
 
-![Employment GDP Grid]({{ site.baseurl }}/plots/us_employment_gdp_grid.png)
+![Employment]({{ site.baseurl }}/plots/employment.png)
+
+![Real GDP]({{ site.baseurl }}/plots/gdp.png)
 
 ![Real Median Income]({{ site.baseurl }}/plots/real_median_income.png)
 

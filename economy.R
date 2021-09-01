@@ -49,7 +49,7 @@ unemployment_rate <- ggplot(data = data,
   expand_limits(y=0) +
   scale_y_continuous(position = "right",
                      labels = label_percent(),
-                     expand = expansion(mult = c(0, 0))) +
+                     expand = expansion(mult = c(0, 0.05))) +
   scale_x_date(expand = expansion(mult = c(0, 0))) +
   facet_zoom(x = date > recent_years,
              zoom.size = 4) +
@@ -63,7 +63,7 @@ unemployment_rate <- ggplot(data = data,
         # #strip.text = element_text(size = 11),
         #strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
-
+unemployment_rate
 ggsave("plots/unemployment_rate.png", plot = unemployment_rate,
        width = 8, height = 8*(628/1200), dpi = 320)
 
@@ -74,35 +74,39 @@ recent_data <- data %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE))) %>%
   mutate(change = value - lag(value))
 
-employment <- ggplot(recent_data, aes(x = date,
+employment <- ggplot(data, aes(x = date,
                                       y = value/1000)) +
   geom_line() +
-  labs(title = "Total Nonfarm Payroll",
-       caption = paste("Latest data:",
-                       tail(recent_data$short_date,1))) +
+  labs(title = "Total Nonfarm Payroll") +
   xlab(NULL) +
   ylab(NULL) +
-  scale_x_date(expand = expansion(mult = c(0, .01))) +
+  scale_x_date(expand = expansion(mult = c(0, 0))) +
   scale_y_continuous(position = "right",
                      labels = label_comma(suffix = "M")) +
+  facet_zoom(x = date > recent_years,
+             zoom.size = 4) +
+  theme_bw() +
   theme(axis.text.y = element_text(size = 10),
         axis.text.x = element_text(size = 8),
-        panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
+        # panel.grid.minor = element_blank(),
+        # panel.background = element_blank(),
+        # panel.grid.major.x = element_line(colour = "grey93"),
         panel.grid.major.y = element_line(colour = "grey93"),
-        strip.text = element_text(size = 11),
-        strip.background = element_blank(),
+        # #strip.text = element_text(size = 11),
+        #strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
-
+employment
 ### employment change ----
 employment_change <- ggplot(recent_data, aes(x = date,
                                              y = change/1000,
                                              fill = change > 0)) +
   geom_col() +
-  labs(title = "Change in Total Nonfarm Payroll") +
+  labs(title = "Change in Total Nonfarm Payroll",
+       caption = paste("U.S. Bureau of Labor Statistics, retrieved from FRED. Latest data:",
+                       tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
-  scale_x_date(expand = expansion(mult = c(0, .01))) +
+  scale_x_date(expand = expansion(mult = c(0, 0))) +
   scale_fill_manual(guide = "none",
                     values = c("#b32704","#199fa8")) +
   scale_y_continuous(position = "right",
@@ -115,6 +119,13 @@ employment_change <- ggplot(recent_data, aes(x = date,
         strip.text = element_text(size = 11),
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
+
+plot_grid(employment, employment_change,
+          ncol = 1,
+          rel_heights = c(3,1))
+
+ggsave("plots/employment.png",
+       width = 8, height = 5, dpi = 320)
 
 ## median household income ----
 data <-fredr(series_id = "MEHOINUSA672N")
@@ -154,8 +165,7 @@ median_household_income <- ggplot(data = data,
   ylab(NULL) +
   #expand_limits(y=0) +
   scale_y_continuous(position = "right",
-                     labels = label_dollar(),
-                     expand = expansion(mult = c(0, 0))) +
+                     labels = label_dollar()) +
   scale_x_date(expand = expansion(mult = c(0, 0))) +
   facet_zoom(x = date > recent_years,
              zoom.size = 4) +
@@ -169,7 +179,7 @@ median_household_income <- ggplot(data = data,
         # #strip.text = element_text(size = 11),
         #strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
-
+median_household_income
 ggsave("plots/real_median_income.png", plot = median_household_income,
        width = 8, height = 8*(628/1200), dpi = 320)
 
@@ -179,26 +189,24 @@ recent_data <- data %>%
   filter(date > recent_years) %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE))) 
 
-gdp <- ggplot(recent_data, aes(x = date,
+gdp <- ggplot(data, aes(x = date,
                                y = value/1000)) +
   geom_line() +
-  labs(title = "Real GDP",
-       caption = paste("Latest data:",
-                       tail(recent_data$short_date,1))) +
+  labs(title = "Real GDP") +
   xlab(NULL) +
   ylab(NULL) +
-  scale_x_date(expand = expansion(mult = c(0, .01))) +
+  scale_x_date(expand = expansion(mult = c(0, 0))) +
   scale_y_continuous(position = "right",
                      labels = label_dollar(suffix = "T")) +
+  facet_zoom(x = date > recent_years,
+             zoom.size = 4,
+            horizontal = TRUE) +
+  theme_bw() +
   theme(axis.text.y = element_text(size = 10),
         axis.text.x = element_text(size = 8),
-        panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
         panel.grid.major.y = element_line(colour = "grey93"),
-        strip.text = element_text(size = 11),
-        strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
-
+gdp
 ### real gdp growth ----
 data <- fredr(series_id = "A191RL1Q225SBEA")
 recent_data <- data %>%
@@ -211,7 +219,7 @@ gdp_change <- ggplot(recent_data, aes(x = date,
                                       fill = value > 0)) +
   geom_col() +
   labs(title = "Real GDP Growth",
-       caption = "Source: U.S. Bureau of Labor Statistics and U.S. Bureau of Economic Analysis, retrieved from FRED.") +
+       caption = "Source: U.S. Bureau of Economic Analysis, retrieved from FRED.") +
   xlab(NULL) +
   ylab(NULL) +
   scale_x_date(expand = expansion(mult = c(0, .01))) +
@@ -228,13 +236,17 @@ gdp_change <- ggplot(recent_data, aes(x = date,
         strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 
-## combined employment and gdp ----
-us_employment_gdp_grid <- plot_grid(employment, gdp, employment_change, gdp_change,
-          align = "hv",
-          rel_heights = c(1,1))
+plot_grid(gdp, gdp_change,
+          ncol = 1,
+          rel_heights = c(3,1))
 
-ggsave("plots/us_employment_gdp_grid.png", plot = us_employment_gdp_grid,
-       width = 8, height = 6, dpi = 320)
+ggsave("plots/gdp.png",
+       width = 8, height = 5, dpi = 320)
+
+# ## combined employment and gdp ----
+# us_employment_gdp_grid <- plot_grid(employment, gdp, employment_change, gdp_change,
+#           align = "hv",
+#           rel_heights = c(1,1))
 
 ## retail sales ---- 
 data <- fredr(series_id = "RSXFS") %>%
@@ -274,8 +286,7 @@ ggplot(data = data,
   xlab(NULL) +
   ylab(NULL) +
   scale_y_continuous(position = "right",
-                     labels = label_dollar(suffix = "B"),
-                     expand = expansion(mult = c(0, 0))) +
+                     labels = label_dollar(suffix = "B")) +
   scale_x_date(expand = expansion(mult = c(0, 0))) +
   facet_zoom(x = date > recent_years,
              zoom.size = 4) +
@@ -329,8 +340,7 @@ ggplot(data = data,
   xlab(NULL) +
   ylab(NULL) +
   scale_y_continuous(position = "right",
-                     labels = label_dollar(suffix = "B"),
-                     expand = expansion(mult = c(0, 0))) +
+                     labels = label_dollar(suffix = "B")) +
   scale_x_date(expand = expansion(mult = c(0, 0))) +
   facet_zoom(x = date > recent_years,
              zoom.size = 4) +
@@ -413,8 +423,7 @@ sentiment <- ggplot(data = data,
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
-  scale_y_continuous(position = "right",
-                     expand = expansion(mult = c(0, 0))) +
+  scale_y_continuous(position = "right") +
   scale_x_date(expand = expansion(mult = c(0, 0))) +
   facet_zoom(x = date > recent_years,
              zoom.size = 4) +
@@ -428,7 +437,7 @@ sentiment <- ggplot(data = data,
         # #strip.text = element_text(size = 11),
         #strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
-
+sentiment
 ggsave("plots/consumer_sentiment.png", plot = sentiment,
        width = 8, height = 8*(628/1200), dpi = 320)
 
@@ -447,7 +456,9 @@ permalink: /charts/economy/
 
 ![Unemployment Rate]({{ site.baseurl }}/plots/unemployment_rate.png)
 
-![Employment GDP Grid]({{ site.baseurl }}/plots/us_employment_gdp_grid.png)
+![Employment]({{ site.baseurl }}/plots/employment.png)
+
+![Real GDP]({{ site.baseurl }}/plots/gdp.png)
 
 ![Real Median Income]({{ site.baseurl }}/plots/real_median_income.png)
 
