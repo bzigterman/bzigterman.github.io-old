@@ -224,15 +224,15 @@ gdp
 data <- fredr(series_id = "A191RL1Q225SBEA")
 recent_data <- data %>%
   filter(date > recent_years) %>%
-  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE),
-                            mday(date))) 
+  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE))) 
 
 gdp_change <- ggplot(recent_data, aes(x = date,
                                       y = value/100,
                                       fill = value > 0)) +
   geom_col() +
   labs(title = "Real GDP Growth",
-       caption = "Source: U.S. Bureau of Economic Analysis, retrieved from FRED.") +
+       caption = paste("Source: U.S. Bureau of Economic Analysis, retrieved from FRED. Latest data:",
+                       tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
   scale_x_date(expand = expansion(mult = c(0, 0))) +
