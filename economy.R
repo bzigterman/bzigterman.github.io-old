@@ -173,7 +173,11 @@ median_household_income <- ggplot(data = data,
                      labels = label_dollar()) +
   scale_x_date(expand = expansion(mult = c(0, 0))) +
   facet_zoom(x = date > recent_years,
-             zoom.size = 4) +
+             zoom.size = 4,
+             ylim = c(min(recent_data$value),
+                      max(recent_data$value)),
+             #show.area = FALSE,
+             horizontal = FALSE) +
   theme_bw() +
   theme(axis.text.y = element_text(size = 10),
         axis.text.x = element_text(size = 8),
@@ -298,7 +302,11 @@ ggplot(data = data,
                      labels = label_dollar(suffix = "B")) +
   scale_x_date(expand = expansion(mult = c(0, 0))) +
   facet_zoom(x = date > recent_years,
-             zoom.size = 4) +
+             zoom.size = 4,
+             ylim = c(min(recent_data$value/1000),
+                      max(recent_data$value/1000)),
+             #show.area = FALSE,
+             horizontal = FALSE) +
   theme_bw() +
   theme(axis.text.y = element_text(size = 10),
         axis.text.x = element_text(size = 8),
@@ -352,7 +360,11 @@ ggplot(data = data,
                      labels = label_dollar(suffix = "B")) +
   scale_x_date(expand = expansion(mult = c(0, 0))) +
   facet_zoom(x = date > recent_years,
-             zoom.size = 4) +
+             zoom.size = 4,
+             ylim = c(min(recent_data$value/1000),
+                      max(recent_data$value/1000)),
+             #show.area = FALSE,
+             horizontal = FALSE) +
   theme_bw() +
   theme(axis.text.y = element_text(size = 10),
         axis.text.x = element_text(size = 8),
@@ -435,7 +447,11 @@ sentiment <- ggplot(data = data,
   scale_y_continuous(position = "right") +
   scale_x_date(expand = expansion(mult = c(0, 0))) +
   facet_zoom(x = date > recent_years,
-             zoom.size = 4) +
+             zoom.size = 4,
+             ylim = c(min(recent_data$value),
+                      max(recent_data$value)),
+             #show.area = FALSE,
+             horizontal = FALSE) +
   theme_bw() +
   theme(axis.text.y = element_text(size = 10),
         axis.text.x = element_text(size = 8),
