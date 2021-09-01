@@ -231,7 +231,7 @@ gdp_change <- ggplot(recent_data, aes(x = date,
        caption = "Source: U.S. Bureau of Economic Analysis, retrieved from FRED.") +
   xlab(NULL) +
   ylab(NULL) +
-  scale_x_date(expand = expansion(mult = c(0, .01))) +
+  scale_x_date(expand = expansion(mult = c(0, 0))) +
   scale_fill_manual(guide = "none",
                     values = c("#b32704","#199fa8")) +
   scale_y_continuous(position = "right",
