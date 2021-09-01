@@ -86,8 +86,8 @@ employment <- ggplot(data, aes(x = date,
   facet_zoom(x = date > recent_years,
              zoom.size = 4) +
   theme_bw() +
-  theme(axis.text.y = element_text(size = 10),
-        axis.text.x = element_text(size = 8),
+  theme(#axis.text.y = element_text(size = 10),
+        #axis.text.x = element_text(size = 8),
         # panel.grid.minor = element_blank(),
         # panel.background = element_blank(),
         # panel.grid.major.x = element_line(colour = "grey93"),
@@ -111,8 +111,8 @@ employment_change <- ggplot(recent_data, aes(x = date,
                     values = c("#b32704","#199fa8")) +
   scale_y_continuous(position = "right",
                      labels = label_comma(suffix = "M")) +
-  theme(axis.text.y = element_text(size = 10),
-        axis.text.x = element_text(size = 8),
+  theme(#axis.text.y = element_text(size = 10),
+        #axis.text.x = element_text(size = 8),
         panel.grid.minor = element_blank(),
         panel.background = element_blank(),
         panel.grid.major.y = element_line(colour = "grey93"),
@@ -125,7 +125,7 @@ plot_grid(employment, employment_change,
           rel_heights = c(3,1))
 
 ggsave("plots/employment.png",
-       width = 8, height = 5, dpi = 320)
+       width = 8, height = 6, dpi = 320)
 
 ## median household income ----
 data <-fredr(series_id = "MEHOINUSA672N")
@@ -202,8 +202,8 @@ gdp <- ggplot(data, aes(x = date,
              zoom.size = 4,
             horizontal = TRUE) +
   theme_bw() +
-  theme(axis.text.y = element_text(size = 10),
-        axis.text.x = element_text(size = 8),
+  theme(#axis.text.y = element_text(size = 10),
+        #axis.text.x = element_text(size = 8),
         panel.grid.major.y = element_line(colour = "grey93"),
         plot.caption = element_text(colour = "grey40"))
 gdp
@@ -227,8 +227,8 @@ gdp_change <- ggplot(recent_data, aes(x = date,
                     values = c("#b32704","#199fa8")) +
   scale_y_continuous(position = "right",
                      labels = label_percent()) +
-  theme(axis.text.y = element_text(size = 10),
-        axis.text.x = element_text(size = 8),
+  theme(#axis.text.y = element_text(size = 10),
+        #axis.text.x = element_text(size = 8),
         panel.grid.minor = element_blank(),
         panel.background = element_blank(),
         panel.grid.major.y = element_line(colour = "grey93"),
@@ -241,7 +241,7 @@ plot_grid(gdp, gdp_change,
           rel_heights = c(3,1))
 
 ggsave("plots/gdp.png",
-       width = 8, height = 5, dpi = 320)
+       width = 8, height = 6, dpi = 320)
 
 # ## combined employment and gdp ----
 # us_employment_gdp_grid <- plot_grid(employment, gdp, employment_change, gdp_change,
