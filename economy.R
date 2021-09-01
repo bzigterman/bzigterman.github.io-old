@@ -82,16 +82,21 @@ employment <- ggplot(data, aes(x = date,
   ylab(NULL) +
   scale_x_date(expand = expansion(mult = c(0, 0))) +
   scale_y_continuous(position = "right",
-                     labels = label_comma(suffix = "M")) +
+                     labels = label_comma(suffix = "M",
+                                          accuracy = 1)) +
   facet_zoom(x = date > recent_years,
-             zoom.size = 4) +
+             zoom.size = 4,
+             ylim = c(min(recent_data$value/1000),
+                      max(recent_data$value/1000)),
+             #show.area = FALSE,
+             horizontal = FALSE) +
   theme_bw() +
   theme(#axis.text.y = element_text(size = 10),
         #axis.text.x = element_text(size = 8),
         # panel.grid.minor = element_blank(),
         # panel.background = element_blank(),
         # panel.grid.major.x = element_line(colour = "grey93"),
-        panel.grid.major.y = element_line(colour = "grey93"),
+        #panel.grid.major.y = element_line(colour = "grey93"),
         # #strip.text = element_text(size = 11),
         #strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
@@ -122,7 +127,7 @@ employment_change <- ggplot(recent_data, aes(x = date,
 
 plot_grid(employment, employment_change,
           ncol = 1,
-          rel_heights = c(3,1))
+          rel_heights = c(4,2))
 
 ggsave("plots/employment.png",
        width = 8, height = 6, dpi = 320)
@@ -190,22 +195,26 @@ recent_data <- data %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE))) 
 
 gdp <- ggplot(data, aes(x = date,
-                               y = value/1000)) +
+                        y = value/1000)) +
   geom_line() +
   labs(title = "Real GDP") +
   xlab(NULL) +
   ylab(NULL) +
   scale_x_date(expand = expansion(mult = c(0, 0))) +
   scale_y_continuous(position = "right",
-                     labels = label_dollar(suffix = "T")) +
+                     labels = label_dollar(suffix = "T",
+                                           accuracy = 1)) +
   facet_zoom(x = date > recent_years,
              zoom.size = 4,
-            horizontal = TRUE) +
+             ylim = c(min(recent_data$value/1000),
+                      max(recent_data$value/1000)),
+             #show.area = FALSE,
+             horizontal = FALSE) +
   theme_bw() +
   theme(#axis.text.y = element_text(size = 10),
-        #axis.text.x = element_text(size = 8),
-        panel.grid.major.y = element_line(colour = "grey93"),
-        plot.caption = element_text(colour = "grey40"))
+    #axis.text.x = element_text(size = 8),
+    panel.grid.major.y = element_line(colour = "grey93"),
+    plot.caption = element_text(colour = "grey40"))
 gdp
 ### real gdp growth ----
 data <- fredr(series_id = "A191RL1Q225SBEA")
@@ -238,7 +247,7 @@ gdp_change <- ggplot(recent_data, aes(x = date,
 
 plot_grid(gdp, gdp_change,
           ncol = 1,
-          rel_heights = c(3,1))
+          rel_heights = c(4,2))
 
 ggsave("plots/gdp.png",
        width = 8, height = 6, dpi = 320)
