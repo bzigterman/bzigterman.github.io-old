@@ -127,7 +127,7 @@ employment_change <- ggplot(recent_data, aes(x = date,
 
 plot_grid(employment, employment_change,
           ncol = 1,
-          rel_heights = c(4,2))
+          rel_heights = c(3,2))
 
 ggsave("plots/employment.png",
        width = 8, height = 6, dpi = 320)
@@ -251,7 +251,7 @@ gdp_change <- ggplot(recent_data, aes(x = date,
 
 plot_grid(gdp, gdp_change,
           ncol = 1,
-          rel_heights = c(4,2))
+          rel_heights = c(3,2))
 
 ggsave("plots/gdp.png",
        width = 8, height = 6, dpi = 320)
