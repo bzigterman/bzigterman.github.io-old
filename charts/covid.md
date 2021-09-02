@@ -38,10 +38,10 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## United States
 
-As of Tuesday in the United States (vs. two weeks ago):
+As of Wednesday in the United States (vs. two weeks ago):
   
-- Average new cases: 160,000 (vs. 138,000) +17%↑
-- Average new deaths: 1,330 (vs. 702) +89%↑
+- Average new cases: 168,000 (vs. 138,000) +21%↑
+- Average new deaths: 1,400 (vs. 817) +72%↑
 - Percent of the United States fully vaccinated: 51.8% (vs. 50.2%)
 - Average new vaccine doses: 899,000 (vs. 763,000)
 
@@ -53,10 +53,10 @@ As of Tuesday in the United States (vs. two weeks ago):
 
 ## World
 
-As of Tuesday (vs. two weeks ago):
+As of Wednesday (vs. two weeks ago):
   
-- Average new cases: 643,000 (vs. 653,000) -2%↓
-- Average new deaths: 9,550 (vs. 11,300) -15%↓
+- Average new cases: 638,000 (vs. 653,000) -2%↓
+- Average new deaths: 9,640 (vs. 11,400) -15%↓
 - Percent of the world fully vaccinated: 27% (vs. 23.6%)
 - Average new vaccine doses: 40,500,000 (vs. 36,400,000)
 
@@ -64,11 +64,11 @@ As of Tuesday (vs. two weeks ago):
 
 ## Case Acceleration
 
-As of Tuesday, the 14-day percent change in average new cases was:
+As of Wednesday, the 14-day percent change in average new cases was:
   
 - 28% in Champaign County
 - 25% in Illinois
-- 17% in the United States
+- 21% in the United States
 - -2% worldwide
 
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
@@ -77,10 +77,10 @@ This chart measures how quickly the average number of new cases is changing, or 
 
 ## Death Acceleration
 
-As of Tuesday, the 14-day percent change in average new deaths was:
+As of Wednesday, the 14-day percent change in average new deaths was:
   
 - 22% in Illinois
-- 89% in the United States
+- 72% in the United States
 - -15% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
