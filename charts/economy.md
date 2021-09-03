@@ -20,3 +20,5 @@ permalink: /charts/economy/
 
 ![Consumer Sentiment]({{ site.baseurl }}/plots/consumer_sentiment.png)
 
+Data retrieved from the [Federal Reserve Bank of St. Louis](https://fred.stlouisfed.org)
+
