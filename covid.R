@@ -4,26 +4,6 @@ library(tidyverse)
 library(lubridate)
 library(zoo)
 
-# sparklines ----
-bars <-  intToUtf8(seq(0x2581, 0x2588), multiple = T)  ## ▁ ▂ ▃ ▄ ▅ ▆ ▇ █
-n_chars <- length(bars)
-
-sparkline <- function(numbers) {
-  mn <- min(numbers)
-  mx <- max(numbers)
-  interval <- mx - mn
-  
-  bins <- sapply(
-    numbers,
-    function(i)
-      bars[[1 + min(n_chars - 1, floor((i - mn) / interval * n_chars))]]
-  )
-  sparkline <- paste0(bins, collapse = "")
-  
-  return(sparkline)
-}
-
-week_ago <- today() - days(7)
 # make variables ----
 ## Champaign County ----
 ### get data ----
@@ -37,9 +17,6 @@ idph_cases_champaign <- idph_cases_champaign$values %>%
   mutate(monthlydead = rollmean(new_deaths, k = 31, 
                                 fill = NA, align = "right")*31)  %>%
   mutate(Date = ymd_hms(reportDate)) 
-idph_cases_champaign_past_week <- idph_cases_champaign %>%
-  filter(Date > week_ago)
-champaign_sparkline <- sparkline(idph_cases_champaign_past_week$avg_new_cases)
 
 idph_vax_champaign <- rio::import("https://idph.illinois.gov/DPHPublicInformation/api/COVIDExport/GetVaccineAdministration?format=csv&countyName=Champaign",
                                   format = "csv") %>%

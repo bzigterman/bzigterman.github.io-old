@@ -8,37 +8,13 @@ library(ggforce)
 fredr_set_key(Sys.getenv("FRED_API_KEY"))
 
 recent_years <- ymd((today() - years(10)))
-past_year <- ymd((today() - years(1)))
-
-# sparklines ----
-bars <-  intToUtf8(seq(0x2581, 0x2588), multiple = T)  ## ▁ ▂ ▃ ▄ ▅ ▆ ▇ █
-n_chars <- length(bars)
-
-sparkline <- function(numbers) {
-  mn <- min(numbers)
-  mx <- max(numbers)
-  interval <- mx - mn
-  
-  bins <- sapply(
-    numbers,
-    function(i)
-      bars[[1 + min(n_chars - 1, floor((i - mn) / interval * n_chars))]]
-  )
-  sparkline <- paste0(bins, collapse = "")
-  
-  return(sparkline)
-}
 
 # usa ----
 ## unemployment rate ----
 data <- fredr(series_id = "UNRATE")
 recent_data <- data %>%
   filter(date > recent_years) %>%
-  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE))) 
-last_year <- data %>%
-  filter(date > past_year) %>%
-  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE))) 
-
+  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE)))
 
 ggplot(recent_data, aes(x = date,
                         y = value/100)) +
