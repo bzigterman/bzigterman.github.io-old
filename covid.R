@@ -60,7 +60,7 @@ champaign_county_text <- paste(
   "As of ",champaign_weekday," in Champaign County (vs. two weeks ago):
   
 ",
-  "- Average new cases: ",champaign_avg_new_cases," (vs. ",champaign_month_ago_cases,") ",champaign_case_pct_change_text,champaign_sparkline,"
+  "- Average new cases: ",champaign_avg_new_cases," (vs. ",champaign_month_ago_cases,") ",champaign_case_pct_change_text,"
 ",
   "- Deaths in the past month: ",champaign_dead_last_month," (vs. ",champaign_month_ago_deaths,")
 ",
