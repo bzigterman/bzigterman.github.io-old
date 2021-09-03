@@ -10,7 +10,7 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 As of Thursday in Champaign County (vs. two weeks ago):
   
-- Average new cases: 110 (vs. 78) +42%↑▁▁▂▂▄▆█
+- Average new cases: 110 (vs. 78) +42%↑
 - Deaths in the past month: 15 (vs. 6)
 - Percent of Champaign County fully vaccinated: 52% (vs. 50.9%)
 - Average new vaccine doses: 409 (vs. 401)
