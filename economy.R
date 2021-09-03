@@ -7,7 +7,7 @@ library(ggforce)
 
 fredr_set_key(Sys.getenv("FRED_API_KEY"))
 
-recent_years <- ymd((today() - years(2)))
+recent_years <- ymd((today() - years(4)))
 past_ten_years <- ymd((today() - years(10)))
 
 # usa ----
@@ -355,34 +355,34 @@ ggsave("plots/durable_goods.png", width = 8, height = 8*(628/1200), dpi = 320)
 
 ## gini index ----
 
-data <- fredr(series_id = "SIPOVGINIUSA")
-recent_data <- data %>%
-  filter(date > recent_years) %>%
-  mutate(short_date = paste(year(date)))
-
-gini <- ggplot(recent_data, aes(x = date,
-                        y = value)) +
-  geom_line() +
-  labs(title = "Gini Index of Inequality",
-       subtitle = "0 represents perfect equality; 100 represents perfect inequality",
-       caption = paste("Source: World Bank, retrieved from the St. Louis Fed. Latest data:",
-                       tail(recent_data$short_date,1))) +
-  xlab(NULL) +
-  ylab(NULL) +
-  scale_x_date(expand = expansion(mult = c(0, .01))) +
-  scale_y_continuous(position = "right",
-                     limits = c(0,max(recent_data$value)*1.05)) +
-  theme(axis.text.y = element_text(size = 10),
-        axis.text.x = element_text(size = 8),
-        panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        panel.grid.major.y = element_line(colour = "grey93"),
-        strip.text = element_text(size = 11),
-        strip.background = element_blank(),
-        plot.caption = element_text(colour = "grey40"))
-
-ggsave("plots/gini_index.png", plot = gini,
-       width = 8, height = 8*(628/1200), dpi = 320)
+# data <- fredr(series_id = "SIPOVGINIUSA")
+# recent_data <- data %>%
+#   filter(date > recent_years) %>%
+#   mutate(short_date = paste(year(date)))
+# 
+# gini <- ggplot(recent_data, aes(x = date,
+#                         y = value)) +
+#   geom_line() +
+#   labs(title = "Gini Index of Inequality",
+#        subtitle = "0 represents perfect equality; 100 represents perfect inequality",
+#        caption = paste("Source: World Bank, retrieved from the St. Louis Fed. Latest data:",
+#                        tail(recent_data$short_date,1))) +
+#   xlab(NULL) +
+#   ylab(NULL) +
+#   scale_x_date(expand = expansion(mult = c(0, .01))) +
+#   scale_y_continuous(position = "right",
+#                      limits = c(0,max(recent_data$value)*1.05)) +
+#   theme(axis.text.y = element_text(size = 10),
+#         axis.text.x = element_text(size = 8),
+#         panel.grid.minor = element_blank(),
+#         panel.background = element_blank(),
+#         panel.grid.major.y = element_line(colour = "grey93"),
+#         strip.text = element_text(size = 11),
+#         strip.background = element_blank(),
+#         plot.caption = element_text(colour = "grey40"))
+# 
+# ggsave("plots/gini_index.png", plot = gini,
+#        width = 8, height = 8*(628/1200), dpi = 320)
 
 ## consumer sentiment ----
 data <- fredr(series_id = "UMCSENT") %>%
