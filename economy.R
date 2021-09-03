@@ -442,7 +442,7 @@ ggsave("plots/consumer_sentiment.png", plot = sentiment,
        width = 8, height = 8*(628/1200), dpi = 320)
 
 # combined ----
-plot_grid(sentiment, gini, median_household_income, unemployment_rate,
+plot_grid(sentiment, median_household_income, unemployment_rate,
          align = "hv")
 
 web_text <- paste(
