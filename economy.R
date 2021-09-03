@@ -8,6 +8,7 @@ library(ggforce)
 fredr_set_key(Sys.getenv("FRED_API_KEY"))
 
 recent_years <- ymd((today() - years(2)))
+past_ten_years <- ymd((today() - years(10)))
 
 # usa ----
 ## unemployment rate ----
@@ -109,7 +110,7 @@ ggsave("plots/employment.png",
 ## median household income ----
 data <-fredr(series_id = "MEHOINUSA672N")
 recent_data <- data %>%
-  filter(date > recent_years) %>%
+  filter(date > past_ten_years) %>%
   mutate(short_date = paste(year(date))) 
 
 ggplot(data, aes(x = date,
@@ -146,7 +147,7 @@ median_household_income <- ggplot(data = data,
   scale_y_continuous(position = "right",
                      labels = label_dollar()) +
   scale_x_date(expand = expansion(mult = c(0, 0))) +
-  facet_zoom(x = date > recent_years,
+  facet_zoom(x = date > past_ten_years,
              zoom.size = 4,
              ylim = c(min(recent_data$value),
                       max(recent_data$value)),
