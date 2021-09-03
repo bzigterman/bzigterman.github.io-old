@@ -16,33 +16,12 @@ recent_data <- data %>%
   filter(date > recent_years) %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE)))
 
-ggplot(recent_data, aes(x = date,
-                        y = value/100)) +
-  geom_line() +
-  labs(title = "Unemployment Rate",
-       caption = paste("Source: U.S. Bureau of Labor Statistics, retrieved from FRED. Latest data:",
-                       tail(recent_data$short_date,1))) +
-  xlab(NULL) +
-  ylab(NULL) +
-  scale_x_date(expand = expansion(mult = c(0, .01))) +
-  scale_y_continuous(position = "right",
-                     labels = label_percent(),
-                     limits = c(0,max(recent_data$value/100)*1.05)) +
-  theme(axis.text.y = element_text(size = 10),
-        axis.text.x = element_text(size = 8),
-        panel.grid.minor = element_blank(),
-        panel.background = element_blank(),
-        panel.grid.major.y = element_line(colour = "grey93"),
-        strip.text = element_text(size = 11),
-        strip.background = element_blank(),
-        plot.caption = element_text(colour = "grey40"))
-
 unemployment_rate <- ggplot(data = data,
                             aes(x = date,
                                 y = value/100)) +
   geom_line() +
   labs(title = "Unemployment Rate",
-       caption = paste("Source: U.S. Bureau of Labor Statistics, retrieved from FRED. Latest data:",
+       caption = paste("Source: U.S. Bureau of Labor Statistics, retrieved from the St. Louis Fed. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -56,12 +35,7 @@ unemployment_rate <- ggplot(data = data,
   theme_bw() +
   theme(axis.text.y = element_text(size = 10),
         axis.text.x = element_text(size = 8),
-        # panel.grid.minor = element_blank(),
-        # panel.background = element_blank(),
-        # panel.grid.major.x = element_line(colour = "grey93"),
         panel.grid.major.y = element_line(colour = "grey93"),
-        # #strip.text = element_text(size = 11),
-        #strip.background = element_blank(),
         plot.caption = element_text(colour = "grey40"))
 unemployment_rate
 ggsave("plots/unemployment_rate.png", plot = unemployment_rate,
@@ -107,7 +81,7 @@ employment_change <- ggplot(recent_data, aes(x = date,
                                              fill = change > 0)) +
   geom_col() +
   labs(title = "Change in Total Nonfarm Payroll",
-       caption = paste("U.S. Bureau of Labor Statistics, retrieved from FRED. Latest data:",
+       caption = paste("U.S. Bureau of Labor Statistics, retrieved from the St. Louis Fed. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -142,7 +116,7 @@ ggplot(data, aes(x = date,
                  y = value)) +
   geom_line() +
   labs(title = "Real Median Household Income",
-       caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
+       caption = paste("Source: U.S. Census Bureau, retrieved from the St. Louis Fed. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -164,7 +138,7 @@ median_household_income <- ggplot(data = data,
                                       y = value)) +
   geom_line() +
   labs(title = "Real Median Household Income",
-       caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
+       caption = paste("Source: U.S. Census Bureau, retrieved from the St. Louis Fed. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -231,7 +205,7 @@ gdp_change <- ggplot(recent_data, aes(x = date,
                                       fill = value > 0)) +
   geom_col() +
   labs(title = "Real GDP Growth",
-       caption = paste("Source: U.S. Bureau of Economic Analysis, retrieved from FRED. Latest data:",
+       caption = paste("Source: U.S. Bureau of Economic Analysis, retrieved from the St. Louis Fed. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -273,7 +247,7 @@ ggplot(data, aes(x = date,
                  y = value/1000)) +
   geom_line() +
   labs(title = "Retail Sales",
-       caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
+       caption = paste("Source: U.S. Census Bureau, retrieved from the St. Louis Fed. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -294,7 +268,7 @@ ggplot(data = data,
            y = value/1000)) +
   geom_line() +
   labs(title = "Retail Sales",
-       caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
+       caption = paste("Source: U.S. Census Bureau, retrieved from the St. Louis Fed. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -331,7 +305,7 @@ ggplot(data, aes(x = date,
                         y = value/1000)) +
   geom_line() +
   labs(title = "Durable Goods Orders",
-       caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
+       caption = paste("Source: U.S. Census Bureau, retrieved from the St. Louis Fed. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -352,7 +326,7 @@ ggplot(data = data,
            y = value/1000)) +
   geom_line() +
   labs(title = "Durable Goods Orders",
-       caption = paste("Source: U.S. Census Bureau, retrieved from FRED. Latest data:",
+       caption = paste("Source: U.S. Census Bureau, retrieved from the St. Louis Fed. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -390,7 +364,7 @@ gini <- ggplot(recent_data, aes(x = date,
   geom_line() +
   labs(title = "Gini Index of Inequality",
        subtitle = "0 represents perfect equality; 100 represents perfect inequality",
-       caption = paste("Source: World Bank, retrieved from FRED. Latest data:",
+       caption = paste("Source: World Bank, retrieved from the St. Louis Fed. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -420,7 +394,7 @@ ggplot(recent_data, aes(x = date,
                         y = value)) +
   geom_line() +
   labs(title = "Consumer Sentiment Index",
-       caption = paste("Source: University of Michigan Consumer Survey, retrieved from FRED. Latest data:",
+       caption = paste("Source: University of Michigan Consumer Survey, retrieved from the St. Louis Fed. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -440,7 +414,7 @@ sentiment <- ggplot(data = data,
                         y = value)) +
   geom_line() +
   labs(title = "Consumer Sentiment Index",
-       caption = paste("Source: University of Michigan Consumer Survey, retrieved from FRED. Latest data:",
+       caption = paste("Source: University of Michigan Consumer Survey, retrieved from the St. Louis Fed. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
@@ -492,6 +466,8 @@ permalink: /charts/economy/
 ![Durable Goods]({{ site.baseurl }}/plots/durable_goods.png)
 
 ![Consumer Sentiment]({{ site.baseurl }}/plots/consumer_sentiment.png)
+
+Data retrieved from the [Federal Reserve Bank of St. Louis](https://fred.stlouisfed.org)
 ",
 sep = ""
 )
