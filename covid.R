@@ -137,6 +137,7 @@ il_month_ago_new_doses <- format(round(signif(tail(lag(idph_vax_il$AdministeredC
 
 il_case_pct_change <- round(100*(tail(idph_cases_il$avg_new_cases,1)-tail(lag(idph_cases_il$avg_new_cases, 14),1))/tail(lag(idph_cases_il$avg_new_cases, 14),1), digits = 0)
 il_death_pct_change <- round(100*(tail(idph_cases_il$avg_new_deaths,1)-tail(lag(idph_cases_il$avg_new_deaths, 14),1))/tail(lag(idph_cases_il$avg_new_deaths, 14),1), digits = 0)
+il_hosp_pct_change <- round(100*(tail(idph_hosp$TotalInUseBedsCOVID,1)-tail(lag(idph_hosp$TotalInUseBedsCOVID, 14),1))/tail(lag(idph_hosp$TotalInUseBedsCOVID, 14),1), digits = 0)
 
 il_case_pct_change_text <- 
   if (il_case_pct_change > 0) { 
@@ -146,6 +147,7 @@ il_case_pct_change_text <-
   } else {
     paste("",il_case_pct_change,"%↓", sep = "")
   }
+
 il_death_pct_change_text <- 
   if (il_death_pct_change > 0) { 
     paste("+",il_death_pct_change,"%↑", sep = "")
@@ -153,6 +155,15 @@ il_death_pct_change_text <-
     paste("",il_death_pct_change,"%→", sep = "")
   } else { 
     paste("",il_death_pct_change,"%↓", sep = "")
+  }
+
+il_hosp_pct_change_text <- 
+  if (il_hosp_pct_change > 0) { 
+    paste("+",il_hosp_pct_change,"%↑", sep = "")
+  } else if (il_hosp_pct_change == 0) {
+    paste("",il_hosp_pct_change,"%→", sep = "")
+  } else { 
+    paste("",il_hosp_pct_change,"%↓", sep = "")
   }
 
 ### text ----
@@ -163,7 +174,7 @@ il_text <- paste(
 ",
 "- Average new cases: ",il_avg_new_cases," (vs. ",il_month_ago_cases,") ",il_case_pct_change_text,"
 ",
-"- Hospitalized: ",il_hosp," (vs. ",il_month_ago_hosp,") ","
+"- Hospitalized: ",il_hosp," (vs. ",il_month_ago_hosp,") ",il_hosp_pct_change_text,"
 ",
 "- Average new deaths: ",il_avg_new_deaths," (vs. ",il_month_ago_avg_new_deaths,") ",il_death_pct_change_text,"
 ",
@@ -222,6 +233,8 @@ usa_month_ago_new_doses <- format(signif(tail(lag(usa_owid_vaccines$daily_vaccin
 
 usa_case_pct_change <- round(100*(tail(usa_jhu_new_cases$avg_new_cases,1)-tail(lag(usa_jhu_new_cases$avg_new_cases, 14),1))/tail(lag(usa_jhu_new_cases$avg_new_cases, 14),1), digits = 0)
 usa_death_pct_change <- round(100*(tail(usa_jhu_new_deaths$avg_new_deaths,1)-tail(lag(usa_jhu_new_deaths$avg_new_deaths, 14),1))/tail(lag(usa_jhu_new_deaths$avg_new_deaths, 14),1), digits = 0)
+usa_hosp_pct_change <- round(100*(tail(owid_hosp$hosp_patients,1)-tail(lag(owid_hosp$hosp_patients, 14),1))/tail(lag(owid_hosp$hosp_patients, 14),1), digits = 0)
+
 
 usa_case_pct_change_text <- 
   if (usa_case_pct_change > 0) { 
@@ -239,6 +252,15 @@ usa_death_pct_change_text <-
   } else { 
     paste("",usa_death_pct_change,"%↓", sep = "")
   }
+usa_hosp_pct_change_text <- 
+  if (usa_hosp_pct_change > 0) { 
+    paste("+",usa_hosp_pct_change,"%↑", sep = "")
+  } else if (usa_hosp_pct_change == 0) {
+    paste("",usa_hosp_pct_change,"%→", sep = "")
+  } else { 
+    paste("",usa_hosp_pct_change,"%↓", sep = "")
+  }
+
 
 ### text ----
 
@@ -248,7 +270,7 @@ usa_text <- paste(
 ",
 "- Average new cases: ",usa_avg_new_cases," (vs. ",usa_month_ago_cases,") ",usa_case_pct_change_text,"
 ",
-"- Hospitalized: ",usa_hosp," (vs. ",usa_month_ago_hosp,") ","
+"- Hospitalized: ",usa_hosp," (vs. ",usa_month_ago_hosp,") ",usa_hosp_pct_change_text,"
 ",
 "- Average new deaths: ",usa_avg_new_deaths," (vs. ",usa_month_ago_avg_new_deaths,") ",usa_death_pct_change_text,"
 ",

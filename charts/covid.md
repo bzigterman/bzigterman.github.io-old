@@ -25,7 +25,7 @@ Charts for Champaign County are posted weekdays on Twitter [@ChampaignCovid](htt
 As of Friday in Illinois (vs. two weeks ago):
   
 - Average new cases: 4,330 (vs. 3,530) +23%↑
-- Hospitalized: 2,290 (vs. 2,000) 
+- Hospitalized: 2,290 (vs. 2,000) +14%↑
 - Average new deaths: 25 (vs. 18) +45%↑
 - Percent of Illinois fully vaccinated: 53.2% (vs. 51.6%)
 - Average new vaccine doses: 26,400 (vs. 34,700)
@@ -43,7 +43,7 @@ Community transmission levels are calculated by the CDC based on new cases per c
 As of Saturday in the United States (vs. two weeks ago):
   
 - Average new cases: 164,000 (vs. 148,000) +11%↑
-- Hospitalized: 97,200 (vs. 90,100) 
+- Hospitalized: 97,200 (vs. 90,100) +8%↑
 - Average new deaths: 1,550 (vs. 1,000) +55%↑
 - Percent of the United States fully vaccinated: 52.3% (vs. 50.7%)
 - Average new vaccine doses: 940,000 (vs. 845,000)
