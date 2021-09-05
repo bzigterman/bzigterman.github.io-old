@@ -42,6 +42,7 @@ Community transmission levels are calculated by the CDC based on new cases per c
 As of Saturday in the United States (vs. two weeks ago):
   
 - Average new cases: 164,000 (vs. 148,000) +11%↑
+- Hospitalized: 97,200 (vs. 90,100) 
 - Average new deaths: 1,550 (vs. 1,000) +55%↑
 - Percent of the United States fully vaccinated: 52.3% (vs. 50.7%)
 - Average new vaccine doses: 940,000 (vs. 845,000)

@@ -176,6 +176,13 @@ usa_jhu_new_cases <- rio::import(usa_jhu_new_cases_url, format = "csv") %>%
   mutate(avg_new_cases = rollmean(new_cases, k = 7, 
                                   fill = NA, align = "right"))
 
+#### hospitalizations ----
+owid_hosp_url <- "https://covid.ourworldindata.org/data/owid-covid-data.csv"
+owid_hosp <- rio::import(owid_hosp_url, format = "csv") %>%
+  filter(iso_code == "USA") %>%
+  select(date, hosp_patients) %>%
+  drop_na()
+
 #### deaths ----
 usa_jhu_new_deaths_url <- "https://github.com/owid/covid-19-data/raw/master/public/data/jhu/new_deaths.csv"
 usa_jhu_new_deaths <- rio::import(usa_jhu_new_deaths_url, format = "csv") %>%
@@ -191,12 +198,14 @@ usa_owid_vaccines <- rio::import(usa_owid_vaccines_url, format = "csv") %>%
   select(date, people_fully_vaccinated,daily_vaccinations, people_fully_vaccinated_per_hundred)
 
 ### set variables ----
+usa_hosp <- format(round(signif(tail(owid_hosp$hosp_patients,1),3)),big.mark=",")
 usa_avg_new_deaths <- format(round(signif(tail(usa_jhu_new_deaths$avg_new_deaths,1),3)),big.mark=",")
 usa_avg_new_cases <- format(round(signif(tail(usa_jhu_new_cases$avg_new_cases,1),3)),big.mark=",")
 usa_pct_fully_vaccinated <- round(tail(usa_owid_vaccines$people_fully_vaccinated_per_hundred,1), digits = 1)
 usa_avg_new_vaccine_doses <- format(signif(tail(usa_owid_vaccines$daily_vaccinations,1),3),big.mark=",")
 usa_weekday <- wday(tail(usa_jhu_new_cases$date,1), label = TRUE, abbr = FALSE)
 usa_month_ago_avg_new_deaths <- format(round(signif(tail(lag(usa_jhu_new_deaths$avg_new_deaths, 14),1),3)),big.mark=",")
+usa_month_ago_hosp <- format(round(signif(tail(lag(owid_hosp$hosp_patients,14),1),3)),big.mark=",")
 usa_month_ago_cases <- format(round(signif(tail(lag(usa_jhu_new_cases$avg_new_cases, 14),1),3)),big.mark=",")
 usa_month_ago_vaccinated <- round(tail(lag(usa_owid_vaccines$people_fully_vaccinated_per_hundred, 14),1), digits = 1)
 usa_month_ago_new_doses <- format(signif(tail(lag(usa_owid_vaccines$daily_vaccinations, 14),1),3),big.mark=",")
@@ -227,14 +236,16 @@ usa_text <- paste(
   "As of ",usa_weekday," in the United States (vs. two weeks ago):
   
 ",
-  "- Average new cases: ",usa_avg_new_cases," (vs. ",usa_month_ago_cases,") ",usa_case_pct_change_text,"
+"- Average new cases: ",usa_avg_new_cases," (vs. ",usa_month_ago_cases,") ",usa_case_pct_change_text,"
 ",
-  "- Average new deaths: ",usa_avg_new_deaths," (vs. ",usa_month_ago_avg_new_deaths,") ",usa_death_pct_change_text,"
+"- Hospitalized: ",usa_hosp," (vs. ",usa_month_ago_hosp,") ","
 ",
-  "- Percent of the United States fully vaccinated: ",usa_pct_fully_vaccinated,"% (vs. ",usa_month_ago_vaccinated,"%)
+"- Average new deaths: ",usa_avg_new_deaths," (vs. ",usa_month_ago_avg_new_deaths,") ",usa_death_pct_change_text,"
 ",
-  "- Average new vaccine doses: ",usa_avg_new_vaccine_doses," (vs. ",usa_month_ago_new_doses,")",
-  "
+"- Percent of the United States fully vaccinated: ",usa_pct_fully_vaccinated,"% (vs. ",usa_month_ago_vaccinated,"%)
+",
+"- Average new vaccine doses: ",usa_avg_new_vaccine_doses," (vs. ",usa_month_ago_new_doses,")",
+"
 ",
 sep = ""
 )
