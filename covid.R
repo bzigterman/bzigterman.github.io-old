@@ -22,13 +22,37 @@ idph_vax_champaign <- rio::import("https://idph.illinois.gov/DPHPublicInformatio
                                   format = "csv") %>%
   mutate(Date = mdy_hms(Report_Date)) 
 
+## hhs hospitalizations ----
+hospitalizations_url <- "https://healthdata.gov/resource/anag-cw7u.json?zip=61801"
+hospitalizations <- rio::import(hospitalizations_url,
+                                format = "json") %>% 
+  mutate(Date = ymd(ymd_hms(collection_week))) %>%
+  mutate(total_adult = as.double(total_adult_patients_hospitalized_confirmed_and_suspected_covid_7_day_sum)) %>%
+  mutate(total_pediatric = as.double(total_pediatric_patients_hospitalized_confirmed_and_suspected_covid_7_day_sum)) %>%
+  select(Date,hospital_name,total_adult,total_pediatric) %>%
+  pivot_longer(cols = c(total_adult,total_pediatric),
+               names_to = "names",
+               values_to = "values") %>%
+  filter(values >= 0) 
+
+hospitalizations_by_date <- hospitalizations %>%
+  group_by(Date,hospital_name) %>%
+  summarise(total = sum(values)) %>%
+  group_by(Date) %>%
+  summarise(sum_hospitalized = sum(total)) %>%
+  mutate(avg_hospitalized = sum_hospitalized/7) %>%
+  mutate(CountyName = "Champaign")
+
 ### set variables ----
+champaign_avg_hospitalized <- format(round(signif(tail(hospitalizations_by_date$avg_hospitalized,1),3)),big.mark=",")
 champaign_dead_last_month <- format(round(signif(tail(idph_cases_champaign$monthlydead,1),3)),big.mark=",")
 champaign_avg_new_cases <- format(round(signif(tail(idph_cases_champaign$avg_new_cases,1),3)),big.mark=",")
 champaign_pct_fully_vaccinated <- round(100*tail(idph_vax_champaign$PctVaccinatedPopulation,1), digits = 1)
 champaign_avg_new_vaccine_doses <- 
   format(round(signif(tail(idph_vax_champaign$AdministeredCountRollAvg,1),3)),big.mark=",")
 champaign_weekday <- wday(tail(idph_cases_champaign$Date,1), label = TRUE, abbr = FALSE)
+champaign_month_ago_hospitalized <- 
+  format(round(signif(tail(lag(hospitalizations_by_date$avg_hospitalized,2),1),3)),big.mark=",")
 champaign_month_ago_deaths <- format(round(signif(tail(lag(idph_cases_champaign$monthlydead, 14),1),3)),big.mark=",")
 champaign_month_ago_cases <- format(round(signif(tail(lag(idph_cases_champaign$avg_new_cases, 14),1),3)),big.mark=",")
 champaign_month_ago_vaccinated <- round(100*tail(lag(idph_vax_champaign$PctVaccinatedPopulation, 14),1), digits = 1)
@@ -61,6 +85,8 @@ champaign_county_text <- paste(
   
 ",
   "- Average new cases: ",champaign_avg_new_cases," (vs. ",champaign_month_ago_cases,") ",champaign_case_pct_change_text,"
+",
+"- Average hospitalized: ",champaign_avg_hospitalized," (vs. ",champaign_month_ago_hospitalized,") ","
 ",
   "- Deaths in the past month: ",champaign_dead_last_month," (vs. ",champaign_month_ago_deaths,")
 ",
@@ -405,7 +431,7 @@ title: COVID-19
 permalink: /charts/covid
 ---
 
-During the COVID-19 pandemic, I've been making charts with data from the [Champaign-Urbana Public Health District](https://www.c-uphd.org/champaign-urbana-illinois-coronavirus-information.html), the [University of Illinois](https://go.illinois.edu/COVIDTestingData), the [Illinois Department of Public Health](http://www.dph.illinois.gov/covid19), the [CDC](https://covid.cdc.gov/covid-data-tracker/), [Our World in Data](https://github.com/owid/covid-19-data/tree/master/public/data) and the [COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19).
+During the COVID-19 pandemic, I've been making charts with data from the [Champaign-Urbana Public Health District](https://www.c-uphd.org/champaign-urbana-illinois-coronavirus-information.html), the [University of Illinois](https://go.illinois.edu/COVIDTestingData), the [Illinois Department of Public Health](http://www.dph.illinois.gov/covid19), the [CDC](https://covid.cdc.gov/covid-data-tracker/), the [U.S. Department of Health and Human Services](https://healthdata.gov/Hospital/COVID-19-Reported-Patient-Impact-and-Hospital-Capa/anag-cw7u), [Our World in Data](https://github.com/owid/covid-19-data/tree/master/public/data) and the [COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19).
 
 ## Champaign County
 
