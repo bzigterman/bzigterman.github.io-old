@@ -116,13 +116,21 @@ idph_vax_il <- rio::import("https://idph.illinois.gov/DPHPublicInformation/api/C
                                   format = "csv") %>%
   mutate(Date = mdy_hms(Report_Date)) 
 
+idph_hosp <- rio::import("https://idph.illinois.gov/DPHPublicInformation/api/COVIDExport/GetHospitalUtilizationResults?format=csv",
+                         format = "csv") %>%
+  mutate(Date = ymd(mdy_hms(ReportDate))) %>%
+  select(Date, TotalInUseBedsCOVID)
+
+
 ### set variables ----
+il_hosp <- format(round(signif(tail(idph_hosp$TotalInUseBedsCOVID,1),3)),big.mark=",")
 il_avg_new_deaths <- format(round(signif(tail(idph_cases_il$avg_new_deaths,1),3)),big.mark=",")
 il_avg_new_cases <- format(round(signif(tail(idph_cases_il$avg_new_cases,1),3)),big.mark=",")
 il_pct_fully_vaccinated <- round(100*tail(idph_vax_il$PctVaccinatedPopulation,1), digits = 1)
 il_avg_new_vaccine_doses <- format(round(signif(tail(idph_vax_il$AdministeredCountRollAvg,1),3)),big.mark=",")
 il_weekday <- wday(tail(idph_cases_il$Date,1), label = TRUE, abbr = FALSE)
 il_month_ago_avg_new_deaths <- format(round(signif(tail(lag(idph_cases_il$avg_new_deaths, 14),1),3)),big.mark=",")
+il_month_ago_hosp <- format(round(signif(tail(lag(idph_hosp$TotalInUseBedsCOVID, 14),1),3)),big.mark=",")
 il_month_ago_cases <- format(round(signif(tail(lag(idph_cases_il$avg_new_cases, 14),1),3)),big.mark=",")
 il_month_ago_vaccinated <- round(100*tail(lag(idph_vax_il$PctVaccinatedPopulation, 14),1), digits = 1)
 il_month_ago_new_doses <- format(round(signif(tail(lag(idph_vax_il$AdministeredCountRollAvg, 14),1),3)),big.mark=",")
@@ -153,14 +161,16 @@ il_text <- paste(
   "As of ",il_weekday," in Illinois (vs. two weeks ago):
   
 ",
-  "- Average new cases: ",il_avg_new_cases," (vs. ",il_month_ago_cases,") ",il_case_pct_change_text,"
+"- Average new cases: ",il_avg_new_cases," (vs. ",il_month_ago_cases,") ",il_case_pct_change_text,"
 ",
-  "- Average new deaths: ",il_avg_new_deaths," (vs. ",il_month_ago_avg_new_deaths,") ",il_death_pct_change_text,"
+"- Hospitalized: ",il_hosp," (vs. ",il_month_ago_hosp,") ","
 ",
-  "- Percent of Illinois fully vaccinated: ",il_pct_fully_vaccinated,"% (vs. ",il_month_ago_vaccinated,"%)
+"- Average new deaths: ",il_avg_new_deaths," (vs. ",il_month_ago_avg_new_deaths,") ",il_death_pct_change_text,"
 ",
-  "- Average new vaccine doses: ",il_avg_new_vaccine_doses," (vs. ",il_month_ago_new_doses,")",
-  "
+"- Percent of Illinois fully vaccinated: ",il_pct_fully_vaccinated,"% (vs. ",il_month_ago_vaccinated,"%)
+",
+"- Average new vaccine doses: ",il_avg_new_vaccine_doses," (vs. ",il_month_ago_new_doses,")",
+"
 ",
 sep = ""
 )
