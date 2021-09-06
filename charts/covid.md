@@ -40,11 +40,11 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## United States
 
-As of Saturday in the United States (vs. two weeks ago):
+As of Sunday in the United States (vs. two weeks ago):
   
-- Average new cases: 164,000 (vs. 148,000) +11%↑
-- Hospitalized: 97,200 (vs. 90,100) +8%↑
-- Average new deaths: 1,550 (vs. 1,000) +55%↑
+- Average new cases: 164,000 (vs. 147,000) +11%↑
+- Hospitalized: 95,400 (vs. 90,300) +6%↑
+- Average new deaths: 1,560 (vs. 1,000) +56%↑
 - Percent of the United States fully vaccinated: 52.3% (vs. 50.7%)
 - Average new vaccine doses: 940,000 (vs. 845,000)
 
@@ -56,10 +56,10 @@ As of Saturday in the United States (vs. two weeks ago):
 
 ## World
 
-As of Saturday (vs. two weeks ago):
+As of Sunday (vs. two weeks ago):
   
-- Average new cases: 613,000 (vs. 656,000) -7%↓
-- Average new deaths: 9,490 (vs. 9,900) -4%↓
+- Average new cases: 602,000 (vs. 654,000) -8%↓
+- Average new deaths: 9,390 (vs. 9,960) -6%↓
 - Percent of the world fully vaccinated: 27.6% (vs. 24.2%)
 - Average new vaccine doses: 33,500,000 (vs. 35,700,000)
 
@@ -67,12 +67,12 @@ As of Saturday (vs. two weeks ago):
 
 ## Case Acceleration
 
-As of Saturday, the 14-day percent change in average new cases was:
+As of Sunday, the 14-day percent change in average new cases was:
   
 - 52% in Champaign County
 - 23% in Illinois
 - 11% in the United States
-- -7% worldwide
+- -8% worldwide
 
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
@@ -80,11 +80,11 @@ This chart measures how quickly the average number of new cases is changing, or 
 
 ## Death Acceleration
 
-As of Saturday, the 14-day percent change in average new deaths was:
+As of Sunday, the 14-day percent change in average new deaths was:
   
 - 45% in Illinois
-- 55% in the United States
-- -4% worldwide
+- 56% in the United States
+- -6% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
 
