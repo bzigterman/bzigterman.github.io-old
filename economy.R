@@ -239,7 +239,7 @@ ggsave("plots/gdp.png",
 #           rel_heights = c(1,1))
 
 ## retail sales ---- 
-data <- fredr(series_id = "RSXFS") %>%
+data <- fredr(series_id = "RSAFS") %>%
   drop_na()
 recent_data <- data %>%
   filter(date > recent_years) %>%
@@ -249,7 +249,7 @@ recent_data <- data %>%
 ggplot(data, aes(x = date,
                  y = value/1000)) +
   geom_line() +
-  labs(title = "Retail Sales",
+  labs(title = "Retail Trade and Food Services",
        caption = paste("Source: U.S. Census Bureau, retrieved from the St. Louis Fed. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
