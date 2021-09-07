@@ -12,6 +12,8 @@ permalink: /charts/economy/
 
 ![Population]({{ site.baseurl }}/plots/champaign_population.png)
 
+![Housing]({{ site.baseurl }}/plots/champaign_housing.png)
+
 ## United States
 
 ![Unemployment Rate]({{ site.baseurl }}/plots/unemployment_rate.png)

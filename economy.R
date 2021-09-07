@@ -571,6 +571,52 @@ champaign_population
 ggsave("plots/champaign_population.png", plot = champaign_population,
        width = 8, height = 8*(628/1200), dpi = 320)
 
+## housing ----
+active_listings <- fredr(series_id = "ACTLISCOU17019") %>%
+  mutate(name = "Active Listings")
+median_listing_price <- fredr(series_id = "MEDLISPRI17019") %>%
+  mutate(name = "Median Listing Price")
+median_days_on_market <- fredr(series_id = "MEDDAYONMAR17019") %>%
+  mutate(name = "Median Days on Market")
+pending_ratio <- fredr(series_id = "PENRAT17019") %>%
+  mutate(name = "Pending-to-Active Ratio")
+
+
+data <- full_join(active_listings, median_listing_price) %>%
+  full_join(median_days_on_market) %>%
+  full_join(pending_ratio) %>%
+  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE)))
+
+ggplot(data, aes(x = date,
+                 y = value,
+                 color = name)) +
+  geom_line() +
+  facet_wrap(~ name, scales = "free_y") +
+  xlab(NULL) +
+  ylab(NULL) +
+  scale_x_date(expand = expansion(mult = c(0,0)),
+               labels = label_date_short()) +
+  scale_y_continuous(labels = label_comma(),
+                     position = "right") +
+  expand_limits(y = 0) +
+  scale_colour_manual(guide = 'none',
+                      values = c("darkgreen","#674EA7","#B45F06","#d90000")) +
+  labs(title = "Champaign County Housing Metrics",
+       caption = paste("Source: Realtor.com, retrieved from the St. Louis Fed. Latest data:",
+                       tail(data$short_date,1))) +
+  theme_bw() +
+  theme(axis.text.y = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        panel.grid.major.y = element_line(colour = "grey93"),
+        panel.grid.major.x = element_line(colour = "grey93"),
+        strip.text = element_text(size = 11),
+        strip.background = element_blank(),
+        plot.caption = element_text(colour = "grey40"))
+
+ggsave("plots/champaign_housing.png",
+       width = 8, height = 8*(628/1200), dpi = 320)
 
 # make web page ----
 
@@ -588,6 +634,8 @@ permalink: /charts/economy/
 ![Employment]({{ site.baseurl }}/plots/champaign_employment.png)
 
 ![Population]({{ site.baseurl }}/plots/champaign_population.png)
+
+![Housing]({{ site.baseurl }}/plots/champaign_housing.png)
 
 ## United States
 
