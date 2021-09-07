@@ -508,7 +508,7 @@ employment_change <- ggplot(recent_data, aes(x = date,
                                              fill = change > 0)) +
   geom_col() +
   labs(title = "Annual Change in Total Employees",
-       caption = paste("Not seasonally adjusted. U.S. Bureau of Labor Statistics, retrieved from the St. Louis Fed. Latest data:",
+       caption = paste("U.S. Bureau of Labor Statistics, retrieved from the St. Louis Fed. Latest data:",
                        tail(recent_data$short_date,1))) +
   xlab(NULL) +
   ylab(NULL) +
