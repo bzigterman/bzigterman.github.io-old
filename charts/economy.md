@@ -4,6 +4,14 @@ title: Economic Indicators
 permalink: /charts/economy/
 ---
 
+## Champaign
+
+![Unemployment Rate]({{ site.baseurl }}/plots/champaign_unemployment_rate.png)
+
+![Employment]({{ site.baseurl }}/plots/champaign_employment.png)
+
+![Population]({{ site.baseurl }}/plots/champaign_population.png)
+
 ## United States
 
 ![Unemployment Rate]({{ site.baseurl }}/plots/unemployment_rate.png)
@@ -19,12 +27,6 @@ permalink: /charts/economy/
 ![Durable Goods]({{ site.baseurl }}/plots/durable_goods.png)
 
 ![Consumer Sentiment]({{ site.baseurl }}/plots/consumer_sentiment.png)
-
-## Champaign
-
-![Unemployment Rate]({{ site.baseurl }}/plots/champaign_unemployment_rate.png)
-
-![Employment]({{ site.baseurl }}/plots/champaign_employment.png)
 
 Data retrieved from the [Federal Reserve Bank of St. Louis](https://fred.stlouisfed.org)
 
