@@ -484,9 +484,15 @@ recent_data <- data %>%
   mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE))) %>%
   mutate(change = value - lag(value, n = 12))
 
-employment <- ggplot(data, aes(x = date,
-                               y = annual_avg)) +
-  geom_line() +
+employment <- ggplot(data, aes(x = date)) +
+  geom_line(aes(y = value),
+            size = .6,
+            color = "grey65") +
+  # geom_point(aes(y = value),
+  #            size = .5,
+  #            color = "grey25") +
+  geom_line(aes(y = annual_avg),
+            size = 1.1) +
   labs(title = "Annual Average of Total Employees") +
   xlab(NULL) +
   ylab(NULL) +
@@ -495,8 +501,8 @@ employment <- ggplot(data, aes(x = date,
                      labels = label_comma()) +
   facet_zoom(x = date > recent_years,
              zoom.size = 4,
-             ylim = c(min(recent_data$annual_avg),
-                      max(recent_data$annual_avg)),
+             ylim = c(min(recent_data$value),
+                      max(recent_data$value)),
              horizontal = FALSE) +
   theme_bw() +
   theme(plot.caption = element_text(colour = "grey40"))
