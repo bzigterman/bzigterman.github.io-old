@@ -61,7 +61,7 @@ As of Monday (vs. two weeks ago):
 - Average new cases: 584,000 (vs. 658,000) -11%↓
 - Average new deaths: 9,410 (vs. 9,990) -6%↓
 - Percent of the world fully vaccinated: 27.9% (vs. 24.4%)
-- Average new vaccine doses: 31,200,000 (vs. 34,800,000)
+- Average new vaccine doses: 32,100,000 (vs. 34,800,000)
 
 ![World Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/world_facet.png)
 
