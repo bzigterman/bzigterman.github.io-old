@@ -4,7 +4,7 @@ title: Economic Indicators
 permalink: /charts/economy/
 ---
 
-## Champaign
+## Champaign County
 
 ![Unemployment Rate]({{ site.baseurl }}/plots/champaign_unemployment_rate.png)
 
