@@ -4,10 +4,12 @@ library(scales)
 library(fredr)
 library(cowplot)
 library(ggforce)
+library(zoo)
 
 fredr_set_key(Sys.getenv("FRED_API_KEY"))
 
 recent_years <- ymd((today() - years(5)))
+less_recent_years <- ymd((today() - years(6)))
 past_ten_years <- ymd((today() - years(10)))
 
 # usa ----
@@ -441,9 +443,95 @@ sentiment
 ggsave("plots/consumer_sentiment.png", plot = sentiment,
        width = 8, height = 8*(628/1200), dpi = 320)
 
-# combined ----
-plot_grid(sentiment, median_household_income, unemployment_rate,
-         align = "hv")
+# Champaign ----
+## unemployment rate ----
+data <- fredr(series_id = "ILCHAM9URN")
+recent_data <- data %>%
+  filter(date > recent_years) %>%
+  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE)))
+
+unemployment_rate <- ggplot(data = data,
+                            aes(x = date,
+                                y = value/100)) +
+  geom_line() +
+  labs(title = "Unemployment Rate",
+       caption = paste("Not seasonally adjusted. Source: U.S. Bureau of Labor Statistics, retrieved from the St. Louis Fed. Latest data:",
+                       tail(recent_data$short_date,1))) +
+  xlab(NULL) +
+  ylab(NULL) +
+  expand_limits(y=0) +
+  scale_y_continuous(position = "right",
+                     labels = label_percent(),
+                     expand = expansion(mult = c(0, 0.05))) +
+  scale_x_date(expand = expansion(mult = c(0, 0))) +
+  facet_zoom(x = date > recent_years,
+             zoom.size = 4) +
+  theme_bw() +
+  theme(axis.text.y = element_text(size = 10),
+        axis.text.x = element_text(size = 8),
+        panel.grid.major.y = element_line(colour = "grey93"),
+        plot.caption = element_text(colour = "grey40"))
+unemployment_rate
+ggsave("plots/champaign_unemployment_rate.png", plot = unemployment_rate,
+       width = 8, height = 8*(628/1200), dpi = 320)
+
+## employment -----
+data <- fredr(series_id = "LAUCN170190000000005") %>%
+  mutate(annual_avg = rollmean(value, k = 12, 
+                               fill = NA, align = "right"))
+recent_data <- data %>%
+  filter(date > less_recent_years) %>%
+  mutate(short_date = paste(month(date, label = TRUE, abbr = FALSE))) %>%
+  mutate(change = value - lag(value, n = 12))
+
+employment <- ggplot(data, aes(x = date,
+                               y = annual_avg)) +
+  geom_line() +
+  labs(title = "Annual Average of Total Employees") +
+  xlab(NULL) +
+  ylab(NULL) +
+  scale_x_date(expand = expansion(mult = c(0, 0))) +
+  scale_y_continuous(position = "right",
+                     labels = label_comma()) +
+  facet_zoom(x = date > recent_years,
+             zoom.size = 4,
+             ylim = c(min(recent_data$annual_avg),
+                      max(recent_data$annual_avg)),
+             horizontal = FALSE) +
+  theme_bw() +
+  theme(plot.caption = element_text(colour = "grey40"))
+employment
+
+### employment change ----
+employment_change <- ggplot(recent_data, aes(x = date,
+                                             y = change,
+                                             fill = change > 0)) +
+  geom_col() +
+  labs(title = "Annual Change in Total Employees",
+       caption = paste("Not seasonally adjusted. U.S. Bureau of Labor Statistics, retrieved from the St. Louis Fed. Latest data:",
+                       tail(recent_data$short_date,1))) +
+  xlab(NULL) +
+  ylab(NULL) +
+  scale_x_date(expand = expansion(mult = c(0, 0))) +
+  scale_fill_manual(guide = "none",
+                    values = c("#b32704","#199fa8")) +
+  scale_y_continuous(position = "right",
+                     labels = label_comma()) +
+  theme(panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        panel.grid.major.y = element_line(colour = "grey93"),
+        strip.text = element_text(size = 11),
+        strip.background = element_blank(),
+        plot.caption = element_text(colour = "grey40"))
+
+plot_grid(employment, employment_change,
+          ncol = 1,
+          rel_heights = c(3,2))
+
+ggsave("plots/champaign_employment.png",
+       width = 8, height = 6, dpi = 320)
+
+# make web page ----
 
 web_text <- paste(
   "---
@@ -467,6 +555,12 @@ permalink: /charts/economy/
 ![Durable Goods]({{ site.baseurl }}/plots/durable_goods.png)
 
 ![Consumer Sentiment]({{ site.baseurl }}/plots/consumer_sentiment.png)
+
+## Champaign
+
+![Unemployment Rate]({{ site.baseurl }}/plots/champaign_unemployment_rate.png)
+
+![Employment]({{ site.baseurl }}/plots/champaign_employment.png)
 
 Data retrieved from the [Federal Reserve Bank of St. Louis](https://fred.stlouisfed.org)
 ",
