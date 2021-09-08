@@ -3,10 +3,15 @@ library(lubridate)
 library(scales)
 library(httr)
 library(rio)
-library(mlbstatsR)
 library(reticulate)
 
-# get data
+# get data ----
+fivethirtyeight_data_url <- "https://projects.fivethirtyeight.com/mlb-api/mlb_elo_latest.csv"
+fivethirtyeight_data <- rio::import(fivethirtyeight_data_url, format = "csv")
+
+
+
+# python stuff ----
 mlb_host_url <- "http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&teamId=145"
 path <- "schedule/games/"
 
