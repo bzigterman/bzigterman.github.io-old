@@ -3,7 +3,7 @@ library(lubridate)
 library(scales)
 library(httr)
 library(rio)
-library(reticulate)
+#library(reticulate)
 
 # get data ----
 fivethirtyeight_data_url <- "https://projects.fivethirtyeight.com/mlb-api/mlb_elo_latest.csv"
@@ -56,7 +56,7 @@ ggplot(data = fivethirtyeight_data_chw) +
   )
 
 ggsave("plots/mlb_wins_losses.png", 
-       width = 1, height = 10, dpi = 320)
+       width = .55, height = 11, dpi = 320)
 
 # ggplot(fivethirtyeight_data_chw, 
 #        aes(x = date,
@@ -106,7 +106,7 @@ permalink: /charts/baseball/
 
 ![CHW]({{ site.baseurl }}/plots/mlb_wins_losses.png)
 
-Data from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo)
+Data from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). Inspired by [gkaramanis](https://github.com/gkaramanis/remakes/tree/master/wwc-remake).
 
 ",
 sep = ""
