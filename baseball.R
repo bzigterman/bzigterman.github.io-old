@@ -40,13 +40,13 @@ ggplot(chw_wins_losses, aes(x = date,
   ylab(NULL) +
   xlab(NULL) +
   theme_minimal() +
-  labs(title = "Chicago White Sox net wins",
+  labs(title = "Games Above .500",
        caption = "Source: FiveThirtyEight") +
   theme(
     plot.background = element_rect(fill = "grey99", color = "white"),
-    plot.margin = margin(20, 40, 10, 40),
+    #plot.margin = margin(20, 40, 10, 40),
     panel.grid = element_blank(),
-    panel.grid.major.y = element_line(colour = "grey93"),
+    panel.grid.major.y = element_line(colour = "grey91"),
     axis.text.y = element_text(color = "grey30", size = 7),
     axis.title.y = element_text(color = "grey10", size = 7, margin = margin(10, 0, 0, 0)),
     axis.ticks.y = element_line(color = "grey60", size = 0.25),
