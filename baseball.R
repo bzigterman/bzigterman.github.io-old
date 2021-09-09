@@ -27,12 +27,12 @@ fivethirtyeight_data_chw <- fivethirtyeight_data %>%
 ggplot(data = fivethirtyeight_data_chw) +
   # Win/draw/loss lines
   geom_segment(aes(y = game_n, yend = game_n, x = x, xend = xend, color = win_status), lineend = "round", size = 0.6) +
-  scale_color_manual(values = c("darkred", "darkblue"),
+  scale_color_manual(values = c("#b32704","#199fa8"),
                      #labels = c("Loss", "Draw", "Win"), 
                      guide = NULL) +
   ylab(NULL) +
   theme_minimal() +
-  labs(title = "Chicago White Sox wins and losses") +
+  #labs(title = "Chicago White Sox wins and losses") +
   theme(
     plot.background = element_rect(fill = "grey97", color = "white"),
     legend.position = c(0.45, 1.08),
@@ -40,7 +40,7 @@ ggplot(data = fivethirtyeight_data_chw) +
     legend.key.size = unit(0.35, "line"),
     legend.text = element_text(color = "grey10", size = 8),
     legend.title = element_blank(),
-    plot.margin = margin(20, 40, 10, 40),
+   # plot.margin = margin(20, 40, 10, 40),
     panel.grid = element_blank(),
     axis.text.y = element_text(color = "grey30", size = 7),
     axis.title.y = element_text(color = "grey10", size = 7, margin = margin(10, 0, 0, 0)),
@@ -56,40 +56,40 @@ ggplot(data = fivethirtyeight_data_chw) +
   )
 
 ggsave("plots/mlb_wins_losses.png", 
-       width = 1, height = 15, dpi = 320)
+       width = 1, height = 10, dpi = 320)
 
-ggplot(fivethirtyeight_data_chw, 
-       aes(x = date,
-           y = win_value)) + 
-  geom_point(aes(color = win_value>0),
-             shape = 15) +
-  scale_color_manual(values = c("darkred", "darkblue"),
-                     #labels = c("Loss", "Draw", "Win"), 
-                     guide = NULL) +
-  xlab(NULL) +
-  theme_minimal() +
-  labs(title = "Chicago White Sox wins and losses") +
-  theme(
-    plot.background = element_rect(fill = "grey97", color = "white"),
-    legend.position = c(0.45, 1.08),
-    legend.direction = "horizontal",
-    legend.key.size = unit(0.35, "line"),
-    legend.text = element_text(color = "grey10", size = 8),
-    legend.title = element_blank(),
-    plot.margin = margin(20, 40, 10, 40),
-    panel.grid = element_blank(),
-    axis.text.x = element_text(color = "grey30", size = 7),
-    axis.title.x = element_text(color = "grey10", size = 7, margin = margin(10, 0, 0, 0)),
-    axis.ticks.x = element_line(color = "grey60", size = 0.25),
-    axis.text.y = element_blank(),
-    axis.title.y = element_blank(),
-    plot.title = element_text(size = 11, face = "bold"),
-    plot.subtitle = element_text(size = 8, 
-                                 margin = margin(0, 0, 40, 0)),
-    plot.caption = element_text(size = 5.5, color = "grey40", hjust = 0.5,
-                                margin = margin(25, 0, 0, 0)),
-    strip.text = element_blank()
-  )
+# ggplot(fivethirtyeight_data_chw, 
+#        aes(x = date,
+#            y = win_value)) + 
+#   geom_point(aes(color = win_value>0),
+#              shape = 15) +
+#   scale_color_manual(values = c("darkred", "darkblue"),
+#                      #labels = c("Loss", "Draw", "Win"), 
+#                      guide = NULL) +
+#   xlab(NULL) +
+#   theme_minimal() +
+#   labs(title = "Chicago White Sox wins and losses") +
+#   theme(
+#     plot.background = element_rect(fill = "grey97", color = "white"),
+#     legend.position = c(0.45, 1.08),
+#     legend.direction = "horizontal",
+#     legend.key.size = unit(0.35, "line"),
+#     legend.text = element_text(color = "grey10", size = 8),
+#     legend.title = element_blank(),
+#     plot.margin = margin(20, 40, 10, 40),
+#     panel.grid = element_blank(),
+#     axis.text.x = element_text(color = "grey30", size = 7),
+#     axis.title.x = element_text(color = "grey10", size = 7, margin = margin(10, 0, 0, 0)),
+#     axis.ticks.x = element_line(color = "grey60", size = 0.25),
+#     axis.text.y = element_blank(),
+#     axis.title.y = element_blank(),
+#     plot.title = element_text(size = 11, face = "bold"),
+#     plot.subtitle = element_text(size = 8, 
+#                                  margin = margin(0, 0, 40, 0)),
+#     plot.caption = element_text(size = 5.5, color = "grey40", hjust = 0.5,
+#                                 margin = margin(25, 0, 0, 0)),
+#     strip.text = element_blank()
+#   )
 #ggsave("plots/mlb_wins_losses.png", 
  #      width = 15, height = 1, dpi = 320)
 
@@ -104,7 +104,9 @@ permalink: /charts/baseball/
 
 ## Chicago White Sox
 
-![Season]({{ site.baseurl }}/plots/mlb_wins_losses.png)
+![CHW]({{ site.baseurl }}/plots/mlb_wins_losses.png)
+
+Data from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo)
 
 ",
 sep = ""
