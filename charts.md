@@ -10,3 +10,4 @@ I like to make charts, and here is where I collect some that I've made:
 
 ## [Economic Indicators]({{ site.baseurl }}/charts/economy)
 
+## [Baseball]({{ site.baseurl }}/charts/baseball)
