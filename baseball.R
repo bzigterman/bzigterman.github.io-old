@@ -25,7 +25,7 @@ fivethirtyeight_data_chw <- fivethirtyeight_data %>%
       TRUE ~ -0.33))
 
 chw_wins_losses <- fivethirtyeight_data_chw %>%
-  select(date, win_status, win_value) %>%
+  select(date, game_n, win_status, win_value) %>%
   mutate(wins = if_else(win_status == "W",1,0)) %>%
   mutate(losses = if_else(win_status == "L",1,0)) %>%
   mutate(win_sum = cumsum(wins)) %>%
@@ -33,7 +33,7 @@ chw_wins_losses <- fivethirtyeight_data_chw %>%
   mutate(win_pct = win_sum/row_number()) %>%
   mutate(net_wins = win_sum-loss_sum)
 
-ggplot(chw_wins_losses, aes(x = date,
+ggplot(chw_wins_losses, aes(x = game_n,
                             y = net_wins)) +
   geom_step(direction = "vh") +
   scale_y_continuous(position = "right") +
