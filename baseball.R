@@ -16,21 +16,21 @@ fivethirtyeight_data_chw <- fivethirtyeight_data %>%
   mutate(win_value = if_else((win_status == "W"),1,-1,)) %>%
   mutate(game_n = row_number()) %>%
   mutate(    
-    y = case_when(
+    x = case_when(
       win_status == "L" ~ -1.33,
       win_status == "W" ~ 1.33,
       TRUE ~ 0.33),
-    yend = case_when(
+    xend = case_when(
       win_status == "L" ~ 0.33,
       TRUE ~ -0.33))
     
 ggplot(data = fivethirtyeight_data_chw) +
   # Win/draw/loss lines
-  geom_segment(aes(x = game_n, xend = game_n, y = y, yend = yend, color = win_status), lineend = "round", size = 0.6) +
+  geom_segment(aes(y = game_n, yend = game_n, x = x, xend = xend, color = win_status), lineend = "round", size = 0.6) +
   scale_color_manual(values = c("darkred", "darkblue"),
                      #labels = c("Loss", "Draw", "Win"), 
                      guide = NULL) +
-  xlab(NULL) +
+  ylab(NULL) +
   theme_minimal() +
   labs(title = "Chicago White Sox wins and losses") +
   theme(
@@ -42,11 +42,11 @@ ggplot(data = fivethirtyeight_data_chw) +
     legend.title = element_blank(),
     plot.margin = margin(20, 40, 10, 40),
     panel.grid = element_blank(),
-    axis.text.x = element_text(color = "grey30", size = 7),
-    axis.title.x = element_text(color = "grey10", size = 7, margin = margin(10, 0, 0, 0)),
-    axis.ticks.x = element_line(color = "grey60", size = 0.25),
-    axis.text.y = element_blank(),
-    axis.title.y = element_blank(),
+    axis.text.y = element_text(color = "grey30", size = 7),
+    axis.title.y = element_text(color = "grey10", size = 7, margin = margin(10, 0, 0, 0)),
+    axis.ticks.y = element_line(color = "grey60", size = 0.25),
+    axis.text.x = element_blank(),
+    axis.title.x = element_blank(),
     plot.title = element_text(size = 11, face = "bold"),
     plot.subtitle = element_text(size = 8, 
                                  margin = margin(0, 0, 40, 0)),
@@ -56,7 +56,7 @@ ggplot(data = fivethirtyeight_data_chw) +
   )
 
 ggsave("plots/mlb_wins_losses.png", 
-       width = 15, height = 1.5, dpi = 320)
+       width = 1, height = 15, dpi = 320)
 
 ggplot(fivethirtyeight_data_chw, 
        aes(x = date,
