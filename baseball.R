@@ -56,7 +56,7 @@ ggplot(data = fivethirtyeight_data_chw) +
   )
 
 ggsave("plots/mlb_wins_losses.png", 
-       width = 15, height = 2, dpi = 320)
+       width = 15, height = 1.5, dpi = 320)
 
 ggplot(fivethirtyeight_data_chw, 
        aes(x = date,
