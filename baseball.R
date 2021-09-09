@@ -3,40 +3,47 @@ library(lubridate)
 library(scales)
 library(httr)
 library(rio)
-#library(reticulate)
 
 # get data ----
 fivethirtyeight_data_url <- "https://projects.fivethirtyeight.com/mlb-api/mlb_elo_latest.csv"
-fivethirtyeight_data <- rio::import(fivethirtyeight_data_url, format = "csv")
-fivethirtyeight_data_chw <- fivethirtyeight_data %>%
-  select(date, season, team1, team2, score1, score2) %>%
-  arrange(date) %>%
-  filter(team1 == "CHW" | team2 == "CHW") %>%
-  mutate(win_status = if_else((team2 == "CHW"),if_else((score2 > score1),"W","L"),if_else((score1 > score2),"W","L"))) %>%
-  mutate(win_value = if_else((win_status == "W"),1,-1,)) %>%
-  mutate(game_n = row_number()) %>%
-  mutate(    
-    x = case_when(
-      win_status == "L" ~ -1.33,
-      win_status == "W" ~ 1.33,
-      TRUE ~ 0.33),
-    xend = case_when(
-      win_status == "L" ~ 0.33,
-      TRUE ~ -0.33))
+fivethirtyeight_data <- rio::import(fivethirtyeight_data_url, format = "csv") %>%
+  arrange(date) 
+get_team_records <- function(abbreviation) {
+  records <- fivethirtyeight_data %>%
+    select(date, season, team1, team2, score1, score2) %>%
+    filter(team1 == abbreviation | team2 == abbreviation) %>%
+    mutate(result = if_else((team2 == abbreviation),
+                            if_else((score2 > score1),"W","L"),
+                            if_else((score1 > score2),"W","L"))) %>%
+    mutate(game_n = row_number()) %>%
+    select(date, game_n, result) %>%
+    mutate(win = if_else(result == "W",1,0)) %>%
+    mutate(loss = if_else(result == "L",1,0)) %>%
+    mutate(wins = cumsum(win)) %>%
+    mutate(losses = cumsum(loss)) %>%
+    mutate(win_pct = wins/row_number()) %>%
+    mutate(net_wins = wins-losses) %>%
+    mutate(team = abbreviation)
+}
 
-chw_wins_losses <- fivethirtyeight_data_chw %>%
-  select(date, game_n, win_status, win_value) %>%
-  mutate(wins = if_else(win_status == "W",1,0)) %>%
-  mutate(losses = if_else(win_status == "L",1,0)) %>%
-  mutate(win_sum = cumsum(wins)) %>%
-  mutate(loss_sum = cumsum(losses)) %>%
-  mutate(win_pct = win_sum/row_number()) %>%
-  mutate(net_wins = win_sum-loss_sum)
+chw <- get_team_records("CHW")
+cle <- get_team_records("CLE")
+det <- get_team_records("DET")
+kcr <- get_team_records("KCR")
+min <- get_team_records("MIN")
 
-ggplot(chw_wins_losses, aes(x = game_n,
-                            y = net_wins)) +
+al_central <- full_join(chw,cle) %>%
+  full_join(det) %>%
+  full_join(kcr) %>%
+  full_join(min)
+
+
+ggplot(al_central, aes(x = game_n,
+                       y = net_wins,
+                       color= team)) +
   geom_step(direction = "vh") +
   scale_y_continuous(position = "right") +
+  scale_color_manual(values = c("#27251F","#E31937","#0C2340","#BD9B60","#002B5C")) +
   ylab(NULL) +
   xlab(NULL) +
   theme_minimal() +
@@ -57,80 +64,10 @@ ggplot(chw_wins_losses, aes(x = game_n,
                                 margin = margin(25, 0, 0, 0))
   )
 
-ggsave("plots/mlb_wins_losses.png", 
+ggsave("plots/al_central_wins_losses.png", 
        width = 8, height = 8*(628/1200), dpi = 320)
 
-ggplot(data = fivethirtyeight_data_chw) +
-  # Win/draw/loss lines
-  geom_segment(aes(y = game_n, yend = game_n, x = x, xend = xend, color = win_status), lineend = "round", size = 0.6) +
-  scale_color_manual(values = c("#b32704","#199fa8"),
-                     #labels = c("Loss", "Draw", "Win"), 
-                     guide = NULL) +
-  ylab(NULL) +
-  theme_minimal() +
-  #labs(title = "Chicago White Sox wins and losses") +
-  theme(
-    plot.background = element_rect(fill = "grey97", color = "white"),
-    legend.position = c(0.45, 1.08),
-    legend.direction = "horizontal",
-    legend.key.size = unit(0.35, "line"),
-    legend.text = element_text(color = "grey10", size = 8),
-    legend.title = element_blank(),
-   # plot.margin = margin(20, 40, 10, 40),
-    panel.grid = element_blank(),
-    axis.text.y = element_text(color = "grey30", size = 7),
-    axis.title.y = element_text(color = "grey10", size = 7, margin = margin(10, 0, 0, 0)),
-    axis.ticks.y = element_line(color = "grey60", size = 0.25),
-    axis.text.x = element_blank(),
-    axis.title.x = element_blank(),
-    plot.title = element_text(size = 11, face = "bold"),
-    plot.subtitle = element_text(size = 8, 
-                                 margin = margin(0, 0, 40, 0)),
-    plot.caption = element_text(size = 5.5, color = "grey40", hjust = 0.5,
-                                margin = margin(25, 0, 0, 0)),
-    strip.text = element_blank()
-  )
-
-#ggsave("plots/mlb_wins_losses.png", 
- #      width = .55, height = 11, dpi = 320)
-
-# ggplot(fivethirtyeight_data_chw, 
-#        aes(x = date,
-#            y = win_value)) + 
-#   geom_point(aes(color = win_value>0),
-#              shape = 15) +
-#   scale_color_manual(values = c("darkred", "darkblue"),
-#                      #labels = c("Loss", "Draw", "Win"), 
-#                      guide = NULL) +
-#   xlab(NULL) +
-#   theme_minimal() +
-#   labs(title = "Chicago White Sox wins and losses") +
-#   theme(
-#     plot.background = element_rect(fill = "grey97", color = "white"),
-#     legend.position = c(0.45, 1.08),
-#     legend.direction = "horizontal",
-#     legend.key.size = unit(0.35, "line"),
-#     legend.text = element_text(color = "grey10", size = 8),
-#     legend.title = element_blank(),
-#     plot.margin = margin(20, 40, 10, 40),
-#     panel.grid = element_blank(),
-#     axis.text.x = element_text(color = "grey30", size = 7),
-#     axis.title.x = element_text(color = "grey10", size = 7, margin = margin(10, 0, 0, 0)),
-#     axis.ticks.x = element_line(color = "grey60", size = 0.25),
-#     axis.text.y = element_blank(),
-#     axis.title.y = element_blank(),
-#     plot.title = element_text(size = 11, face = "bold"),
-#     plot.subtitle = element_text(size = 8, 
-#                                  margin = margin(0, 0, 40, 0)),
-#     plot.caption = element_text(size = 5.5, color = "grey40", hjust = 0.5,
-#                                 margin = margin(25, 0, 0, 0)),
-#     strip.text = element_blank()
-#   )
-#ggsave("plots/mlb_wins_losses.png", 
- #      width = 15, height = 1, dpi = 320)
-
-
-
+# web text ----
 web_text <- paste(
   "---
 layout: page
@@ -138,61 +75,14 @@ title: Baseball
 permalink: /charts/baseball/
 ---
 
-## Chicago White Sox
+## AL Central
 
-![CHW]({{ site.baseurl }}/plots/mlb_wins_losses.png)
+![CHW]({{ site.baseurl }}/plots/al_central_wins_losses.png)
 
-Data from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo).
+Data updated hourly from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo).
 
 ",
 sep = ""
 )
 write_lines(web_text,"charts/baseball.md")
 
-
-  
-
-#count(fivethirtyeight_data_chw, win)
-
-# python stuff ----
-# mlb_host_url <- "http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&teamId=145"
-# path <- "schedule/games/"
-# 
-# #http://statsapi.mlb.com/api/v1/schedule/games/?sportId=1&date=03/06/2019
-# games <- GET(url = mlb_host_url)
-#              #path = path,
-# 
-# game <- content(games,"parsed")
-# 
-# game$teams[[145]]
-# 
-# 
-# game[["dates"]][[1]][["games"]][[1]][["officialDate"]]
-# 
-# mlb_team_stats(2021, "pitching", "regular")
-# 
-# 
-# standings <- get_reference_team_standings(2021)
-# 
-# 
-# py_install("MLB-StatsAPI", pip = TRUE)
-# py_run_string("import statsapi")
-# py_run_file("mlb.py")
-# 
-# 
-# wwc_outcomes <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-07-09/wwc_outcomes.csv")
-# 
-# # Assign line y and yend depending on win_status
-# winloss <- wwc_outcomes %>%
-#   group_by(team) %>%
-#   mutate(
-#     game_n = row_number(),
-#     y = case_when(
-#       win_status == "Lost" ~ -1.33,
-#       win_status == "Won" ~ 1.33,
-#       TRUE ~ 0.33),
-#     yend = case_when(
-#       win_status == "Lost" ~ 0.33,
-#       TRUE ~ -0.33)
-#   )
-# 

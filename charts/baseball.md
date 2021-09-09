@@ -4,10 +4,10 @@ title: Baseball
 permalink: /charts/baseball/
 ---
 
-## Chicago White Sox
+## AL Central
 
-![CHW]({{ site.baseurl }}/plots/mlb_wins_losses.png)
+![CHW]({{ site.baseurl }}/plots/al_central_wins_losses.png)
 
-Data from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo).
+Data updated hourly from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo).
 
 
