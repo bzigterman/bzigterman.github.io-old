@@ -23,7 +23,43 @@ fivethirtyeight_data_chw <- fivethirtyeight_data %>%
     xend = case_when(
       win_status == "L" ~ 0.33,
       TRUE ~ -0.33))
-    
+
+chw_wins_losses <- fivethirtyeight_data_chw %>%
+  select(date, win_status, win_value) %>%
+  mutate(wins = if_else(win_status == "W",1,0)) %>%
+  mutate(losses = if_else(win_status == "L",1,0)) %>%
+  mutate(win_sum = cumsum(wins)) %>%
+  mutate(loss_sum = cumsum(losses)) %>%
+  mutate(win_pct = win_sum/row_number()) %>%
+  mutate(net_wins = win_sum-loss_sum)
+
+ggplot(chw_wins_losses, aes(x = date,
+                            y = net_wins)) +
+  geom_step(direction = "vh") +
+  scale_y_continuous(position = "right") +
+  ylab(NULL) +
+  xlab(NULL) +
+  theme_minimal() +
+  labs(title = "Chicago White Sox net wins",
+       caption = "Source: FiveThirtyEight") +
+  theme(
+    plot.background = element_rect(fill = "grey99", color = "white"),
+    plot.margin = margin(20, 40, 10, 40),
+    panel.grid = element_blank(),
+    panel.grid.major.y = element_line(colour = "grey93"),
+    axis.text.y = element_text(color = "grey30", size = 7),
+    axis.title.y = element_text(color = "grey10", size = 7, margin = margin(10, 0, 0, 0)),
+    axis.ticks.y = element_line(color = "grey60", size = 0.25),
+    plot.title = element_text(size = 11, face = "bold"),
+    plot.subtitle = element_text(size = 8, 
+                                 margin = margin(0, 0, 40, 0)),
+    plot.caption = element_text(size = 5.5, color = "grey40", #hjust = 0.5,
+                                margin = margin(25, 0, 0, 0))
+  )
+
+ggsave("plots/mlb_wins_losses.png", 
+       width = 8, height = 8*(628/1200), dpi = 320)
+
 ggplot(data = fivethirtyeight_data_chw) +
   # Win/draw/loss lines
   geom_segment(aes(y = game_n, yend = game_n, x = x, xend = xend, color = win_status), lineend = "round", size = 0.6) +
@@ -55,8 +91,8 @@ ggplot(data = fivethirtyeight_data_chw) +
     strip.text = element_blank()
   )
 
-ggsave("plots/mlb_wins_losses.png", 
-       width = .55, height = 11, dpi = 320)
+#ggsave("plots/mlb_wins_losses.png", 
+ #      width = .55, height = 11, dpi = 320)
 
 # ggplot(fivethirtyeight_data_chw, 
 #        aes(x = date,
