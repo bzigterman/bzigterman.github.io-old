@@ -40,11 +40,11 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## United States
 
-As of Tuesday in the United States (vs. two weeks ago):
+As of Wednesday in the United States (vs. two weeks ago):
   
-- Average new cases: 155,000 (vs. 151,000) +2%↑
+- Average new cases: 152,000 (vs. 152,000) -1%↓
 - Hospitalized: 93,900 (vs. 94,500) -1%↓
-- Average new deaths: 1,470 (vs. 1,100) +34%↑
+- Average new deaths: 1,500 (vs. 1,140) +31%↑
 - Percent of the United States fully vaccinated: 52.5% (vs. 51%)
 - Average new vaccine doses: 826,000 (vs. 860,000)
 
@@ -56,10 +56,10 @@ As of Tuesday in the United States (vs. two weeks ago):
 
 ## World
 
-As of Tuesday (vs. two weeks ago):
+As of Wednesday (vs. two weeks ago):
   
-- Average new cases: 604,000 (vs. 658,000) -8%↓
-- Average new deaths: 9,530 (vs. 10,000) -5%↓
+- Average new cases: 584,000 (vs. 659,000) -11%↓
+- Average new deaths: 9,170 (vs. 10,100) -9%↓
 - Percent of the world fully vaccinated: 29.1% (vs. 24.6%)
 - Average new vaccine doses: 31,900,000 (vs. 35,400,000)
 
@@ -67,12 +67,12 @@ As of Tuesday (vs. two weeks ago):
 
 ## Case Acceleration
 
-As of Tuesday, the 14-day percent change in average new cases was:
+As of Wednesday, the 14-day percent change in average new cases was:
   
 - 12% in Champaign County
 - 6% in Illinois
-- 2% in the United States
-- -8% worldwide
+- -1% in the United States
+- -11% worldwide
 
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
@@ -80,11 +80,11 @@ This chart measures how quickly the average number of new cases is changing, or 
 
 ## Death Acceleration
 
-As of Tuesday, the 14-day percent change in average new deaths was:
+As of Wednesday, the 14-day percent change in average new deaths was:
   
 - 65% in Illinois
-- 34% in the United States
-- -5% worldwide
+- 31% in the United States
+- -9% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
 
