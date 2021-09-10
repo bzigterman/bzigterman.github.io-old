@@ -132,6 +132,7 @@ ggsave("plots/al_central_wins_losses.png",
        width = 8, height = 8*(628/1200), dpi = 320)
 
 # web text ----
+now <- now("US/Central")
 web_text <- paste(
   "---
 layout: page
@@ -145,7 +146,7 @@ permalink: /charts/baseball/
 
 ![CHW]({{ site.baseurl }}/plots/al_central_wins_losses.png)
 
-Data updated hourly from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo).
+Data updated hourly from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). Latest data: ",now,"
 
 ",
 sep = ""
