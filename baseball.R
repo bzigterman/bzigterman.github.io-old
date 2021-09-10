@@ -42,6 +42,7 @@ al_central <- full_join(chw,cle) %>%
   full_join(kcr) %>%
   full_join(min)
 
+# standings ----
 standings <- al_central %>%
   filter(!is.na(team_label)) %>%
   select(team_label, wins, losses, win_pct, games_played, games_remaining)
@@ -65,10 +66,18 @@ standings_table <- standings %>%
     games_played = "Played",
     games_remaining = "Remaining"
   ) %>%
-  tab_header(title = "AL Central Standings")
+  tab_header(title = "AL Central Standings") %>%
+  opt_table_font(font = c("verdana", "helvetica", "arial", "sans-serif")) %>%
+  tab_options(
+    table.width = pct(100),
+    table.font.size = px(12)
+  )
+standings_table
 
 standings_table_html <- as_raw_html(standings_table)
 
+
+# plot ----
 ggplot(al_central, aes(x = game_n,
                        y = net_wins,
                        color= team,
