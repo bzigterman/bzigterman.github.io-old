@@ -76,7 +76,7 @@ standings_table <- standings %>%
     wins = md("**W**"),
     losses = md("**L**"),
     win_pct = md("**Pct**"),
-    games_remaining = md("**Remaining**"),
+    games_remaining = md("**Left**"),
     last_ten = md("**Last 10**")
   ) %>%
   opt_table_font(font = c("menlo","monospace","verdana", "helvetica", "arial", "sans-serif")) %>%
