@@ -58,8 +58,8 @@ As of Thursday in the United States (vs. two weeks ago):
 
 As of Thursday (vs. two weeks ago):
   
-- Average new cases: 580,000 (vs. 661,000) -12%↓
-- Average new deaths: 9,100 (vs. 10,100) -10%↓
+- Average new cases: 585,000 (vs. 661,000) -12%↓
+- Average new deaths: 9,140 (vs. 10,100) -10%↓
 - Percent of the world fully vaccinated: 29.3% (vs. 24.7%)
 - Average new vaccine doses: 30,400,000 (vs. 36,400,000)
 
