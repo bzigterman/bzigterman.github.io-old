@@ -66,7 +66,6 @@ standings_table <- standings %>%
     games_played = "Played",
     games_remaining = "Remaining"
   ) %>%
-  tab_header(title = "AL Central Standings") %>%
   opt_table_font(font = c("verdana", "helvetica", "arial", "sans-serif")) %>%
   tab_options(
     table.width = pct(100),
