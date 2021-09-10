@@ -72,9 +72,9 @@ standings_table <- standings %>%
     decimals = 3
   ) %>%
   cols_align(
-  align = c("right"),
-  columns = last_ten
-) %>%
+    align = c("right"),
+    columns = last_ten
+  ) %>%
   cols_label(
     team_label = md("**Team**"),
     wins = md("**W**"),
