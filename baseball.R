@@ -29,16 +29,18 @@ get_team_records <- function(abbreviation) {
     mutate(games_played = cumsum(game_counter)) %>%
     mutate(games_remaining = 162-games_played) %>%
     mutate(team_label = if_else(games_played == max(na.omit(games_played)),team,NULL))  %>%
-    mutate(last_ten = paste(lag(result,9),
-                            lag(result,8),
-                            lag(result,7),
-                            lag(result,6),
-                            lag(result,5),
-                            lag(result,4),
-                            lag(result,3),
-                            lag(result,2),
-                            lag(result),
-                            result,
+    mutate(result_arrow = if_else(result == "W","▲",
+                                  if_else(result == "L","▼",""))) %>%
+    mutate(last_ten = paste(lag(result_arrow,9),
+                            lag(result_arrow,8),
+                            lag(result_arrow,7),
+                            lag(result_arrow,6),
+                            lag(result_arrow,5),
+                            lag(result_arrow,4),
+                            lag(result_arrow,3),
+                            lag(result_arrow,2),
+                            lag(result_arrow),
+                            result_arrow,
                             sep = "")) 
 }
 
