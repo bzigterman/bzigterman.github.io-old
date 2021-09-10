@@ -4,6 +4,7 @@ library(scales)
 library(httr)
 library(rio)
 library(gt)
+library(RColorBrewer)
 
 # get data ----
 fivethirtyeight_data_url <- "https://projects.fivethirtyeight.com/mlb-api/mlb_elo_latest.csv"
@@ -107,8 +108,10 @@ ggplot(al_central, aes(x = game_n,
   geom_text(aes(x = game_n + 5)) +
   scale_x_continuous(breaks = c(0,40, 81,121, 162)) +
   scale_y_continuous(position = "right") +
-  scale_color_manual(values = c("#27251F","#E31937","#0C2340","#BD9B60","#002B5C"),
+  scale_color_brewer(palette = "Set1",
                      guide = NULL) +
+ # scale_color_manual(values = c("#27251F","#E31937","#0C2340","#BD9B60","#002B5C"),
+   #                  guide = NULL) +
   coord_cartesian(xlim = c(0,162)) +
   theme_minimal() +
   labs(title = "Games Above .500",
