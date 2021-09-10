@@ -59,18 +59,20 @@ standings_table <- standings %>%
     decimals = 3
   ) %>%
   cols_label(
-    team_label = "Team",
-    wins = "W",
-    losses = "L",
-    win_pct = "Win %",
-    games_played = "Played",
-    games_remaining = "Remaining"
+    team_label = md("**Team**"),
+    wins = md("**W**"),
+    losses = md("**L**"),
+    win_pct = md("**Win %**"),
+    games_played = md("**Played**"),
+    games_remaining = md("**Remaining**")
   ) %>%
   opt_table_font(font = c("verdana", "helvetica", "arial", "sans-serif")) %>%
   tab_options(
     table.width = pct(100),
     table.font.size = px(12)
-  )
+  )  %>%
+  opt_table_lines(extent = "none")
+
 standings_table
 
 standings_table_html <- as_raw_html(standings_table)
