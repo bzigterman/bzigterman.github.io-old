@@ -19,11 +19,14 @@ get_team_records <- function(abbreviation) {
     select(date, game_n, result) %>%
     mutate(win = if_else(result == "W",1,0)) %>%
     mutate(loss = if_else(result == "L",1,0)) %>%
+    mutate(game_counter = if_else(result == "W",1,if_else(result == "L",1,NULL))) %>%
     mutate(wins = cumsum(win)) %>%
     mutate(losses = cumsum(loss)) %>%
     mutate(win_pct = wins/row_number()) %>%
     mutate(net_wins = wins-losses) %>%
-    mutate(team = abbreviation)
+    mutate(team = abbreviation) %>%
+    mutate(games_played = cumsum(game_counter)) %>%
+    mutate(team_label = if_else(games_played == max(na.omit(games_played)),team,NULL))
 }
 
 chw <- get_team_records("CHW")
@@ -37,32 +40,35 @@ al_central <- full_join(chw,cle) %>%
   full_join(kcr) %>%
   full_join(min)
 
-
 ggplot(al_central, aes(x = game_n,
                        y = net_wins,
-                       color= team)) +
+                       color= team,
+                       label = team_label)) +
+  geom_hline(yintercept = 0,
+             color = "grey10",
+             size = .2) +
   geom_step(direction = "vh") +
+  geom_text(aes(x = game_n + 5)) +
+  scale_x_continuous(breaks = c(0, 40, 81, 120, 162)) +
   scale_y_continuous(position = "right") +
-  scale_color_manual(values = c("#27251F","#E31937","#0C2340","#BD9B60","#002B5C")) +
-  ylab(NULL) +
-  xlab(NULL) +
+  scale_color_manual(values = c("#27251F","#E31937","#0C2340","#BD9B60","#002B5C"),
+                     guide = NULL) +
   theme_minimal() +
   labs(title = "Games Above .500",
-       caption = "Source: FiveThirtyEight") +
+       caption = "Source: FiveThirtyEight",
+       x = NULL,
+       y = NULL) +
   theme(
-    plot.background = element_rect(fill = "grey99", color = "white"),
+    plot.background = element_rect(fill = "white", color = "white"),
     #plot.margin = margin(20, 40, 10, 40),
     panel.grid = element_blank(),
     legend.title = element_blank(),
-    panel.grid.major.y = element_line(colour = "grey91"),
-    axis.text.y = element_text(color = "grey30", size = 7),
-    axis.title.y = element_text(color = "grey10", size = 7, margin = margin(10, 0, 0, 0)),
-    axis.ticks.y = element_line(color = "grey60", size = 0.25),
-    plot.title = element_text(size = 11, face = "bold"),
-    plot.subtitle = element_text(size = 8, 
-                                 margin = margin(0, 0, 40, 0)),
-    plot.caption = element_text(size = 5.5, color = "grey40", #hjust = 0.5,
-                                margin = margin(25, 0, 0, 0))
+    axis.ticks.x = element_line(color = "grey60", size = 0.25),
+    panel.grid.major.y = element_line(colour = "grey93"),
+    #axis.text.y = element_text(color = "grey30", size = 7),
+    #axis.title.x = element_text(color = "grey10", size = 7),
+    axis.ticks.y = element_line(color = "grey60"),
+    plot.caption = element_text(color = "grey40")
   )
 
 ggsave("plots/al_central_wins_losses.png", 
