@@ -28,7 +28,18 @@ get_team_records <- function(abbreviation) {
     mutate(team = abbreviation) %>%
     mutate(games_played = cumsum(game_counter)) %>%
     mutate(games_remaining = 162-games_played) %>%
-    mutate(team_label = if_else(games_played == max(na.omit(games_played)),team,NULL))
+    mutate(team_label = if_else(games_played == max(na.omit(games_played)),team,NULL))  %>%
+    mutate(last_ten = paste(lag(result,9),
+                            lag(result,8),
+                            lag(result,7),
+                            lag(result,6),
+                            lag(result,5),
+                            lag(result,4),
+                            lag(result,3),
+                            lag(result,2),
+                            lag(result),
+                            result,
+                            sep = "")) 
 }
 
 chw <- get_team_records("CHW")
@@ -45,15 +56,15 @@ al_central <- full_join(chw,cle) %>%
 # standings ----
 standings <- al_central %>%
   filter(!is.na(team_label)) %>%
-  select(team_label, wins, losses, win_pct, games_played, games_remaining)
+  select(team_label, wins, losses, win_pct, games_remaining, last_ten)
 
 standings_table <- standings %>%
   arrange(desc(win_pct)) %>%
   gt() %>%
-  tab_spanner(
-    label = "Games",
-    columns = c(games_played,games_remaining)
-  ) %>%
+  # tab_spanner(
+  #   label = "Games",
+  #   columns = c(games_played,games_remaining)
+  # ) %>%
   fmt_number(
     columns = win_pct,
     decimals = 3
@@ -63,10 +74,10 @@ standings_table <- standings %>%
     wins = md("**W**"),
     losses = md("**L**"),
     win_pct = md("**Win %**"),
-    games_played = md("**Played**"),
-    games_remaining = md("**Remaining**")
+    games_remaining = md("**Remaining**"),
+    last_ten = md("**Last 10**")
   ) %>%
-  opt_table_font(font = c("verdana", "helvetica", "arial", "sans-serif")) %>%
+  opt_table_font(font = c("menlo","monospace","verdana", "helvetica", "arial", "sans-serif")) %>%
   tab_options(
     table.width = pct(100),
     table.font.size = px(12)
