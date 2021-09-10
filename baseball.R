@@ -85,8 +85,10 @@ standings_table <- standings %>%
     last_ten = md("**Last 10**")
   ) %>%
   opt_table_font(font = c("menlo","monospace","verdana", "helvetica", "arial", "sans-serif")) %>%
+  opt_row_striping(row_striping = TRUE) %>%
   tab_options(
     table.width = pct(100),
+    data_row.padding = px(5),
     table.font.size = px(12)
   )  %>%
   opt_table_lines(extent = "none")
