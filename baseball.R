@@ -132,8 +132,9 @@ ggsave("plots/al_central_wins_losses.png",
        width = 8, height = 8*(628/1200), dpi = 320)
 
 # web text ----
-now <- as_datetime(now("US/Central"))
+now <- as_datetime(now())
 now_formatted <- strftime(x = now, 
+                          tz = "US/Central",
                           format = "%I:%M% %p")
 
 web_text <- paste(
