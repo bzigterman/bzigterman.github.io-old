@@ -71,6 +71,10 @@ standings_table <- standings %>%
     columns = win_pct,
     decimals = 3
   ) %>%
+  cols_align(
+  align = c("right"),
+  columns = last_ten
+) %>%
   cols_label(
     team_label = md("**Team**"),
     wins = md("**W**"),
