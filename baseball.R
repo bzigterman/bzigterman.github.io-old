@@ -73,7 +73,7 @@ standings_table <- standings %>%
     team_label = md("**Team**"),
     wins = md("**W**"),
     losses = md("**L**"),
-    win_pct = md("**Win %**"),
+    win_pct = md("**Pct**"),
     games_remaining = md("**Remaining**"),
     last_ten = md("**Last 10**")
   ) %>%
