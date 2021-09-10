@@ -53,6 +53,7 @@ ggplot(al_central, aes(x = game_n,
   scale_y_continuous(position = "right") +
   scale_color_manual(values = c("#27251F","#E31937","#0C2340","#BD9B60","#002B5C"),
                      guide = NULL) +
+  coord_cartesian(xlim = c(0,162)) +
   theme_minimal() +
   labs(title = "Games Above .500",
        caption = "Source: FiveThirtyEight",
