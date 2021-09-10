@@ -3,6 +3,7 @@ library(lubridate)
 library(scales)
 library(httr)
 library(rio)
+library(gt)
 
 # get data ----
 fivethirtyeight_data_url <- "https://projects.fivethirtyeight.com/mlb-api/mlb_elo_latest.csv"
@@ -26,6 +27,7 @@ get_team_records <- function(abbreviation) {
     mutate(net_wins = wins-losses) %>%
     mutate(team = abbreviation) %>%
     mutate(games_played = cumsum(game_counter)) %>%
+    mutate(games_remaining = 162-games_played) %>%
     mutate(team_label = if_else(games_played == max(na.omit(games_played)),team,NULL))
 }
 
@@ -39,6 +41,33 @@ al_central <- full_join(chw,cle) %>%
   full_join(det) %>%
   full_join(kcr) %>%
   full_join(min)
+
+standings <- al_central %>%
+  filter(!is.na(team_label)) %>%
+  select(team_label, wins, losses, win_pct, games_played, games_remaining)
+
+standings_table <- standings %>%
+  arrange(desc(win_pct)) %>%
+  gt() %>%
+  tab_spanner(
+    label = "Games",
+    columns = c(games_played,games_remaining)
+  ) %>%
+  fmt_number(
+    columns = win_pct,
+    decimals = 3
+  ) %>%
+  cols_label(
+    team_label = "Team",
+    wins = "W",
+    losses = "L",
+    win_pct = "Win %",
+    games_played = "Played",
+    games_remaining = "Remaining"
+  ) %>%
+  tab_header(title = "AL Central Standings")
+
+standings_table_html <- as_raw_html(standings_table)
 
 ggplot(al_central, aes(x = game_n,
                        y = net_wins,
@@ -84,6 +113,8 @@ permalink: /charts/baseball/
 ---
 
 ## AL Central
+
+",standings_table_html,"
 
 ![CHW]({{ site.baseurl }}/plots/al_central_wins_losses.png)
 
