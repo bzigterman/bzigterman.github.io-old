@@ -168,7 +168,7 @@ mlb_games <- full_join(al_central, al_east) %>%
   full_join(nl_east) %>%
   full_join(nl_west)
 
-# al central standings ----
+# mlb standings ----
 old_standings <- read_csv("data/standings.csv",
                           col_types = cols(
                             team_label = col_character(),
@@ -189,28 +189,28 @@ if (standings_the_same != TRUE) {
 
 mlb_standings <- mlb_games %>%
   filter(!is.na(team_label)) %>%
-  select(logo_url, team_label, wins, losses, win_pct, win_pct_text, games_remaining, last_ten, division)
+  select(team_label, wins, losses, win_pct, win_pct_text, games_remaining, last_ten, division)
 
 standings_table <- mlb_standings %>%
   group_by(division) %>%
   arrange(division,desc(win_pct)) %>%
   gt() %>%
-  text_transform(
-    locations = cells_body(columns = logo_url),
-    fn = function(logo_url) {
-      web_image(
-        url = logo_url,
-        height = px(12)
-      )
-    }
-  ) %>%
+  # text_transform(
+  #   locations = cells_body(columns = logo_url),
+  #   fn = function(logo_url) {
+  #     web_image(
+  #       url = logo_url,
+  #       height = px(12)
+  #     )
+  #   }
+  # ) %>%
   cols_hide(columns =win_pct) %>%
   cols_align(
     align = c("right"),
     columns = c(last_ten,win_pct_text)
   ) %>%
   cols_label(
-    logo_url = "",
+    #logo_url = "",
     team_label = md("**Team**"),
     wins = md("**W**"),
     losses = md("**L**"),
