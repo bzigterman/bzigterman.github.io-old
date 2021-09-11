@@ -4,6 +4,7 @@ library(scales)
 library(httr)
 library(rio)
 library(gt)
+library(cowplot)
 library(RColorBrewer)
 
 # get data ----
@@ -300,23 +301,56 @@ ggsave("plots/nl_west_wins_losses.png",
 
 
 # leagues winning pct plot ----
-mlb_standings_formatted <- mlb_standings %>%
-  group_by(league) %>%
-  arrange(desc(win_pct))
-ggplot(mlb_standings, aes(x = reorder(team_label, -win_pct), 
-                                    y = win_pct,
-                                    fill = league)) +
+mlb_min <-  .9*min(mlb_standings$win_pct)
+mlb_max <- 1.05*max(mlb_standings$win_pct)
+al_standings <- mlb_standings %>%
+  filter(league == "AL") %>%
+  select(team_label, win_pct)
+nl_standings <- mlb_standings %>%
+  filter(league == "NL") %>%
+  select(team_label, win_pct)
+al_plot <- ggplot(al_standings, aes(x = reorder(team_label, win_pct), 
+                          y = win_pct)) +
   geom_col() +
+  coord_cartesian(ylim = c(mlb_min,mlb_max)) +
   geom_text(aes(label = team_label),
             family = "mono",
             color = "white",
             angle = 270,
-            size = 1.25,
-            nudge_y = -.012) +
-  scale_fill_manual(values = c("darkred","darkblue")) +
+            size = 4,
+            nudge_y = -.025) +
+  scale_fill_manual(values = c("darkred","darkblue"),
+                    guide = NULL) +
   theme_minimal() +
   labs(x = NULL,
-       y = NULL) +
+       y = NULL,
+       title = "American League") +
+  theme(    
+    legend.title = element_blank(),
+    plot.title = element_text(hjust = 1),
+    plot.background = element_rect(fill = "white", color = "white"),
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    legend.position = "bottom",
+    legend.key.size = unit(.1,"in"),
+    legend.box.spacing = unit(0,"in")
+  )
+nl_plot <- ggplot(nl_standings, aes(x = reorder(team_label, -win_pct), 
+                                    y = win_pct)) +
+  geom_col() +
+  coord_cartesian(ylim = c(mlb_min,mlb_max)) +
+  geom_text(aes(label = team_label),
+            family = "mono",
+            color = "white",
+            angle = 270,
+            size = 4,
+            nudge_y = -.025) +
+  scale_fill_manual(values = c("darkred","darkblue"),
+                    guide = NULL) +
+  theme_minimal() +
+  labs(x = NULL,
+       y = NULL,
+       title = "National Leage") +
   theme(    
     legend.title = element_blank(),
     plot.background = element_rect(fill = "white", color = "white"),
@@ -326,8 +360,11 @@ ggplot(mlb_standings, aes(x = reorder(team_label, -win_pct),
     legend.key.size = unit(.1,"in"),
     legend.box.spacing = unit(0,"in")
   )
+plot_grid(al_plot,nl_plot,
+          align = "hv") 
+  
 ggsave("plots/mlb_team_rank.png",
-       width = 2, height = 4,
+       width = 8, height = 8*(628/1200),
        dpi = 320)
 
 # web text ----
