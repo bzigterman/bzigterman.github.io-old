@@ -29,13 +29,13 @@ get_team_records <- function(abbreviation) {
     mutate(net_wins = wins-losses) %>%
     mutate(team = case_when(
       abbreviation == "CHW" ~ "CWS",
-      abbreviation == "KCR" ~ "KC",
-      abbreviation == "TBD" ~ "TB",
+      abbreviation == "KCR" ~ "KC ",
+      abbreviation == "TBD" ~ "TB ",
       abbreviation == "ANA" ~ "LAA",
       abbreviation == "FLA" ~ "MIA",
       abbreviation == "WSN" ~ "WSH",
-      abbreviation == "SFG" ~ "SF",
-      abbreviation == "SDP" ~ "SD",
+      abbreviation == "SFG" ~ "SF ",
+      abbreviation == "SDP" ~ "SD ",
       TRUE ~ abbreviation
     )
     ) %>%
