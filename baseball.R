@@ -59,13 +59,20 @@ al_central <- full_join(chw,cle) %>%
   mutate(division = "AL Central")
 
 # standings ----
-old_standings <- read_csv("data/standings.csv")
+old_standings <- read_csv("data/standings.csv",
+                          col_types = cols(
+                            team_label = col_character(),
+                            wins = col_number(),
+                            losses = col_number(),
+                            win_pct_text = col_character(),
+                            games_remaining = col_integer(),
+                            last_ten = col_character())
+)
 
 standings <- al_central %>%
   filter(!is.na(team_label)) %>%
   select(team_label, wins, losses, win_pct_text, games_remaining, last_ten)
-standings_the_same <- all_equal(standings, old_standings,
-                                convert = TRUE)
+standings_the_same <- all_equal(standings, old_standings)
 if (standings_the_same != TRUE) { 
   write_csv(standings,"data/standings.csv")
 }
