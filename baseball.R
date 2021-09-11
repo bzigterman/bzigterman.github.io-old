@@ -218,7 +218,7 @@ standings_table <- mlb_standings %>%
     games_remaining = md("**Left**"),
     last_ten = md("**Last 10**")
   ) %>%
-  opt_table_font(font = c("menlo","consolas","monospace","verdana", "helvetica", "arial", "sans-serif")) %>%
+  opt_table_font(font = c("calibri","menlo","consolas","monospace","verdana", "helvetica", "arial", "sans-serif")) %>%
   opt_row_striping(row_striping = TRUE) %>%
   tab_options(
     table.width = pct(100),
