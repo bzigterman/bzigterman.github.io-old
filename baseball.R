@@ -173,11 +173,12 @@ nl_west <- full_join(team1,team2) %>%
   mutate(division = "NL West") %>%
   mutate(league = "NL")
 
-mlb_games <- full_join(al_central, al_east) %>%
-  full_join(al_west) %>%
-  full_join(nl_central) %>%
-  full_join(nl_east) %>%
+al_games <- full_join(al_central, al_east) %>%
+  full_join(al_west)
+nl_games <- full_join(nl_central, nl_east) %>%
   full_join(nl_west)
+
+mlb_games <- full_join(al_games, nl_games)
 
 # mlb standings ----
 old_standings <- read_csv("data/standings.csv",
@@ -190,7 +191,7 @@ old_standings <- read_csv("data/standings.csv",
                             last_ten = col_character()),
                           trim_ws = FALSE
 )
-
+#old_standings <- as_tibble(2)
 standings_check <- mlb_games %>%
   filter(!is.na(team_label)) %>%
   select(team_label, wins, losses, win_pct_text, games_remaining, last_ten)
@@ -201,7 +202,7 @@ if (standings_the_same != TRUE) {
 
 mlb_standings <- mlb_games %>%
   filter(!is.na(team_label)) %>%
-  select(team_label, wins, losses, win_pct, win_pct_text, games_remaining, last_ten, division)
+  select(team_label, wins, losses, win_pct, win_pct_text, games_remaining, last_ten, division, league)
 
 standings_table <- mlb_standings %>%
   group_by(division) %>%
@@ -216,7 +217,7 @@ standings_table <- mlb_standings %>%
   #     )
   #   }
   # ) %>%
-  cols_hide(columns =win_pct) %>%
+  cols_hide(columns = c(win_pct, league)) %>%
   cols_align(
     align = c("right"),
     columns = c(last_ten,win_pct_text)
@@ -242,7 +243,7 @@ standings_table <- mlb_standings %>%
 standings_table
 standings_table_html <- as_raw_html(standings_table)
 
-# plots ----
+# games above 500 plots ----
 standings_plot <- function(division) {
   ggplot(division, aes(x = game_n,
                        y = net_wins,
@@ -298,6 +299,35 @@ ggsave("plots/nl_west_wins_losses.png",
        width = 8, height = 8*(628/1200), dpi = 320)
 
 
+# leagues winning pct plot ----
+mlb_standings_formatted <- mlb_standings %>%
+  group_by(league) %>%
+  arrange(desc(win_pct))
+ggplot(mlb_standings, aes(x = reorder(team_label, -win_pct), 
+                                    y = win_pct,
+                                    fill = league)) +
+  geom_col() +
+  geom_text(aes(label = team_label),
+            family = "mono",
+            color = "white",
+            angle = 90,
+            size = 2.5,
+            nudge_y = -.015) +
+  scale_fill_manual(values = c("darkred","darkblue")) +
+  theme_minimal() +
+  labs(x = NULL,
+       y = NULL) +
+  theme(    
+    legend.title = element_blank(),
+    plot.background = element_rect(fill = "white", color = "white"),
+    panel.grid = element_blank(),
+    axis.text = element_blank(),
+    legend.position = c(.9,.9)
+  )
+ggsave("plots/mlb_team_rank.png",
+       width = 3, height = 6,
+       dpi = 320)
+
 # web text ----
 now <- as_datetime(now())
 now_formatted <- strftime(x = now, 
@@ -315,27 +345,31 @@ permalink: /charts/baseball/
 
 ### AL Central
 
-![CHW]({{ site.baseurl }}/plots/al_central_wins_losses.png)
+![AL Central]({{ site.baseurl }}/plots/al_central_wins_losses.png)
 
 ### AL East
 
-![CHW]({{ site.baseurl }}/plots/al_east_wins_losses.png)
+![AL East]({{ site.baseurl }}/plots/al_east_wins_losses.png)
 
 ### AL West
 
-![CHW]({{ site.baseurl }}/plots/al_west_wins_losses.png)
+![AL West]({{ site.baseurl }}/plots/al_west_wins_losses.png)
 
 ### NL Central
 
-![CHW]({{ site.baseurl }}/plots/nl_central_wins_losses.png)
+![NL Central]({{ site.baseurl }}/plots/nl_central_wins_losses.png)
 
 ### NL East
 
-![CHW]({{ site.baseurl }}/plots/nl_east_wins_losses.png)
+![NL East]({{ site.baseurl }}/plots/nl_east_wins_losses.png)
 
 ### NL West
 
-![CHW]({{ site.baseurl }}/plots/nl_west_wins_losses.png)
+![NL West]({{ site.baseurl }}/plots/nl_west_wins_losses.png)
+
+## MLB
+
+![MLB]({{ site.baseurl }}/plots/mlb_team_rank.png)
 
 Source: [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). Latest data: ",now_formatted," CT
 

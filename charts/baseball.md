@@ -222,28 +222,32 @@ permalink: /charts/baseball/
 
 ### AL Central
 
-![CHW]({{ site.baseurl }}/plots/al_central_wins_losses.png)
+![AL Central]({{ site.baseurl }}/plots/al_central_wins_losses.png)
 
 ### AL East
 
-![CHW]({{ site.baseurl }}/plots/al_east_wins_losses.png)
+![AL East]({{ site.baseurl }}/plots/al_east_wins_losses.png)
 
 ### AL West
 
-![CHW]({{ site.baseurl }}/plots/al_west_wins_losses.png)
+![AL West]({{ site.baseurl }}/plots/al_west_wins_losses.png)
 
 ### NL Central
 
-![CHW]({{ site.baseurl }}/plots/nl_central_wins_losses.png)
+![NL Central]({{ site.baseurl }}/plots/nl_central_wins_losses.png)
 
 ### NL East
 
-![CHW]({{ site.baseurl }}/plots/nl_east_wins_losses.png)
+![NL East]({{ site.baseurl }}/plots/nl_east_wins_losses.png)
 
 ### NL West
 
-![CHW]({{ site.baseurl }}/plots/nl_west_wins_losses.png)
+![NL West]({{ site.baseurl }}/plots/nl_west_wins_losses.png)
 
-Data updated hourly from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). Latest data: 02:32 PM CT
+## MLB
+
+![MLB]({{ site.baseurl }}/plots/mlb_team_rank.png)
+
+Source: [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). Latest data: 01:13 PM CT
 
 
