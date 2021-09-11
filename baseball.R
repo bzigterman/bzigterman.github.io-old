@@ -27,7 +27,18 @@ get_team_records <- function(abbreviation) {
     mutate(win_pct = wins/row_number()) %>%
     mutate(win_pct_text = paste(".",round(win_pct*1000),sep = "")) %>%
     mutate(net_wins = wins-losses) %>%
-    mutate(team = abbreviation) %>%
+    mutate(team = case_when(
+      abbreviation == "CHW" ~ "CWS",
+      abbreviation == "KCR" ~ "KC",
+      abbreviation == "TBD" ~ "TB",
+      abbreviation == "ANA" ~ "LAA",
+      abbreviation == "FLA" ~ "MIA",
+      abbreviation == "WSN" ~ "WSH",
+      abbreviation == "SFG" ~ "SF",
+      abbreviation == "SDP" ~ "SD",
+      TRUE ~ abbreviation
+    )
+    ) %>%
     mutate(games_played = cumsum(game_counter)) %>%
     mutate(games_remaining = sum(is.na(result))) %>%
     mutate(team_label = if_else(games_played == max(na.omit(games_played)),team,NULL))  %>%
@@ -48,15 +59,13 @@ get_team_records <- function(abbreviation) {
 
 ## al central ----
 team1 <- get_team_records("CHW") %>%
-  mutate(logo_url = "https://www.mlbstatic.com/team-logos/145.svg") %>%
-  mutate(team = "CWS")
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/145.svg")
 team2 <- get_team_records("CLE") %>%
   mutate(logo_url = "https://www.mlbstatic.com/team-logos/114.svg")
 team3 <- get_team_records("DET") %>%
   mutate(logo_url = "https://www.mlbstatic.com/team-logos/116.svg")
 team4 <- get_team_records("KCR") %>%
-  mutate(logo_url = "https://www.mlbstatic.com/team-logos/118.svg") %>%
-  mutate(team = "KC")
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/118.svg")
 team5 <- get_team_records("MIN")  %>%
   mutate(logo_url = "https://www.mlbstatic.com/team-logos/142.svg")
 
@@ -70,8 +79,7 @@ al_central <- full_join(team1,team2) %>%
 ## al east ----
 
 team1 <- get_team_records("TBD") %>%
-  mutate(logo_url = "https://www.mlbstatic.com/team-logos/139.svg") %>%
-  mutate(team = "KC")
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/139.svg")
 team2 <- get_team_records("BOS") %>%
   mutate(logo_url = "https://www.mlbstatic.com/team-logos/111.svg")
 team3 <- get_team_records("NYY") %>%
@@ -97,8 +105,7 @@ team2 <- get_team_records("OAK") %>%
 team3 <- get_team_records("SEA") %>%
   mutate(logo_url = "https://www.mlbstatic.com/team-logos/136.svg")
 team4 <- get_team_records("ANA") %>%
-  mutate(logo_url = "https://www.mlbstatic.com/team-logos/108.svg") %>%
-  mutate(team = "LAA")
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/108.svg")
 team5 <- get_team_records("TEX") %>%
   mutate(logo_url = "https://www.mlbstatic.com/team-logos/140.svg")
 
@@ -136,11 +143,9 @@ team2 <- get_team_records("PHI") %>%
 team3 <- get_team_records("NYM") %>%
   mutate(logo_url = "https://www.mlbstatic.com/team-logos/121.svg")
 team4 <- get_team_records("FLA") %>%
-  mutate(logo_url = "https://www.mlbstatic.com/team-logos/146.svg") %>%
-  mutate(team = "MIA")
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/146.svg")
 team5 <- get_team_records("WSN") %>%
-  mutate(logo_url = "https://www.mlbstatic.com/team-logos/120.svg") %>%
-  mutate(team = "WSH")
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/120.svg")
 
 nl_east <- full_join(team1,team2) %>%
   full_join(team3) %>%
@@ -151,13 +156,11 @@ nl_east <- full_join(team1,team2) %>%
 
 ## nl west ----
 team1 <- get_team_records("SFG") %>%
-  mutate(logo_url = "https://www.mlbstatic.com/team-logos/137.svg") %>%
-  mutate(team = "SF")
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/137.svg")
 team2 <- get_team_records("LAD") %>%
   mutate(logo_url = "https://www.mlbstatic.com/team-logos/119.svg")
 team3 <- get_team_records("SDP") %>%
-  mutate(logo_url = "https://www.mlbstatic.com/team-logos/135.svg") %>%
-  mutate(team = "SD")
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/135.svg")
 team4 <- get_team_records("COL") %>%
   mutate(logo_url = "https://www.mlbstatic.com/team-logos/115.svg")
 team5 <- get_team_records("ARI") %>%
@@ -219,12 +222,12 @@ standings_table <- mlb_standings %>%
   ) %>%
   cols_label(
     #logo_url = "",
-    team_label = md("**Team**"),
-    wins = md("**W**"),
-    losses = md("**L**"),
-    win_pct_text = md("**Pct**"),
-    games_remaining = md("**Left**"),
-    last_ten = md("**Last 10**")
+    team_label = "Team",
+    wins = "W",
+    losses = "L",
+    win_pct_text = "Pct",
+    games_remaining = "Left",
+    last_ten = "Last 10"
   ) %>%
   opt_table_font(font = c("verdana","calibri","menlo","consolas","monospace","helvetica", "arial", "sans-serif")) %>%
   opt_row_striping(row_striping = TRUE) %>%
@@ -233,7 +236,8 @@ standings_table <- mlb_standings %>%
     data_row.padding = px(3),
     table.font.size = px(11)
   )  %>%
-  opt_table_lines(extent = "none")
+  opt_table_lines(extent = "none") %>%
+  opt_all_caps(all_caps = TRUE)
 standings_table
 standings_table_html <- as_raw_html(standings_table)
 
