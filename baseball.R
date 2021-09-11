@@ -311,8 +311,8 @@ ggplot(mlb_standings, aes(x = reorder(team_label, -win_pct),
             family = "mono",
             color = "white",
             angle = 270,
-            size = 2.5,
-            nudge_y = -.015) +
+            size = 1.25,
+            nudge_y = -.012) +
   scale_fill_manual(values = c("darkred","darkblue")) +
   theme_minimal() +
   labs(x = NULL,
@@ -322,11 +322,13 @@ ggplot(mlb_standings, aes(x = reorder(team_label, -win_pct),
     plot.background = element_rect(fill = "white", color = "white"),
     panel.grid = element_blank(),
     axis.text = element_blank(),
-    legend.position = c(.9,.9)
+    legend.position = "bottom",
+    legend.key.size = unit(.1,"in"),
+    legend.box.spacing = unit(0,"in")
   )
 ggsave("plots/mlb_team_rank.png",
-       width = 3, height = 6,
-       dpi = 160)
+       width = 2, height = 4,
+       dpi = 320)
 
 # web text ----
 now <- as_datetime(now())
