@@ -305,10 +305,10 @@ mlb_min <-  .9*min(mlb_standings$win_pct)
 mlb_max <- 1.05*max(mlb_standings$win_pct)
 al_standings <- mlb_standings %>%
   filter(league == "AL") %>%
-  select(team_label, win_pct)
+  select(team_label, win_pct, win_pct_text)
 nl_standings <- mlb_standings %>%
   filter(league == "NL") %>%
-  select(team_label, win_pct)
+  select(team_label, win_pct, win_pct_text)
 al_plot <- ggplot(al_standings, aes(x = reorder(team_label, win_pct), 
                           y = win_pct)) +
   geom_col(fill = "darkred") +
@@ -325,6 +325,7 @@ al_plot <- ggplot(al_standings, aes(x = reorder(team_label, win_pct),
        title = "American League") +
   theme(    
     legend.title = element_blank(),
+    panel.grid.major.y = element_line(colour = "grey93"),
     plot.title = element_text(hjust = 1),
     plot.background = element_rect(fill = "white", color = "white"),
     panel.grid = element_blank(),
@@ -343,6 +344,7 @@ nl_plot <- ggplot(nl_standings, aes(x = reorder(team_label, -win_pct),
             angle = 270,
             size = 4,
             nudge_y = -.025) +
+  scale_y_continuous(labels = label_comma(accuracy = .001)) +
   theme_minimal() +
   labs(x = NULL,
        y = NULL,
@@ -351,7 +353,8 @@ nl_plot <- ggplot(nl_standings, aes(x = reorder(team_label, -win_pct),
     legend.title = element_blank(),
     plot.background = element_rect(fill = "white", color = "white"),
     panel.grid = element_blank(),
-    axis.text = element_blank(),
+    panel.grid.major.y = element_line(colour = "grey93"),
+    axis.text.x = element_blank(),
     legend.position = "bottom",
     legend.key.size = unit(.1,"in"),
     legend.box.spacing = unit(0,"in")
