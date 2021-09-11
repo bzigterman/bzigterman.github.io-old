@@ -47,11 +47,16 @@ get_team_records <- function(abbreviation) {
 }
 
 ## al central ----
-team1 <- get_team_records("CHW")
-team2 <- get_team_records("CLE")
-team3 <- get_team_records("DET")
-team4 <- get_team_records("KCR")
-team5 <- get_team_records("MIN")
+team1 <- get_team_records("CHW") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/145.svg")
+team2 <- get_team_records("CLE") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/114.svg")
+team3 <- get_team_records("DET") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/116.svg")
+team4 <- get_team_records("KCR") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/118.svg")
+team5 <- get_team_records("MIN")  %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/142.svg")
 
 al_central <- full_join(team1,team2) %>%
   full_join(team3) %>%
@@ -62,11 +67,16 @@ al_central <- full_join(team1,team2) %>%
 
 ## al east ----
 
-team1 <- get_team_records("TBD")
-team2 <- get_team_records("BOS")
-team3 <- get_team_records("NYY")
-team4 <- get_team_records("TOR")
-team5 <- get_team_records("BAL")
+team1 <- get_team_records("TBD") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/139.svg")
+team2 <- get_team_records("BOS") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/111.svg")
+team3 <- get_team_records("NYY") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/147.svg")
+team4 <- get_team_records("TOR") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/141.svg")
+team5 <- get_team_records("BAL") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/110.svg")
 
 al_east <- full_join(team1,team2) %>%
   full_join(team3) %>%
@@ -77,11 +87,16 @@ al_east <- full_join(team1,team2) %>%
 
 ## al west ----
 
-team1 <- get_team_records("HOU")
-team2 <- get_team_records("OAK")
-team3 <- get_team_records("SEA")
-team4 <- get_team_records("ANA")
-team5 <- get_team_records("TEX")
+team1 <- get_team_records("HOU") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/117.svg")
+team2 <- get_team_records("OAK") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/133.svg")
+team3 <- get_team_records("SEA") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/136.svg")
+team4 <- get_team_records("ANA") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/108.svg")
+team5 <- get_team_records("TEX") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/140.svg")
 
 al_west <- full_join(team1,team2) %>%
   full_join(team3) %>%
@@ -91,11 +106,16 @@ al_west <- full_join(team1,team2) %>%
   mutate(league = "AL")
 
 ## nl central ----
-team1 <- get_team_records("MIL")
-team2 <- get_team_records("CHC")
-team3 <- get_team_records("STL")
-team4 <- get_team_records("CIN")
-team5 <- get_team_records("PIT")
+team1 <- get_team_records("MIL") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/158.svg")
+team2 <- get_team_records("CHC") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/112.svg")
+team3 <- get_team_records("STL") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/138.svg")
+team4 <- get_team_records("CIN") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/113.svg")
+team5 <- get_team_records("PIT") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/134.svg")
 
 nl_central <- full_join(team1,team2) %>%
   full_join(team3) %>%
@@ -105,11 +125,16 @@ nl_central <- full_join(team1,team2) %>%
   mutate(league = "NL")
 
 ## nl east ----
-team1 <- get_team_records("ATL")
-team2 <- get_team_records("PHI")
-team3 <- get_team_records("NYM")
-team4 <- get_team_records("FLA")
-team5 <- get_team_records("WSN")
+team1 <- get_team_records("ATL") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/144.svg")
+team2 <- get_team_records("PHI") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/143.svg")
+team3 <- get_team_records("NYM") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/121.svg")
+team4 <- get_team_records("FLA") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/146.svg")
+team5 <- get_team_records("WSN") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/120.svg")
 
 nl_east <- full_join(team1,team2) %>%
   full_join(team3) %>%
@@ -119,11 +144,16 @@ nl_east <- full_join(team1,team2) %>%
   mutate(league = "NL")
 
 ## nl west ----
-team1 <- get_team_records("SFG")
-team2 <- get_team_records("LAD")
-team3 <- get_team_records("SDP")
-team4 <- get_team_records("COL")
-team5 <- get_team_records("ARI")
+team1 <- get_team_records("SFG") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/137.svg")
+team2 <- get_team_records("LAD") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/119.svg")
+team3 <- get_team_records("SDP") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/135.svg")
+team4 <- get_team_records("COL") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/115.svg")
+team5 <- get_team_records("ARI") %>%
+  mutate(logo_url = "https://www.mlbstatic.com/team-logos/109.svg")
 
 nl_west <- full_join(team1,team2) %>%
   full_join(team3) %>%
@@ -159,18 +189,28 @@ if (standings_the_same != TRUE) {
 
 mlb_standings <- mlb_games %>%
   filter(!is.na(team_label)) %>%
-  select(team_label, wins, losses, win_pct, win_pct_text, games_remaining, last_ten, division)
+  select(logo_url, team_label, wins, losses, win_pct, win_pct_text, games_remaining, last_ten, division)
 
 standings_table <- mlb_standings %>%
   group_by(division) %>%
   arrange(division,desc(win_pct)) %>%
   gt() %>%
+  text_transform(
+    locations = cells_body(columns = logo_url),
+    fn = function(logo_url) {
+      web_image(
+        url = logo_url,
+        height = px(12)
+      )
+    }
+  ) %>%
   cols_hide(columns =win_pct) %>%
   cols_align(
     align = c("right"),
     columns = c(last_ten,win_pct_text)
   ) %>%
   cols_label(
+    logo_url = "",
     team_label = md("**Team**"),
     wins = md("**W**"),
     losses = md("**L**"),
