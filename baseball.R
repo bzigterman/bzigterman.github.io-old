@@ -57,9 +57,16 @@ al_central <- full_join(chw,cle) %>%
   full_join(min)
 
 # standings ----
+old_standings <- read_csv("data/standings.csv")
+
 standings <- al_central %>%
   filter(!is.na(team_label)) %>%
   select(team_label, wins, losses, win_pct, games_remaining, last_ten)
+standings_the_same <- all_equal(standings, old_standings,
+                                convert = TRUE)
+if (standings_the_same == FALSE) { 
+  write_csv(standings,"data/standings.csv")
+}
 
 standings_table <- standings %>%
   arrange(desc(win_pct)) %>%
@@ -93,10 +100,7 @@ standings_table <- standings %>%
   )  %>%
   opt_table_lines(extent = "none")
 
-standings_table
-
 standings_table_html <- as_raw_html(standings_table)
-
 
 # plot ----
 ggplot(al_central, aes(x = game_n,
@@ -112,8 +116,8 @@ ggplot(al_central, aes(x = game_n,
   scale_y_continuous(position = "right") +
   scale_color_brewer(palette = "Set1",
                      guide = NULL) +
- # scale_color_manual(values = c("#27251F","#E31937","#0C2340","#BD9B60","#002B5C"),
-   #                  guide = NULL) +
+  # scale_color_manual(values = c("#27251F","#E31937","#0C2340","#BD9B60","#002B5C"),
+  #                  guide = NULL) +
   coord_cartesian(xlim = c(0,162)) +
   theme_minimal() +
   labs(title = "Games Above .500",
@@ -155,10 +159,11 @@ permalink: /charts/baseball/
 
 ![CHW]({{ site.baseurl }}/plots/al_central_wins_losses.png)
 
-Data updated hourly from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). Last checked: ",now_formatted," CT
+Data updated hourly from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). Latest data: ",now_formatted," CT
 
 ",
 sep = ""
 )
-write_lines(web_text,"charts/baseball.md")
-
+if (standings_the_same == FALSE) {
+  write_lines(web_text,"charts/baseball.md")
+}
