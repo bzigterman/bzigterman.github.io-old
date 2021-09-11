@@ -244,6 +244,6 @@ permalink: /charts/baseball/
 
 ![CHW]({{ site.baseurl }}/plots/nl_west_wins_losses.png)
 
-Data updated hourly from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). Latest data: 01:46 PM CT
+Data updated hourly from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). Latest data: 02:13 PM CT
 
 
