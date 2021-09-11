@@ -222,7 +222,7 @@ standings_table <- mlb_standings %>%
   opt_row_striping(row_striping = TRUE) %>%
   tab_options(
     table.width = pct(100),
-    data_row.padding = px(5),
+    data_row.padding = px(3),
     table.font.size = px(11)
   )  %>%
   opt_table_lines(extent = "none")
