@@ -326,7 +326,7 @@ ggplot(mlb_standings, aes(x = reorder(team_label, -win_pct),
   )
 ggsave("plots/mlb_team_rank.png",
        width = 3, height = 6,
-       dpi = 320)
+       dpi = 160)
 
 # web text ----
 now <- as_datetime(now())
