@@ -25,6 +25,7 @@ get_team_records <- function(abbreviation) {
     mutate(wins = cumsum(win)) %>%
     mutate(losses = cumsum(loss)) %>%
     mutate(win_pct = wins/row_number()) %>%
+    mutate(win_pct_text = paste(".",round(win_pct*1000),sep = "")) %>%
     mutate(net_wins = wins-losses) %>%
     mutate(team = abbreviation) %>%
     mutate(games_played = cumsum(game_counter)) %>%
@@ -54,40 +55,33 @@ min <- get_team_records("MIN")
 al_central <- full_join(chw,cle) %>%
   full_join(det) %>%
   full_join(kcr) %>%
-  full_join(min)
+  full_join(min) %>%
+  mutate(division = "AL Central")
 
 # standings ----
 old_standings <- read_csv("data/standings.csv")
 
 standings <- al_central %>%
   filter(!is.na(team_label)) %>%
-  select(team_label, wins, losses, win_pct, games_remaining, last_ten)
+  select(team_label, wins, losses, win_pct_text, games_remaining, last_ten)
 standings_the_same <- all_equal(standings, old_standings,
                                 convert = TRUE)
-if (standings_the_same == FALSE) { 
+if (standings_the_same != TRUE) { 
   write_csv(standings,"data/standings.csv")
 }
 
 standings_table <- standings %>%
-  arrange(desc(win_pct)) %>%
+  arrange(desc(win_pct_text)) %>%
   gt() %>%
-  # tab_spanner(
-  #   label = "Games",
-  #   columns = c(games_played,games_remaining)
-  # ) %>%
-  fmt_number(
-    columns = win_pct,
-    decimals = 3
-  ) %>%
   cols_align(
     align = c("right"),
-    columns = last_ten
+    columns = c(last_ten,win_pct_text)
   ) %>%
   cols_label(
     team_label = md("**Team**"),
     wins = md("**W**"),
     losses = md("**L**"),
-    win_pct = md("**Pct**"),
+    win_pct_text = md("**Pct**"),
     games_remaining = md("**Left**"),
     last_ten = md("**Last 10**")
   ) %>%
@@ -99,7 +93,7 @@ standings_table <- standings %>%
     table.font.size = px(12)
   )  %>%
   opt_table_lines(extent = "none")
-
+standings_table
 standings_table_html <- as_raw_html(standings_table)
 
 # plot ----
@@ -126,13 +120,10 @@ ggplot(al_central, aes(x = game_n,
        y = NULL) +
   theme(
     plot.background = element_rect(fill = "white", color = "white"),
-    #plot.margin = margin(20, 40, 10, 40),
     panel.grid = element_blank(),
     legend.title = element_blank(),
     axis.ticks.x = element_line(color = "grey60", size = 0.25),
     panel.grid.major.y = element_line(colour = "grey93"),
-    #axis.text.y = element_text(color = "grey30", size = 7),
-    #axis.title.x = element_text(color = "grey10", size = 7),
     axis.ticks.y = element_line(color = "grey60"),
     plot.caption = element_text(color = "grey40")
   )
@@ -164,6 +155,6 @@ Data updated hourly from [FiveThirtyEight](https://github.com/fivethirtyeight/da
 ",
 sep = ""
 )
-if (standings_the_same == FALSE) {
+if (standings_the_same != TRUE) {
   write_lines(web_text,"charts/baseball.md")
 }
