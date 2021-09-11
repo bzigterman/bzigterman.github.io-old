@@ -28,7 +28,7 @@ get_team_records <- function(abbreviation) {
     mutate(net_wins = wins-losses) %>%
     mutate(team = abbreviation) %>%
     mutate(games_played = cumsum(game_counter)) %>%
-    mutate(games_remaining = 162-games_played) %>%
+    mutate(games_remaining = sum(is.na(result))) %>%
     mutate(team_label = if_else(games_played == max(na.omit(games_played)),team,NULL))  %>%
     mutate(result_arrow = if_else(result == "W","▀",
                                   if_else(result == "L","▄",""))) %>%
