@@ -56,6 +56,6 @@ permalink: /charts/baseball/
 
 ![CHW]({{ site.baseurl }}/plots/al_central_wins_losses.png)
 
-Data updated hourly from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). Last checked: 07:54 PM CT
+Data updated hourly from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). Last checked: 08:57 PM CT
 
 
