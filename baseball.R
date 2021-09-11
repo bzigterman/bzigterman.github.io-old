@@ -46,19 +46,99 @@ get_team_records <- function(abbreviation) {
                             sep = "")) 
 }
 
-chw <- get_team_records("CHW")
-cle <- get_team_records("CLE")
-det <- get_team_records("DET")
-kcr <- get_team_records("KCR")
-min <- get_team_records("MIN")
+## al central ----
+team1 <- get_team_records("CHW")
+team2 <- get_team_records("CLE")
+team3 <- get_team_records("DET")
+team4 <- get_team_records("KCR")
+team5 <- get_team_records("MIN")
 
-al_central <- full_join(chw,cle) %>%
-  full_join(det) %>%
-  full_join(kcr) %>%
-  full_join(min) %>%
-  mutate(division = "AL Central")
+al_central <- full_join(team1,team2) %>%
+  full_join(team3) %>%
+  full_join(team4) %>%
+  full_join(team5) %>%
+  mutate(division = "AL Central") %>%
+  mutate(league = "AL")
 
-# standings ----
+## al east ----
+
+team1 <- get_team_records("TBD")
+team2 <- get_team_records("BOS")
+team3 <- get_team_records("NYY")
+team4 <- get_team_records("TOR")
+team5 <- get_team_records("BAL")
+
+al_east <- full_join(team1,team2) %>%
+  full_join(team3) %>%
+  full_join(team4) %>%
+  full_join(team5) %>%
+  mutate(division = "AL East") %>%
+  mutate(league = "AL")
+
+## al west ----
+
+team1 <- get_team_records("HOU")
+team2 <- get_team_records("OAK")
+team3 <- get_team_records("SEA")
+team4 <- get_team_records("ANA")
+team5 <- get_team_records("TEX")
+
+al_west <- full_join(team1,team2) %>%
+  full_join(team3) %>%
+  full_join(team4) %>%
+  full_join(team5) %>%
+  mutate(division = "AL West") %>%
+  mutate(league = "AL")
+
+## nl central ----
+team1 <- get_team_records("MIL")
+team2 <- get_team_records("CHC")
+team3 <- get_team_records("STL")
+team4 <- get_team_records("CIN")
+team5 <- get_team_records("PIT")
+
+nl_central <- full_join(team1,team2) %>%
+  full_join(team3) %>%
+  full_join(team4) %>%
+  full_join(team5) %>%
+  mutate(division = "NL Central") %>%
+  mutate(league = "NL")
+
+## nl east ----
+team1 <- get_team_records("ATL")
+team2 <- get_team_records("PHI")
+team3 <- get_team_records("NYM")
+team4 <- get_team_records("FLA")
+team5 <- get_team_records("WSN")
+
+nl_east <- full_join(team1,team2) %>%
+  full_join(team3) %>%
+  full_join(team4) %>%
+  full_join(team5) %>%
+  mutate(division = "NL East") %>%
+  mutate(league = "NL")
+
+## nl west ----
+team1 <- get_team_records("SFG")
+team2 <- get_team_records("LAD")
+team3 <- get_team_records("SDP")
+team4 <- get_team_records("COL")
+team5 <- get_team_records("ARI")
+
+nl_west <- full_join(team1,team2) %>%
+  full_join(team3) %>%
+  full_join(team4) %>%
+  full_join(team5) %>%
+  mutate(division = "NL West") %>%
+  mutate(league = "NL")
+
+mlb_games <- full_join(al_central, al_east) %>%
+  full_join(al_west) %>%
+  full_join(nl_central) %>%
+  full_join(nl_east) %>%
+  full_join(nl_west)
+
+# al central standings ----
 old_standings <- read_csv("data/standings.csv",
                           col_types = cols(
                             team_label = col_character(),
@@ -69,17 +149,23 @@ old_standings <- read_csv("data/standings.csv",
                             last_ten = col_character())
 )
 
-standings <- al_central %>%
+standings_check <- mlb_games %>%
   filter(!is.na(team_label)) %>%
   select(team_label, wins, losses, win_pct_text, games_remaining, last_ten)
-standings_the_same <- all_equal(standings, old_standings)
+standings_the_same <- all_equal(standings_check, old_standings)
 if (standings_the_same != TRUE) { 
-  write_csv(standings,"data/standings.csv")
+  write_csv(standings_check,"data/standings.csv")
 }
 
-standings_table <- standings %>%
-  arrange(desc(win_pct_text)) %>%
+mlb_standings <- mlb_games %>%
+  filter(!is.na(team_label)) %>%
+  select(team_label, wins, losses, win_pct, win_pct_text, games_remaining, last_ten, division)
+
+standings_table <- mlb_standings %>%
+  group_by(division) %>%
+  arrange(division,desc(win_pct)) %>%
   gt() %>%
+  cols_hide(columns =win_pct) %>%
   cols_align(
     align = c("right"),
     columns = c(last_ten,win_pct_text)
@@ -103,40 +189,60 @@ standings_table <- standings %>%
 standings_table
 standings_table_html <- as_raw_html(standings_table)
 
-# plot ----
-ggplot(al_central, aes(x = game_n,
+# plots ----
+standings_plot <- function(division) {
+  ggplot(division, aes(x = game_n,
                        y = net_wins,
                        color= team,
                        label = team_label)) +
-  geom_hline(yintercept = 0,
-             color = "grey10",
-             size = .2) +
-  geom_step(direction = "vh") +
-  geom_text(aes(x = game_n + 5)) +
-  scale_x_continuous(breaks = c(0,40, 81,121, 162)) +
-  scale_y_continuous(position = "right") +
-  scale_color_brewer(palette = "Set1",
-                     guide = NULL) +
-  # scale_color_manual(values = c("#27251F","#E31937","#0C2340","#BD9B60","#002B5C"),
-  #                  guide = NULL) +
-  coord_cartesian(xlim = c(0,162)) +
-  theme_minimal() +
-  labs(title = "Games Above .500",
-       caption = "Source: FiveThirtyEight",
-       x = NULL,
-       y = NULL) +
-  theme(
-    plot.background = element_rect(fill = "white", color = "white"),
-    panel.grid = element_blank(),
-    legend.title = element_blank(),
-    axis.ticks.x = element_line(color = "grey60", size = 0.25),
-    panel.grid.major.y = element_line(colour = "grey93"),
-    axis.ticks.y = element_line(color = "grey60"),
-    plot.caption = element_text(color = "grey40")
-  )
-
+    geom_hline(yintercept = 0,
+               color = "grey10",
+               size = .2) +
+    geom_step(direction = "vh") +
+    geom_text(aes(x = game_n + 5)) +
+    scale_x_continuous(breaks = c(0,40, 81,121, 162)) +
+    scale_y_continuous(position = "right") +
+    scale_color_brewer(palette = "Set1",
+                       guide = NULL) +
+    # scale_color_manual(values = c("#27251F","#E31937","#0C2340","#BD9B60","#002B5C"),
+    #                  guide = NULL) +
+    coord_cartesian(xlim = c(0,162)) +
+    theme_minimal() +
+    labs(title = "Games Above .500",
+         caption = "Source: FiveThirtyEight",
+         x = NULL,
+         y = NULL) +
+    theme(
+      plot.background = element_rect(fill = "white", color = "white"),
+      panel.grid = element_blank(),
+      legend.title = element_blank(),
+      axis.ticks.x = element_line(color = "grey60", size = 0.25),
+      panel.grid.major.y = element_line(colour = "grey93"),
+      axis.ticks.y = element_line(color = "grey60"),
+      plot.caption = element_text(color = "grey40")
+    )
+}
+standings_plot(al_central)  
 ggsave("plots/al_central_wins_losses.png", 
        width = 8, height = 8*(628/1200), dpi = 320)
+standings_plot(al_east)  
+ggsave("plots/al_east_wins_losses.png", 
+       width = 8, height = 8*(628/1200), dpi = 320)
+standings_plot(al_west)  
+ggsave("plots/al_west_wins_losses.png", 
+       width = 8, height = 8*(628/1200), dpi = 320)
+
+
+standings_plot(nl_central)  
+ggsave("plots/nl_central_wins_losses.png", 
+       width = 8, height = 8*(628/1200), dpi = 320)
+standings_plot(nl_east)  
+ggsave("plots/nl_east_wins_losses.png", 
+       width = 8, height = 8*(628/1200), dpi = 320)
+standings_plot(nl_west)  
+ggsave("plots/nl_west_wins_losses.png", 
+       width = 8, height = 8*(628/1200), dpi = 320)
+
 
 # web text ----
 now <- as_datetime(now())
@@ -151,11 +257,31 @@ title: Baseball
 permalink: /charts/baseball/
 ---
 
-## AL Central
-
 ",standings_table_html,"
 
+## AL Central
+
 ![CHW]({{ site.baseurl }}/plots/al_central_wins_losses.png)
+
+## AL East
+
+![CHW]({{ site.baseurl }}/plots/al_east_wins_losses.png)
+
+## AL West
+
+![CHW]({{ site.baseurl }}/plots/al_west_wins_losses.png)
+
+## NL Central
+
+![CHW]({{ site.baseurl }}/plots/nl_central_wins_losses.png)
+
+## NL East
+
+![CHW]({{ site.baseurl }}/plots/nl_east_wins_losses.png)
+
+## NL West
+
+![CHW]({{ site.baseurl }}/plots/nl_west_wins_losses.png)
 
 Data updated hourly from [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). Latest data: ",now_formatted," CT
 
