@@ -187,7 +187,8 @@ old_standings <- read_csv("data/standings.csv",
                             losses = col_number(),
                             win_pct_text = col_character(),
                             games_remaining = col_integer(),
-                            last_ten = col_character())
+                            last_ten = col_character()),
+                          trim_ws = FALSE
 )
 
 standings_check <- mlb_games %>%
