@@ -300,27 +300,27 @@ permalink: /charts/baseball/
 
 ",standings_table_html,"
 
-## AL Central
+### AL Central
 
 ![CHW]({{ site.baseurl }}/plots/al_central_wins_losses.png)
 
-## AL East
+### AL East
 
 ![CHW]({{ site.baseurl }}/plots/al_east_wins_losses.png)
 
-## AL West
+### AL West
 
 ![CHW]({{ site.baseurl }}/plots/al_west_wins_losses.png)
 
-## NL Central
+### NL Central
 
 ![CHW]({{ site.baseurl }}/plots/nl_central_wins_losses.png)
 
-## NL East
+### NL East
 
 ![CHW]({{ site.baseurl }}/plots/nl_east_wins_losses.png)
 
-## NL West
+### NL West
 
 ![CHW]({{ site.baseurl }}/plots/nl_west_wins_losses.png)
 
