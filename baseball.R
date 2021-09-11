@@ -199,7 +199,8 @@ standings_plot <- function(division) {
                color = "grey10",
                size = .2) +
     geom_step(direction = "vh") +
-    geom_text(aes(x = game_n + 5)) +
+    geom_text(aes(x = game_n + 5),
+              family = "mono") +
     scale_x_continuous(breaks = c(0,40, 81,121, 162)) +
     scale_y_continuous(position = "right") +
     scale_color_brewer(palette = "Set1",
