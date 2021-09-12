@@ -254,6 +254,7 @@ standings_plot <- function(division) {
                        y = net_wins,
                        color= team,
                        label = team_label)) +
+    coord_fixed(xlim = c(0,162)) +
     geom_hline(yintercept = 0,
                color = "grey10",
                size = .2) +
@@ -269,7 +270,7 @@ standings_plot <- function(division) {
                        guide = NULL) +
     # scale_color_manual(values = c("#27251F","#E31937","#0C2340","#BD9B60","#002B5C"),
     #                  guide = NULL) +
-    coord_cartesian(xlim = c(0,162)) +
+    #coord_cartesian(xlim = c(0,162)) +
     theme_minimal() +
     labs(title = "Games Above .500",
          caption = "Source: FiveThirtyEight",
@@ -287,7 +288,8 @@ standings_plot <- function(division) {
 }
 standings_plot(al_central)  
 ggsave("plots/al_central_wins_losses.png", 
-       width = 8, height = 8*(628/1200), dpi = 320)
+       width = 8, height = 8*(628/1200), 
+       dpi = 320)
 standings_plot(al_east)  
 ggsave("plots/al_east_wins_losses.png", 
        width = 8, height = 8*(628/1200), dpi = 320)
@@ -488,7 +490,7 @@ permalink: /charts/baseball/
 
 ",wild_card_table_html,"
 
-![MLB]({{ site.baseurl }}/plots/mlb_team_rank.png)
+![Wild Card]({{ site.baseurl }}/plots/mlb_team_rank.png)
 
 Source: [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). Latest data: ",now_formatted," CT
 
