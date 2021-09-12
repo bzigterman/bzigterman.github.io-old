@@ -255,7 +255,7 @@ standings_plot <- function(division) {
                color = "grey10",
                size = .2) +
     geom_vline(xintercept = 162,
-               color = "grey10",
+               color = "grey50",
                size = .2) +
     geom_step(direction = "vh") +
     geom_text(aes(x = game_n + 4),
