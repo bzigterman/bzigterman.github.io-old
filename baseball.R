@@ -375,10 +375,13 @@ nl_playoffs_rect <- (if_else(
   5.5))[1]
 
 al_plot <- ggplot(al_standings, aes(x = reorder(team_label, win_pct), 
-                          y = win_pct)) +
+                                    y = win_pct)) +
   geom_rect(xmin = al_playoffs_rect, xmax = Inf,
             ymin = -Inf, ymax = Inf,
             fill = "grey85") +
+  geom_hline(yintercept = 0.5,
+             color = "grey50",
+             size = .2) +
   geom_col(aes(fill = win_pct),
            width = 1) +
   scale_fill_gradient(guide = NULL,
@@ -412,11 +415,14 @@ nl_plot <- ggplot(nl_standings, aes(x = reorder(team_label, -win_pct),
   geom_rect(xmin = -Inf, xmax = nl_playoffs_rect,
             ymin = -Inf, ymax = Inf,
             fill = "grey85") +
+  geom_hline(yintercept = 0.5,
+             color = "grey50",
+             size = .2) +
   geom_col(aes(fill = win_pct),
            width = 1) +
   scale_fill_continuous(guide = NULL,
-                      low = "#3690c0",
-                      high = "#023858") +
+                        low = "#3690c0",
+                        high = "#023858") +
   coord_cartesian(ylim = c(mlb_min,mlb_max)) +
   geom_text(aes(label = team_label),
             family = "mono",
@@ -442,7 +448,7 @@ nl_plot <- ggplot(nl_standings, aes(x = reorder(team_label, -win_pct),
   )
 plot_grid(al_plot,nl_plot,
           align = "h") 
-  
+
 ggsave("plots/mlb_team_rank.png",
        width = 8, height = 8*(628/1200),
        dpi = 320)
