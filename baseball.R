@@ -467,7 +467,7 @@ ggsave("plots/mlb_team_rank.png",
 now <- as_datetime(now())
 now_formatted <- strftime(x = now, 
                           tz = "US/Central",
-                          format = "%I:%M% %p")
+                          format = "%I:%M% %p, %B %d")
 
 web_text <- paste(
   "---
