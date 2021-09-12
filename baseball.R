@@ -317,17 +317,18 @@ al_plot <- ggplot(al_standings, aes(x = reorder(team_label, win_pct),
             family = "mono",
             color = "white",
             angle = 270,
-            size = 4,
-            nudge_y = -.025) +
+            size = 3.9,
+            nudge_y = -.019) +
   theme_minimal() +
   labs(x = NULL,
        y = NULL,
        title = "American League") +
-  theme(    
+  theme(
     legend.title = element_blank(),
     panel.grid.major.y = element_line(colour = "grey93"),
     plot.title = element_text(hjust = 1),
     plot.background = element_rect(fill = "white", color = "white"),
+    plot.margin = margin(5,5,0,90),
     panel.grid = element_blank(),
     axis.text = element_blank(),
     legend.position = "bottom",
@@ -342,8 +343,8 @@ nl_plot <- ggplot(nl_standings, aes(x = reorder(team_label, -win_pct),
             family = "mono",
             color = "white",
             angle = 270,
-            size = 4,
-            nudge_y = -.025) +
+            size = 3.9,
+            nudge_y = -.019) +
   scale_y_continuous(labels = label_comma(accuracy = .001)) +
   theme_minimal() +
   labs(x = NULL,
@@ -352,6 +353,7 @@ nl_plot <- ggplot(nl_standings, aes(x = reorder(team_label, -win_pct),
   theme(    
     legend.title = element_blank(),
     plot.background = element_rect(fill = "white", color = "white"),
+    plot.margin = margin(0,90,0,0),
     panel.grid = element_blank(),
     panel.grid.major.y = element_line(colour = "grey93"),
     axis.text.x = element_blank(),
@@ -360,7 +362,7 @@ nl_plot <- ggplot(nl_standings, aes(x = reorder(team_label, -win_pct),
     legend.box.spacing = unit(0,"in")
   )
 plot_grid(al_plot,nl_plot,
-          align = "hv") 
+          align = "h") 
   
 ggsave("plots/mlb_team_rank.png",
        width = 8, height = 8*(628/1200),
