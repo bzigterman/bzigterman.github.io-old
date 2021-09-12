@@ -3,7 +3,7 @@ name: autobaseball
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/15 0-5,12-23 * 3-11 *'
+    - cron: '*/15 6-23 * 3-11 *'
 
 jobs:
   run-autobaseball:
