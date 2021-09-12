@@ -444,7 +444,7 @@ nl_plot <- ggplot(nl_standings, aes(x = reorder(team_label, -win_pct),
   theme_minimal() +
   labs(x = NULL,
        y = NULL,
-       title = "National Leage") +
+       title = "National League") +
   theme(    
     legend.title = element_blank(),
     plot.background = element_rect(fill = "white", color = "white"),
