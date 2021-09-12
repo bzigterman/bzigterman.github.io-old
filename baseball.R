@@ -203,7 +203,7 @@ if (standings_the_same != TRUE) {
 
 mlb_standings <- mlb_games %>%
   filter(!is.na(team_label)) %>%
-  select(team_label, wins, losses, win_pct, win_pct_text, games_remaining, last_ten, division, league)
+  select(team_label, wins, losses, net_wins, win_pct, win_pct_text, games_remaining, last_ten, division, league)
 
 standings_table <- mlb_standings %>%
   group_by(division) %>%
@@ -228,9 +228,10 @@ standings_table <- mlb_standings %>%
     team_label = "Team",
     wins = "W",
     losses = "L",
+    net_wins = html("Games<br>Above<br>.500"),
     win_pct_text = "Pct",
-    games_remaining = "Left",
-    last_ten = "Last 10"
+    games_remaining = html("Games<br>Left"),
+    last_ten = html("Last 10<br>Games")
   ) %>%
   opt_table_font(font = c("verdana","calibri","menlo","consolas","monospace","helvetica", "arial", "sans-serif")) %>%
   opt_row_striping(row_striping = TRUE) %>%
