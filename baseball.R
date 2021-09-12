@@ -306,12 +306,26 @@ mlb_min <-  .9*min(mlb_standings$win_pct)
 mlb_max <- 1.05*max(mlb_standings$win_pct)
 al_standings <- mlb_standings %>%
   filter(league == "AL") %>%
+  arrange(desc(win_pct)) %>%
   select(team_label, win_pct, win_pct_text)
 nl_standings <- mlb_standings %>%
   filter(league == "NL") %>%
+  arrange(desc(win_pct)) %>%
   select(team_label, win_pct, win_pct_text)
+al_playoffs_rect <- (if_else(
+  slice(al_standings, n = 5)[2] == slice(al_standings, n = 6)[2],
+  9.5,
+  10.5))[1]
+nl_playoffs_rect <- (if_else(
+  slice(nl_standings, n = 5)[2] == slice(nl_standings, n = 6)[2],
+  6.5,
+  5.5))[1]
+
 al_plot <- ggplot(al_standings, aes(x = reorder(team_label, win_pct), 
                           y = win_pct)) +
+  geom_rect(xmin = al_playoffs_rect, xmax = Inf,
+            ymin = -Inf, ymax = Inf,
+            fill = "grey85") +
   geom_col(aes(fill = win_pct),
            width = 1) +
   scale_fill_gradient(guide = NULL,
@@ -342,6 +356,9 @@ al_plot <- ggplot(al_standings, aes(x = reorder(team_label, win_pct),
   )
 nl_plot <- ggplot(nl_standings, aes(x = reorder(team_label, -win_pct), 
                                     y = win_pct)) +
+  geom_rect(xmin = -Inf, xmax = nl_playoffs_rect,
+            ymin = -Inf, ymax = Inf,
+            fill = "grey85") +
   geom_col(aes(fill = win_pct),
            width = 1) +
   scale_fill_continuous(guide = NULL,
