@@ -311,7 +311,11 @@ nl_standings <- mlb_standings %>%
   select(team_label, win_pct, win_pct_text)
 al_plot <- ggplot(al_standings, aes(x = reorder(team_label, win_pct), 
                           y = win_pct)) +
-  geom_col(fill = "darkred") +
+  geom_col(aes(fill = win_pct),
+           width = 1) +
+  scale_fill_gradient(guide = NULL,
+                      low = "#fd8d3c",
+                      high = "#800026") +
   coord_cartesian(ylim = c(mlb_min,mlb_max)) +
   geom_text(aes(label = team_label),
             family = "mono",
@@ -337,7 +341,11 @@ al_plot <- ggplot(al_standings, aes(x = reorder(team_label, win_pct),
   )
 nl_plot <- ggplot(nl_standings, aes(x = reorder(team_label, -win_pct), 
                                     y = win_pct)) +
-  geom_col(fill = "darkblue") +
+  geom_col(aes(fill = win_pct),
+           width = 1) +
+  scale_fill_continuous(guide = NULL,
+                      low = "#3690c0",
+                      high = "#023858") +
   coord_cartesian(ylim = c(mlb_min,mlb_max)) +
   geom_text(aes(label = team_label),
             family = "mono",
