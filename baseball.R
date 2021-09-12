@@ -254,7 +254,7 @@ standings_plot <- function(division) {
                        y = net_wins,
                        color= team,
                        label = team_label)) +
-    coord_fixed(xlim = c(0,162)) +
+    #coord_fixed(xlim = c(0,162)) +
     geom_hline(yintercept = 0,
                color = "grey10",
                size = .2) +
@@ -270,7 +270,7 @@ standings_plot <- function(division) {
                        guide = NULL) +
     # scale_color_manual(values = c("#27251F","#E31937","#0C2340","#BD9B60","#002B5C"),
     #                  guide = NULL) +
-    #coord_cartesian(xlim = c(0,162)) +
+    coord_cartesian(xlim = c(0,162)) +
     theme_minimal() +
     labs(title = "Games Above .500",
          caption = "Source: FiveThirtyEight",
