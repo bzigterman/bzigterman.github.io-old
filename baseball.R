@@ -508,7 +508,7 @@ permalink: /charts/baseball/
 
 ![Wild Card]({{ site.baseurl }}/plots/mlb_team_rank.png)
 
-Source: [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). Latest data: ",now_formatted," CT
+Source: [FiveThirtyEight](https://github.com/fivethirtyeight/data/tree/master/mlb-elo). [CC-BY-4.0 License](https://github.com/fivethirtyeight/data/blob/master/LICENSE). Latest data: ",now_formatted," CT
 
 ",
 sep = ""
