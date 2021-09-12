@@ -184,6 +184,7 @@ mlb_games <- full_join(al_games, nl_games)
 # mlb standings ----
 old_standings <- read_csv("data/standings.csv",
                           col_types = cols(
+                            league = col_character(),
                             team_label = col_character(),
                             wins = col_number(),
                             losses = col_number(),
@@ -195,7 +196,9 @@ old_standings <- read_csv("data/standings.csv",
 #old_standings <- as_tibble(2)
 standings_check <- mlb_games %>%
   filter(!is.na(team_label)) %>%
-  select(team_label, wins, losses, win_pct_text, games_remaining, last_ten)
+  group_by(league) %>%
+  arrange(league,desc(win_pct)) %>%
+  select(league, team_label, wins, losses, win_pct_text, games_remaining, last_ten)
 standings_the_same <- all_equal(standings_check, old_standings)
 if (standings_the_same != TRUE) { 
   write_csv(standings_check,"data/standings.csv")
