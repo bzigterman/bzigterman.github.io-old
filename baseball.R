@@ -278,7 +278,7 @@ standings_plot <- function(division) {
     coord_cartesian(xlim = c(0,162)) +
     theme_minimal() +
     labs(title = "Games Above .500",
-         caption = "Source: FiveThirtyEight",
+         #caption = "Source: FiveThirtyEight",
          x = NULL,
          y = NULL) +
     theme(
