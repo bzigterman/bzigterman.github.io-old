@@ -304,7 +304,52 @@ ggsave("plots/nl_west_wins_losses.png",
        width = 8, height = 8*(628/1200), dpi = 320)
 
 
-# leagues winning pct plot ----
+# wild card standings ----
+mlb_standings <- mlb_games %>%
+  filter(!is.na(team_label)) %>%
+  select(team_label, wins, losses, net_wins, win_pct, win_pct_text, games_remaining, last_ten, division, league)
+
+wild_card_table <- mlb_standings %>%
+  group_by(league) %>%
+  arrange(league,desc(win_pct)) %>%
+  gt() %>%
+  # text_transform(
+  #   locations = cells_body(columns = logo_url),
+  #   fn = function(logo_url) {
+  #     web_image(
+  #       url = logo_url,
+  #       height = px(12)
+  #     )
+  #   }
+  # ) %>%
+  cols_hide(columns = c(win_pct, division)) %>%
+  cols_align(
+    align = c("right"),
+    columns = c(last_ten,win_pct_text)
+  ) %>%
+  cols_label(
+    #logo_url = "",
+    team_label = "Team",
+    wins = "W",
+    losses = "L",
+    net_wins = html("Games<br>Above<br>.500"),
+    win_pct_text = "Pct",
+    games_remaining = html("Games<br>Left"),
+    last_ten = html("Last 10<br>Games")
+  ) %>%
+  opt_table_font(font = c("verdana","calibri","menlo","consolas","monospace","helvetica", "arial", "sans-serif")) %>%
+  opt_row_striping(row_striping = TRUE) %>%
+  tab_options(
+    table.width = pct(100),
+    data_row.padding = px(3),
+    table.font.size = px(11)
+  )  %>%
+  opt_table_lines(extent = "none") %>%
+  opt_all_caps(all_caps = TRUE)
+wild_card_table
+wild_card_table_html <- as_raw_html(wild_card_table)
+
+# wild card plot ----
 mlb_min <-  .9*min(mlb_standings$win_pct)
 mlb_max <- 1.05*max(mlb_standings$win_pct)
 al_standings <- mlb_standings %>%
@@ -436,7 +481,9 @@ permalink: /charts/baseball/
 
 ![NL West]({{ site.baseurl }}/plots/nl_west_wins_losses.png)
 
-## MLB
+## Wild Card
+
+",wild_card_table_html,"
 
 ![MLB]({{ site.baseurl }}/plots/mlb_team_rank.png)
 
