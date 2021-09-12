@@ -181,7 +181,7 @@ nl_games <- full_join(nl_central, nl_east) %>%
 
 mlb_games <- full_join(al_games, nl_games)
 
-# mlb standings ----
+# division standings ----
 old_standings <- read_csv("data/standings.csv",
                           col_types = cols(
                             league = col_character(),
@@ -212,6 +212,11 @@ standings_table <- mlb_standings %>%
   group_by(division) %>%
   arrange(division,desc(win_pct)) %>%
   gt() %>%
+  fmt_number(
+    columns = net_wins,
+    force_sign = TRUE,
+    decimals = 0
+  ) %>%
   # text_transform(
   #   locations = cells_body(columns = logo_url),
   #   fn = function(logo_url) {
@@ -328,6 +333,11 @@ wild_card_table <- mlb_standings %>%
   #   }
   # ) %>%
   cols_hide(columns = c(win_pct, division)) %>%
+  fmt_number(
+    columns = net_wins,
+    force_sign = TRUE,
+    decimals = 0
+  ) %>%
   cols_align(
     align = c("right"),
     columns = c(last_ten,win_pct_text)
