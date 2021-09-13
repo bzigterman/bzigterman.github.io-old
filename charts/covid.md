@@ -44,7 +44,7 @@ As of Saturday in the United States (vs. two weeks ago):
   
 - Average new cases: 145,000 (vs. 155,000) -6%↓
 - Hospitalized: 94,100 (vs. 95,000) -1%↓
-- Average new deaths: 1,660 (vs. 1,260) +31%↑
+- Average new deaths: 1,630 (vs. 1,270) +28%↑
 - Percent of the United States fully vaccinated: 53% (vs. 51.5%)
 - Average new vaccine doses: 712,000 (vs. 890,000)
 
@@ -59,7 +59,7 @@ As of Saturday in the United States (vs. two weeks ago):
 As of Saturday (vs. two weeks ago):
   
 - Average new cases: 563,000 (vs. 656,000) -14%↓
-- Average new deaths: 9,020 (vs. 10,000) -10%↓
+- Average new deaths: 8,990 (vs. 10,100) -11%↓
 - Percent of the world fully vaccinated: 29.7% (vs. 26.6%)
 - Average new vaccine doses: 31,600,000 (vs. 40,200,000)
 
@@ -83,8 +83,8 @@ This chart measures how quickly the average number of new cases is changing, or 
 As of Saturday, the 14-day percent change in average new deaths was:
   
 - 13% in Illinois
-- 31% in the United States
-- -10% worldwide
+- 28% in the United States
+- -11% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
 
