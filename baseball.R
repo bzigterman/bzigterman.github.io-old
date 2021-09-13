@@ -222,7 +222,7 @@ standings_table <- mlb_standings %>%
     fn = function(x) {
       web_image(
         url = x,
-        height = px(12)
+        height = as.numeric(11)
       )
     }
   ) %>%
