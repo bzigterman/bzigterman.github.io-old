@@ -313,7 +313,6 @@ standings_plot(nl_west)
 ggsave("plots/nl_west_wins_losses.png", 
        width = 8, height = 8*(628/1200), dpi = 320)
 
-
 # wild card standings ----
 mlb_standings <- mlb_games %>%
   filter(!is.na(team_label)) %>%
