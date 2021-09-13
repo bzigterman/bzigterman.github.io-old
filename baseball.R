@@ -181,7 +181,7 @@ nl_games <- full_join(nl_central, nl_east) %>%
 
 mlb_games <- full_join(al_games, nl_games)
 
-# division standings ----
+# division standings check ----
 old_standings <- read_csv("data/standings.csv",
                           col_types = cols(
                             league = col_character(),
@@ -204,6 +204,7 @@ if (standings_the_same != TRUE) {
   write_csv(standings_check,"data/standings.csv")
 }
 
+# division standings  ----
 mlb_standings <- mlb_games %>%
   filter(!is.na(team_label)) %>%
   select(team_label, wins, losses, net_wins, win_pct, win_pct_text, games_remaining, last_ten, division, league,logo_url)
@@ -217,12 +218,16 @@ standings_table <- mlb_standings %>%
     force_sign = TRUE,
     decimals = 0
   ) %>%
+  # text_transform(
+  #   locations = cells_body(columns = logo_url),
+  #   fn = function(x) {purrr::map(x,~ web_image(url = .x, height = 11))}
+  # ) %>%
   text_transform(
     locations = cells_body(columns = logo_url),
     fn = function(x) {
       web_image(
         url = x,
-        height = as.numeric(11)
+        height = 11
       )
     }
   ) %>%
