@@ -6,6 +6,7 @@ library(rio)
 library(gt)
 library(cowplot)
 library(RColorBrewer)
+library(ggimage)
 
 # get data ----
 fivethirtyeight_data_url <- "https://projects.fivethirtyeight.com/mlb-api/mlb_elo_latest.csv"
@@ -75,7 +76,9 @@ al_central <- full_join(team1,team2) %>%
   full_join(team4) %>%
   full_join(team5) %>%
   mutate(division = "AL Central") %>%
-  mutate(league = "AL")
+  mutate(league = "AL")%>%
+  mutate(team_logo_label = if_else(!is.na(team_label),logo_url,NULL))  
+
 
 ## al east ----
 
@@ -95,7 +98,9 @@ al_east <- full_join(team1,team2) %>%
   full_join(team4) %>%
   full_join(team5) %>%
   mutate(division = "AL East") %>%
-  mutate(league = "AL")
+  mutate(league = "AL")%>%
+  mutate(team_logo_label = if_else(!is.na(team_label),logo_url,NULL))  
+
 
 ## al west ----
 
@@ -115,7 +120,9 @@ al_west <- full_join(team1,team2) %>%
   full_join(team4) %>%
   full_join(team5) %>%
   mutate(division = "AL West") %>%
-  mutate(league = "AL")
+  mutate(league = "AL")%>%
+  mutate(team_logo_label = if_else(!is.na(team_label),logo_url,NULL))  
+
 
 ## nl central ----
 team1 <- get_team_records("MIL") %>%
@@ -134,7 +141,9 @@ nl_central <- full_join(team1,team2) %>%
   full_join(team4) %>%
   full_join(team5) %>%
   mutate(division = "NL Central") %>%
-  mutate(league = "NL")
+  mutate(league = "NL")%>%
+  mutate(team_logo_label = if_else(!is.na(team_label),logo_url,NULL))  
+
 
 ## nl east ----
 team1 <- get_team_records("ATL") %>%
@@ -153,7 +162,9 @@ nl_east <- full_join(team1,team2) %>%
   full_join(team4) %>%
   full_join(team5) %>%
   mutate(division = "NL East") %>%
-  mutate(league = "NL")
+  mutate(league = "NL")%>%
+  mutate(team_logo_label = if_else(!is.na(team_label),logo_url,NULL))  
+
 
 ## nl west ----
 team1 <- get_team_records("SFG") %>%
@@ -172,14 +183,16 @@ nl_west <- full_join(team1,team2) %>%
   full_join(team4) %>%
   full_join(team5) %>%
   mutate(division = "NL West") %>%
-  mutate(league = "NL")
+  mutate(league = "NL")%>%
+  mutate(team_logo_label = if_else(!is.na(team_label),logo_url,NULL))  
+
 
 al_games <- full_join(al_central, al_east) %>%
   full_join(al_west)
 nl_games <- full_join(nl_central, nl_east) %>%
   full_join(nl_west)
 
-mlb_games <- full_join(al_games, nl_games)
+mlb_games <- full_join(al_games, nl_games) 
 
 # division standings ----
 old_standings <- read_csv("data/standings.csv",
@@ -267,8 +280,13 @@ standings_plot <- function(division) {
                color = "grey50",
                size = .2) +
     geom_step(direction = "vh") +
-    geom_text(aes(x = game_n + 4),
-              family = "mono") +
+     geom_text(aes(x = game_n + 4),
+               family = "mono") +
+    geom_image(aes(x = game_n + 11,
+                   image=team_logo_label,
+                   color = NULL),
+               asp =1.5,
+               size = .03) +
     scale_x_continuous(breaks = c(0,40, 81,121, 162)) +
     scale_y_continuous(position = "right") +
     scale_color_brewer(palette = "Set1",
