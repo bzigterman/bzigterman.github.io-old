@@ -11,7 +11,7 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 As of Friday in Champaign County (vs. two weeks ago):
   
 - Average new cases: 84 (vs. 85) -1%↓
-- Average hospitalized: 70 (vs. 65) 
+- Average hospitalized: 69 (vs. 68) 
 - Deaths in the past month: 17 (vs. 14)
 - Percent of Champaign County fully vaccinated: 52.6% (vs. 51.5%)
 - Average new vaccine doses: 328 (vs. 378)
@@ -43,7 +43,7 @@ Community transmission levels are calculated by the CDC based on new cases per c
 As of Sunday in the United States (vs. two weeks ago):
   
 - Average new cases: 144,000 (vs. 156,000) -7%↓
-- Hospitalized: 94,100 (vs. 95,000) -1%↓
+- Hospitalized: 91,100 (vs. 96,000) -5%↓
 - Average new deaths: 1,610 (vs. 1,290) +25%↑
 - Percent of the United States fully vaccinated: 53.1% (vs. 51.6%)
 - Average new vaccine doses: 750,000 (vs. 887,000)
@@ -60,8 +60,8 @@ As of Sunday (vs. two weeks ago):
   
 - Average new cases: 554,000 (vs. 656,000) -15%↓
 - Average new deaths: 8,850 (vs. 9,930) -11%↓
-- Percent of the world fully vaccinated: 29.9% (vs. 26.8%)
-- Average new vaccine doses: 31,000,000 (vs. 41,600,000)
+- Percent of the world fully vaccinated: 30% (vs. 26.8%)
+- Average new vaccine doses: 32,800,000 (vs. 41,600,000)
 
 ![World Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/world_facet.png)
 
