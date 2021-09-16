@@ -10,11 +10,11 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 As of Thursday in Champaign County (vs. two weeks ago):
   
-- Average new cases: 68 (vs. 110) -38%↓
+- Average new cases: 69 (vs. 110) -37%↓
 - Average hospitalized: 69 (vs. 68) 
 - Deaths in the past month: 19 (vs. 15)
-- Percent of Champaign County fully vaccinated: 53% (vs. 52%)
-- Average new vaccine doses: 334 (vs. 396)
+- Percent of Champaign County fully vaccinated: 53.1% (vs. 52.1%)
+- Average new vaccine doses: 332 (vs. 408)
 
 ![Champaign County Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/Champaign_facet.png)
 
@@ -24,11 +24,11 @@ Charts for Champaign County are posted weekdays on Twitter [@ChampaignCovid](htt
 
 As of Thursday in Illinois (vs. two weeks ago):
   
-- Average new cases: 3,890 (vs. 4,180) -7%↓
-- Hospitalized: 2,230 (vs. 2,240) -1%↓
+- Average new cases: 3,950 (vs. 4,180) -6%↓
+- Hospitalized: 2,160 (vs. 2,250) -4%↓
 - Average new deaths: 40 (vs. 22) +79%↑
-- Percent of Illinois fully vaccinated: 54.1% (vs. 53.1%)
-- Average new vaccine doses: 21,300 (vs. 39,800)
+- Percent of Illinois fully vaccinated: 54.2% (vs. 53.2%)
+- Average new vaccine doses: 20,600 (vs. 39,900)
 
 ![Illinois Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/IL_facet.png)
 
@@ -69,8 +69,8 @@ As of Wednesday (vs. two weeks ago):
 
 As of Wednesday, the 14-day percent change in average new cases was:
   
-- -38% in Champaign County
-- -7% in Illinois
+- -37% in Champaign County
+- -6% in Illinois
 - -9% in the United States
 - -16% worldwide
 
