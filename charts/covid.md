@@ -40,11 +40,11 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## United States
 
-As of Thursday in the United States (vs. two weeks ago):
+As of Friday in the United States (vs. two weeks ago):
   
-- Average new cases: 151,000 (vs. 165,000) -9%↓
+- Average new cases: 148,000 (vs. 164,000) -10%↓
 - Hospitalized: 89,200 (vs. 97,800) -9%↓
-- Average new deaths: 1,900 (vs. 1,510) +26%↑
+- Average new deaths: 1,950 (vs. 1,540) +27%↑
 - Percent of the United States fully vaccinated: 53.7% (vs. 52.2%)
 - Average new vaccine doses: 775,000 (vs. 954,000)
 
@@ -56,10 +56,10 @@ As of Thursday in the United States (vs. two weeks ago):
 
 ## World
 
-As of Thursday (vs. two weeks ago):
+As of Friday (vs. two weeks ago):
   
-- Average new cases: 535,000 (vs. 635,000) -16%↓
-- Average new deaths: 8,930 (vs. 9,660) -8%↓
+- Average new cases: 525,000 (vs. 631,000) -17%↓
+- Average new deaths: 8,860 (vs. 9,710) -9%↓
 - Percent of the world fully vaccinated: 31.2% (vs. 27.6%)
 - Average new vaccine doses: 28,600,000 (vs. 36,900,000)
 
@@ -67,12 +67,12 @@ As of Thursday (vs. two weeks ago):
 
 ## Case Acceleration
 
-As of Thursday, the 14-day percent change in average new cases was:
+As of Friday, the 14-day percent change in average new cases was:
   
 - -50% in Champaign County
 - -14% in Illinois
-- -9% in the United States
-- -16% worldwide
+- -10% in the United States
+- -17% worldwide
 
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
@@ -80,11 +80,11 @@ This chart measures how quickly the average number of new cases is changing, or 
 
 ## Death Acceleration
 
-As of Thursday, the 14-day percent change in average new deaths was:
+As of Friday, the 14-day percent change in average new deaths was:
   
 - 60% in Illinois
-- 26% in the United States
-- -8% worldwide
+- 27% in the United States
+- -9% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
 
