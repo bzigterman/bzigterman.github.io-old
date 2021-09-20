@@ -11,7 +11,7 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 As of Monday in Champaign County (vs. two weeks ago):
   
 - Average new cases: 60 (vs. 108) -45%↓
-- Average hospitalized: 69 (vs. 68) 
+- Average hospitalized: 24 (vs. 69) 
 - Deaths in the past month: 16 (vs. 16)
 - Percent of Champaign County fully vaccinated: 53.4% (vs. 52.4%)
 - Average new vaccine doses: 320 (vs. 411)
