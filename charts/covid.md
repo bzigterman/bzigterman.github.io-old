@@ -26,7 +26,7 @@ As of Tuesday in Illinois (vs. two weeks ago):
   
 - Average new cases: 3,370 (vs. 3,920) -14%↓
 - Hospitalized: 2,040 (vs. 2,330) -13%↓
-- Average new deaths: 36 (vs. 26) +42%↑
+- Average new deaths: 36 (vs. 26) +41%↑
 - Percent of Illinois fully vaccinated: 54.6% (vs. 53.5%)
 - Average new vaccine doses: 19,400 (vs. 23,500)
 
@@ -82,7 +82,7 @@ This chart measures how quickly the average number of new cases is changing, or 
 
 As of Tuesday, the 14-day percent change in average new deaths was:
   
-- 42% in Illinois
+- 41% in Illinois
 - 36% in the United States
 - -13% worldwide
 
