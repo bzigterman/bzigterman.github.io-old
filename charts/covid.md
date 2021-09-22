@@ -40,11 +40,11 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## United States
 
-As of Monday in the United States (vs. two weeks ago):
+As of Tuesday in the United States (vs. two weeks ago):
   
-- Average new cases: 139,000 (vs. 138,000) +1%↑
-- Hospitalized: 83,800 (vs. 95,200) -12%↓
-- Average new deaths: 1,950 (vs. 1,390) +40%↑
+- Average new cases: 136,000 (vs. 153,000) -11%↓
+- Hospitalized: 82,400 (vs. 95,900) -14%↓
+- Average new deaths: 2,030 (vs. 1,490) +36%↑
 - Percent of the United States fully vaccinated: 54% (vs. NA%)
 - Average new vaccine doses: 772,000 (vs. 848,000)
 
@@ -56,10 +56,10 @@ As of Monday in the United States (vs. two weeks ago):
 
 ## World
 
-As of Monday (vs. two weeks ago):
+As of Tuesday (vs. two weeks ago):
   
-- Average new cases: 531,000 (vs. 585,000) -9%↓
-- Average new deaths: 8,580 (vs. 9,360) -8%↓
+- Average new cases: 513,000 (vs. 602,000) -15%↓
+- Average new deaths: 8,300 (vs. 9,570) -13%↓
 - Percent of the world fully vaccinated: 31.9% (vs. 29%)
 - Average new vaccine doses: 28,800,000 (vs. 33,000,000)
 
@@ -67,12 +67,12 @@ As of Monday (vs. two weeks ago):
 
 ## Case Acceleration
 
-As of Monday, the 14-day percent change in average new cases was:
+As of Tuesday, the 14-day percent change in average new cases was:
   
 - -46% in Champaign County
 - -14% in Illinois
-- 1% in the United States
-- -9% worldwide
+- -11% in the United States
+- -15% worldwide
 
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
@@ -80,11 +80,11 @@ This chart measures how quickly the average number of new cases is changing, or 
 
 ## Death Acceleration
 
-As of Monday, the 14-day percent change in average new deaths was:
+As of Tuesday, the 14-day percent change in average new deaths was:
   
 - 42% in Illinois
-- 40% in the United States
-- -8% worldwide
+- 36% in the United States
+- -13% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
 
