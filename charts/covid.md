@@ -8,11 +8,11 @@ During the COVID-19 pandemic, I've been making charts with data from the [Champa
 
 ## Champaign County
 
-As of Wednesday in Champaign County (vs. two weeks ago):
+As of Thursday in Champaign County (vs. two weeks ago):
   
-- Average new cases: 55 (vs. 91) -40%↓
+- Average new cases: 52 (vs. 91) -43%↓
 - Average hospitalized: 24 (vs. 69) 
-- Deaths in the past month: 15 (vs. 14)
+- Deaths in the past month: 16 (vs. 15)
 - Percent of Champaign County fully vaccinated: 53.5% (vs. 52.5%)
 - Average new vaccine doses: 297 (vs. 341)
 
@@ -22,11 +22,11 @@ Charts for Champaign County are posted weekdays on Twitter [@ChampaignCovid](htt
 
 ## Illinois
 
-As of Wednesday in Illinois (vs. two weeks ago):
+As of Thursday in Illinois (vs. two weeks ago):
   
-- Average new cases: 3,280 (vs. 3,750) -13%↓
+- Average new cases: 3,100 (vs. 3,820) -19%↓
 - Hospitalized: 2,030 (vs. 2,330) -13%↓
-- Average new deaths: 35 (vs. 31) +16%↑
+- Average new deaths: 36 (vs. 26) +36%↑
 - Percent of Illinois fully vaccinated: 54.7% (vs. 53.6%)
 - Average new vaccine doses: 19,500 (vs. 21,100)
 
@@ -60,8 +60,8 @@ As of Wednesday (vs. two weeks ago):
   
 - Average new cases: 516,000 (vs. 588,000) -12%↓
 - Average new deaths: 8,440 (vs. 9,210) -8%↓
-- Percent of the world fully vaccinated: 32.1% (vs. 29.3%)
-- Average new vaccine doses: 27,800,000 (vs. 31,600,000)
+- Percent of the world fully vaccinated: 32.2% (vs. 29.3%)
+- Average new vaccine doses: 28,100,000 (vs. 31,600,000)
 
 ![World Metrics](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/world_facet.png)
 
@@ -69,8 +69,8 @@ As of Wednesday (vs. two weeks ago):
 
 As of Wednesday, the 14-day percent change in average new cases was:
   
-- -40% in Champaign County
-- -13% in Illinois
+- -43% in Champaign County
+- -19% in Illinois
 - -13% in the United States
 - -12% worldwide
 
@@ -82,7 +82,7 @@ This chart measures how quickly the average number of new cases is changing, or 
 
 As of Wednesday, the 14-day percent change in average new deaths was:
   
-- 16% in Illinois
+- 36% in Illinois
 - 35% in the United States
 - -8% worldwide
 
