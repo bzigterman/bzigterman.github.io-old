@@ -40,11 +40,11 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## United States
 
-As of Tuesday in the United States (vs. two weeks ago):
+As of Wednesday in the United States (vs. two weeks ago):
   
-- Average new cases: 136,000 (vs. 153,000) -11%↓
+- Average new cases: 131,000 (vs. 150,000) -13%↓
 - Hospitalized: 83,400 (vs. 96,800) -14%↓
-- Average new deaths: 2,030 (vs. 1,490) +36%↑
+- Average new deaths: 2,050 (vs. 1,510) +35%↑
 - Percent of the United States fully vaccinated: 54.1% (vs. 52.5%)
 - Average new vaccine doses: 761,000 (vs. 826,000)
 
@@ -56,10 +56,10 @@ As of Tuesday in the United States (vs. two weeks ago):
 
 ## World
 
-As of Tuesday (vs. two weeks ago):
+As of Wednesday (vs. two weeks ago):
   
-- Average new cases: 519,000 (vs. 602,000) -14%↓
-- Average new deaths: 8,480 (vs. 9,570) -11%↓
+- Average new cases: 516,000 (vs. 588,000) -12%↓
+- Average new deaths: 8,440 (vs. 9,210) -8%↓
 - Percent of the world fully vaccinated: 32% (vs. 29.1%)
 - Average new vaccine doses: 29,100,000 (vs. 32,700,000)
 
@@ -67,12 +67,12 @@ As of Tuesday (vs. two weeks ago):
 
 ## Case Acceleration
 
-As of Tuesday, the 14-day percent change in average new cases was:
+As of Wednesday, the 14-day percent change in average new cases was:
   
 - -40% in Champaign County
 - -13% in Illinois
-- -11% in the United States
-- -14% worldwide
+- -13% in the United States
+- -12% worldwide
 
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
@@ -80,11 +80,11 @@ This chart measures how quickly the average number of new cases is changing, or 
 
 ## Death Acceleration
 
-As of Tuesday, the 14-day percent change in average new deaths was:
+As of Wednesday, the 14-day percent change in average new deaths was:
   
 - 16% in Illinois
-- 36% in the United States
-- -11% worldwide
+- 35% in the United States
+- -8% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
 
