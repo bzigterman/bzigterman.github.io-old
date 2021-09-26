@@ -40,11 +40,11 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## United States
 
-As of Friday in the United States (vs. two weeks ago):
+As of Saturday in the United States (vs. two weeks ago):
   
-- Average new cases: 123,000 (vs. 146,000) -16%↓
-- Hospitalized: 80,900 (vs. 96,500) -16%↓
-- Average new deaths: 2,060 (vs. 1,610) +28%↑
+- Average new cases: 127,000 (vs. 146,000) -13%↓
+- Hospitalized: 78,700 (vs. 94,600) -17%↓
+- Average new deaths: 2,040 (vs. 1,640) +24%↑
 - Percent of the United States fully vaccinated: 54.4% (vs. 52.9%)
 - Average new vaccine doses: 653,000 (vs. 722,000)
 
@@ -56,10 +56,10 @@ As of Friday in the United States (vs. two weeks ago):
 
 ## World
 
-As of Friday (vs. two weeks ago):
+As of Saturday (vs. two weeks ago):
   
-- Average new cases: 501,000 (vs. 570,000) -12%↓
-- Average new deaths: 8,400 (vs. 8,920) -6%↓
+- Average new cases: 478,000 (vs. 564,000) -15%↓
+- Average new deaths: 8,150 (vs. 9,000) -9%↓
 - Percent of the world fully vaccinated: 32.5% (vs. 29.7%)
 - Average new vaccine doses: 29,400,000 (vs. 32,500,000)
 
@@ -67,12 +67,12 @@ As of Friday (vs. two weeks ago):
 
 ## Case Acceleration
 
-As of Friday, the 14-day percent change in average new cases was:
+As of Saturday, the 14-day percent change in average new cases was:
   
 - -38% in Champaign County
 - -16% in Illinois
-- -16% in the United States
-- -12% worldwide
+- -13% in the United States
+- -15% worldwide
 
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
@@ -80,11 +80,11 @@ This chart measures how quickly the average number of new cases is changing, or 
 
 ## Death Acceleration
 
-As of Friday, the 14-day percent change in average new deaths was:
+As of Saturday, the 14-day percent change in average new deaths was:
   
 - 22% in Illinois
-- 28% in the United States
-- -6% worldwide
+- 24% in the United States
+- -9% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
 
