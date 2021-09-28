@@ -40,11 +40,11 @@ Community transmission levels are calculated by the CDC based on new cases per c
 
 ## United States
 
-As of Sunday in the United States (vs. two weeks ago):
+As of Monday in the United States (vs. two weeks ago):
   
-- Average new cases: 120,000 (vs. 146,000) -18%↓
+- Average new cases: 117,000 (vs. 173,000) -32%↓
 - Hospitalized: 75,400 (vs. 91,500) -18%↓
-- Average new deaths: 1,990 (vs. 1,640) +21%↑
+- Average new deaths: 2,000 (vs. 1,870) +7%↑
 - Percent of the United States fully vaccinated: 54.6% (vs. 53.1%)
 - Average new vaccine doses: 647,000 (vs. 750,000)
 
@@ -56,10 +56,10 @@ As of Sunday in the United States (vs. two weeks ago):
 
 ## World
 
-As of Sunday (vs. two weeks ago):
+As of Monday (vs. two weeks ago):
   
-- Average new cases: 471,000 (vs. 556,000) -15%↓
-- Average new deaths: 8,020 (vs. 8,870) -10%↓
+- Average new cases: 461,000 (vs. 580,000) -21%↓
+- Average new deaths: 7,990 (vs. 9,030) -12%↓
 - Percent of the world fully vaccinated: 32.7% (vs. 30%)
 - Average new vaccine doses: 25,000,000 (vs. 34,200,000)
 
@@ -67,12 +67,12 @@ As of Sunday (vs. two weeks ago):
 
 ## Case Acceleration
 
-As of Sunday, the 14-day percent change in average new cases was:
+As of Monday, the 14-day percent change in average new cases was:
   
 - -38% in Champaign County
 - -22% in Illinois
-- -18% in the United States
-- -15% worldwide
+- -32% in the United States
+- -21% worldwide
 
 ![Case Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_cases_change_facet.png)
 
@@ -80,11 +80,11 @@ This chart measures how quickly the average number of new cases is changing, or 
 
 ## Death Acceleration
 
-As of Sunday, the 14-day percent change in average new deaths was:
+As of Monday, the 14-day percent change in average new deaths was:
   
 - -9% in Illinois
-- 21% in the United States
-- -10% worldwide
+- 7% in the United States
+- -12% worldwide
 
 ![Death Acceleration](https://raw.githubusercontent.com/bzigterman/CUcovid/main/gh_action/new_deaths_change_facet.png)
 
